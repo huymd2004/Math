@@ -1,0 +1,10 @@
+{
+name: "Challenge2",
+questions: [
+            "PreloadData/Worlds/World3/Challenge2/Question1.json",
+            "PreloadData/Worlds/World3/Challenge2/Question2.json",
+            "PreloadData/Worlds/World3/Challenge2/Question3.json",
+            "PreloadData/Worlds/World3/Challenge2/Question4.json",
+            "PreloadData/Worlds/World3/Challenge2/Question5.json"
+            ]
+}
