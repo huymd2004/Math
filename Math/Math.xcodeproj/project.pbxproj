@@ -143,6 +143,8 @@
 		1140BDB61824391C00EB804B /* Math.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1140BDB41824391C00EB804B /* Math.xcdatamodeld */; };
 		1165A00F182458EA007356C7 /* SketchCollege.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D7865B18244F9000DCC0BE /* SketchCollege.ttf */; };
 		116D046918253A2300C4262D /* Math.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 116D0468182536DB00C4262D /* Math.sqlite */; };
+		116D046C1825412700C4262D /* OptionsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D046B1825412700C4262D /* OptionsScene.m */; };
+		116D04721825486400C4262D /* ManageProfilesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D04711825486400C4262D /* ManageProfilesScene.m */; };
 		11D7862C1824491A00DCC0BE /* CoreDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7862B1824491A00DCC0BE /* CoreDataUtils.m */; };
 		11D7862F1824497800DCC0BE /* NewProfileScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7862E1824497800DCC0BE /* NewProfileScene.m */; };
 		11D78632182449A900DCC0BE /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D78631182449A900DCC0BE /* MainMenuScene.m */; };
@@ -437,6 +439,10 @@
 		1140BDB1182438FA00EB804B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1140BDB51824391C00EB804B /* Math.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Math.xcdatamodel; sourceTree = "<group>"; };
 		116D0468182536DB00C4262D /* Math.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Math.sqlite; sourceTree = "<group>"; };
+		116D046A1825412700C4262D /* OptionsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsScene.h; sourceTree = "<group>"; };
+		116D046B1825412700C4262D /* OptionsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsScene.m; sourceTree = "<group>"; };
+		116D04701825486400C4262D /* ManageProfilesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageProfilesScene.h; sourceTree = "<group>"; };
+		116D04711825486400C4262D /* ManageProfilesScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageProfilesScene.m; sourceTree = "<group>"; };
 		11D7862A1824491A00DCC0BE /* CoreDataUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUtils.h; sourceTree = "<group>"; };
 		11D7862B1824491A00DCC0BE /* CoreDataUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtils.m; sourceTree = "<group>"; };
 		11D7862D1824497700DCC0BE /* NewProfileScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProfileScene.h; sourceTree = "<group>"; };
@@ -530,6 +536,10 @@
 				11D78631182449A900DCC0BE /* MainMenuScene.m */,
 				11D7863418244A0600DCC0BE /* ProfileScene.h */,
 				11D7863518244A0600DCC0BE /* ProfileScene.m */,
+				116D046A1825412700C4262D /* OptionsScene.h */,
+				116D046B1825412700C4262D /* OptionsScene.m */,
+				116D04701825486400C4262D /* ManageProfilesScene.h */,
+				116D04711825486400C4262D /* ManageProfilesScene.m */,
 				11D786291824490900DCC0BE /* CoreDataUtils */,
 				1140BDB31824390500EB804B /* CoreDataModels */,
 				1140BC13182438DA00EB804B /* Resources */,
@@ -1039,6 +1049,7 @@
 				1140BC7E182438DA00EB804B /* ccGLStateCache.m in Sources */,
 				1140BD50182438DB00EB804B /* TransformUtils.m in Sources */,
 				1140BC9D182438DB00EB804B /* CCNode+Debug.m in Sources */,
+				116D04721825486400C4262D /* ManageProfilesScene.m in Sources */,
 				1140BC78182438DA00EB804B /* ccFPSImages.m in Sources */,
 				1140BCFE182438DB00EB804B /* CCTMXXMLParser.m in Sources */,
 				1140BD95182438DC00EB804B /* ray2.c in Sources */,
@@ -1076,6 +1087,7 @@
 				1140BC81182438DA00EB804B /* CCGrabber.m in Sources */,
 				1140BD8B182438DC00EB804B /* mat3.c in Sources */,
 				1140BDA5182438DC00EB804B /* AppDelegate.m in Sources */,
+				116D046C1825412700C4262D /* OptionsScene.m in Sources */,
 				11D78632182449A900DCC0BE /* MainMenuScene.m in Sources */,
 				1140BD15182438DB00EB804B /* CCES2Renderer.m in Sources */,
 				1140BC87182438DA00EB804B /* CCLabelAtlas.m in Sources */,

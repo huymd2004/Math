@@ -12,4 +12,5 @@
 {
     UITextField *_nameField;
 }
+-(id) initWithBackButtonToOptionsScene;
 @end

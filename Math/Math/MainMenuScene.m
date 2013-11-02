@@ -10,6 +10,8 @@
 
 #import "ProfileScene.h"
 
+#import "OptionsScene.h"
+
 @implementation MainMenuScene
 
 -(id) init
@@ -56,7 +58,8 @@
 
 -(void) optionsMenuItemSelected:(id) sender
 {
-    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
+                                               transitionWithDuration:1.0 scene:[[OptionsScene alloc] init]]];
 }
 
 -(void) profileMenuItemSelected:(id) sender

@@ -18,6 +18,12 @@
 
 #import "Question.h"
 
+#import "ProfileWorldScore.h"
+
+#import "ProfileChallengeScore.h"
+
+#define PROFILE_LIMIT 8
+
 @implementation CoreDataUtils
 
 static CoreDataUtils *_coreDataUtils;
@@ -43,6 +49,16 @@ static CoreDataUtils *_coreDataUtils;
     return self;
 }
 
+-(void) deleteProfile: (Profile *) profile
+{
+    [_managedObjectContext deleteObject:profile];
+    
+    NSError *error;
+    if (![_managedObjectContext save:&error])
+    {
+        [NSException raise:@"Invalid delete of profile." format:@"%@", [error localizedDescription]];
+    }
+}
 
 -(NSArray *) getProfiles
 {
@@ -121,6 +137,11 @@ static CoreDataUtils *_coreDataUtils;
         }
     }
     
+    for (Profile *profile in profiles)
+    {
+        profile.current = [NSNumber numberWithBool:NO];
+    }
+    
     Universe *universe = self.getUniverse;
     
     Profile *profile = [NSEntityDescription
@@ -141,6 +162,56 @@ static CoreDataUtils *_coreDataUtils;
     }
     
     return 0;
+}
+
+-(BOOL) canCreateNewProfile
+{
+    return [self getProfiles].count < PROFILE_LIMIT;
+}
+
+-(void) setProfileCurrent: (Profile *) currentProfile
+{
+    NSArray *profiles = [self getProfiles];
+    for (Profile *profile in profiles)
+    {
+        profile.current = [NSNumber numberWithBool:NO];
+    }
+    
+    currentProfile.current = [NSNumber numberWithBool:YES];
+    
+    NSError *error;
+    if (![_managedObjectContext save:&error])
+    {
+        [NSException raise:@"Invalid set to profile current." format:@"%@", [error localizedDescription]];
+    }
+}
+
+-(void) resetProgressForCurrentProfile
+{
+    Profile *profile = [self getCurrentProfile];
+    Universe *universe = self.getUniverse;
+    
+    profile.world = universe.worlds[0];
+    profile.challenge = profile.world.challenges[0];
+    
+    NSSet *profileWorldScores = profile.profileWorldScores;
+    NSSet *profileChallengeScores = profile.profileChallengeScores;
+    
+    for (ProfileWorldScore *profileWorldScore in profileWorldScores)
+    {
+        [_managedObjectContext deleteObject:profileWorldScore];
+    }
+    
+    for (ProfileChallengeScore *profileChallengeScore in profileChallengeScores)
+    {
+        [_managedObjectContext deleteObject:profileChallengeScore];
+    }
+    
+    NSError *error;
+    if (![_managedObjectContext save:&error])
+    {
+        [NSException raise:@"Invalid reset." format:@"%@", [error localizedDescription]];
+    }
 }
 
 @end

@@ -13,8 +13,13 @@
     NSManagedObjectContext *_managedObjectContext;
 }
 
--(int) newProfileWithName:(NSString *) name;
+-(int) newProfileWithName: (NSString *) name;
 -(Profile *) getCurrentProfile;
+-(BOOL) canCreateNewProfile;
+-(void) resetProgressForCurrentProfile;
+-(NSArray *) getProfiles;
+-(void) deleteProfile: (Profile *) profile;
+-(void) setProfileCurrent: (Profile *) currentProfile;
 
 +(CoreDataUtils *) getInstance;
 +(void) createCoreDataWithManagedObjectContext: (NSManagedObjectContext *) managedObjectContext;

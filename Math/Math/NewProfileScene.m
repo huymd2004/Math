@@ -12,9 +12,41 @@
 
 #import "CoreDataUtils.h"
 
+#import "OptionsScene.h"
+
 #define MAX_LENGTH_NAME_FIELD 10
 
 @implementation NewProfileScene
+
+-(id) initWithBackButtonToOptionsScene
+{
+    self = [self init];
+    
+    if (self != nil)
+    {
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        CCLayer *layer = [[CCLayer alloc] init];
+        
+        CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"Back" target:self
+                                                         selector:(@selector(backMenuItemSelected:))];
+        
+        CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
+        backMenu.position = ccp(winSize.width/10, winSize.height/10);
+        
+        [layer addChild:backMenu];
+        [self addChild:layer z:1];
+    }
+    
+    return self;
+}
+
+-(void) backMenuItemSelected:(id) sender
+{
+    [_nameField removeFromSuperview];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
+                                transitionWithDuration:1.0 scene:[[OptionsScene alloc] init]]];
+}
 
 -(id) init
 {
@@ -53,7 +85,7 @@
     finishedMenu.position = ccp(winSize.width/2, winSize.height/2);
     
     [layer addChild:finishedMenu];
-    [self addChild:layer];
+    [self addChild:layer z:0];
 }
 
 -(void) finishMenuItemSelected:(id) sender
