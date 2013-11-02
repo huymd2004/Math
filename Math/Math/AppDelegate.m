@@ -44,22 +44,6 @@
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
-// This is needed for iOS4 and iOS5 in order to ensure
-// that the 1st scene has the correct dimensions
-// This is not needed on iOS6 and could be added to the application:didFinish...
--(void) directorDidReshapeProjection:(CCDirector*)director
-{
-    if(director.runningScene == nil) {
-        if ([[CoreDataUtils getInstance] getCurrentProfile] != nil)
-        {
-            [director runWithScene: [[MainMenuScene alloc] init]];
-        }
-        else
-        {
-            [director runWithScene: [[NewProfileScene alloc] init]];
-        }
-    }
-}
 @end
 
 
@@ -150,6 +134,15 @@ managedObjectContext = _managedObjectContext;
     [CoreDataUtils createCoreDataWithManagedObjectContext: self.managedObjectContext];
     NSLog(@"Path to store: %@", self.storeDirectory.path);
     
+    if ([[CoreDataUtils getInstance] getCurrentProfile] != nil)
+    {
+        [[CCDirector sharedDirector] runWithScene: [[MainMenuScene alloc] init]];
+    }
+    else
+    {
+        [[CCDirector sharedDirector] runWithScene: [[NewProfileScene alloc] init]];
+    }
+    
     return YES;
 }
 
@@ -192,6 +185,15 @@ managedObjectContext = _managedObjectContext;
     }
     
     NSURL *storeURL = [[self storeDirectory] URLByAppendingPathComponent:@"Math.sqlite"];
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[storeURL path]]) {
+        NSURL *preloadURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Math" ofType:@"sqlite"]];
+        NSError* err = nil;
+        
+        if (![[NSFileManager defaultManager] copyItemAtURL:preloadURL toURL:storeURL error:&err]) {
+            NSLog(@"Oops, could copy preloaded data");
+        }
+    }
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];

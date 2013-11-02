@@ -140,7 +140,9 @@
 		1140BDA2182438DC00EB804B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1140BDA1182438DC00EB804B /* main.m */; };
 		1140BDA5182438DC00EB804B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1140BDA4182438DC00EB804B /* AppDelegate.m */; };
 		1140BDB2182438FA00EB804B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1140BDB1182438FA00EB804B /* CoreData.framework */; };
-		1140BDB61824391C00EB804B /* MathModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1140BDB41824391C00EB804B /* MathModels.xcdatamodeld */; };
+		1140BDB61824391C00EB804B /* Math.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1140BDB41824391C00EB804B /* Math.xcdatamodeld */; };
+		1165A00F182458EA007356C7 /* SketchCollege.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D7865B18244F9000DCC0BE /* SketchCollege.ttf */; };
+		116D046918253A2300C4262D /* Math.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 116D0468182536DB00C4262D /* Math.sqlite */; };
 		11D7862C1824491A00DCC0BE /* CoreDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7862B1824491A00DCC0BE /* CoreDataUtils.m */; };
 		11D7862F1824497800DCC0BE /* NewProfileScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7862E1824497800DCC0BE /* NewProfileScene.m */; };
 		11D78632182449A900DCC0BE /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D78631182449A900DCC0BE /* MainMenuScene.m */; };
@@ -433,7 +435,8 @@
 		1140BDA3182438DC00EB804B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1140BDA4182438DC00EB804B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1140BDB1182438FA00EB804B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		1140BDB51824391C00EB804B /* MathModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MathModels.xcdatamodel; sourceTree = "<group>"; };
+		1140BDB51824391C00EB804B /* Math.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Math.xcdatamodel; sourceTree = "<group>"; };
+		116D0468182536DB00C4262D /* Math.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Math.sqlite; sourceTree = "<group>"; };
 		11D7862A1824491A00DCC0BE /* CoreDataUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUtils.h; sourceTree = "<group>"; };
 		11D7862B1824491A00DCC0BE /* CoreDataUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtils.m; sourceTree = "<group>"; };
 		11D7862D1824497700DCC0BE /* NewProfileScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProfileScene.h; sourceTree = "<group>"; };
@@ -456,6 +459,7 @@
 		11D7865618244C9B00DCC0BE /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Challenge.m; sourceTree = "<group>"; };
 		11D7865818244CEF00DCC0BE /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		11D7865918244CEF00DCC0BE /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		11D7865B18244F9000DCC0BE /* SketchCollege.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SketchCollege.ttf; path = Resources/SketchCollege.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -540,6 +544,7 @@
 			children = (
 				1140BC14182438DA00EB804B /* Default.png */,
 				1140BC16182438DA00EB804B /* Default@2x.png */,
+				11D7865B18244F9000DCC0BE /* SketchCollege.ttf */,
 				1140BC18182438DA00EB804B /* Default-568h@2x.png */,
 				1140BC1A182438DA00EB804B /* Default-Landscape~ipad.png */,
 				1140BC1C182438DA00EB804B /* Icon-72.png */,
@@ -919,7 +924,8 @@
 		1140BDB31824390500EB804B /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
-				1140BDB41824391C00EB804B /* MathModels.xcdatamodeld */,
+				116D0468182536DB00C4262D /* Math.sqlite */,
+				1140BDB41824391C00EB804B /* Math.xcdatamodeld */,
 				11D7864918244B3D00DCC0BE /* World.h */,
 				11D7864A18244B3D00DCC0BE /* World.m */,
 				11D7864C18244C5600DCC0BE /* Universe.h */,
@@ -998,6 +1004,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				116D046918253A2300C4262D /* Math.sqlite in Resources */,
+				1165A00F182458EA007356C7 /* SketchCollege.ttf in Resources */,
 				1140BC25182438DA00EB804B /* Icon.png in Resources */,
 				1140BD83182438DC00EB804B /* ChangeLog in Resources */,
 				1140BC17182438DA00EB804B /* Default@2x.png in Resources */,
@@ -1056,7 +1064,7 @@
 				1140BD49182438DB00EB804B /* NSThread+performBlock.m in Sources */,
 				1140BC50182438DA00EB804B /* CCActionTiledGrid.m in Sources */,
 				11D7865418244C7800DCC0BE /* ProfileChallengeScore.m in Sources */,
-				1140BDB61824391C00EB804B /* MathModels.xcdatamodeld in Sources */,
+				1140BDB61824391C00EB804B /* Math.xcdatamodeld in Sources */,
 				1140BC97182438DA00EB804B /* CCMenuItem.m in Sources */,
 				1140BC32182438DA00EB804B /* CCActionCamera.m in Sources */,
 				1140BD64182438DC00EB804B /* CDXPropertyModifierAction.m in Sources */,
@@ -1254,13 +1262,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		1140BDB41824391C00EB804B /* MathModels.xcdatamodeld */ = {
+		1140BDB41824391C00EB804B /* Math.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1140BDB51824391C00EB804B /* MathModels.xcdatamodel */,
+				1140BDB51824391C00EB804B /* Math.xcdatamodel */,
 			);
-			currentVersion = 1140BDB51824391C00EB804B /* MathModels.xcdatamodel */;
-			path = MathModels.xcdatamodeld;
+			currentVersion = 1140BDB51824391C00EB804B /* Math.xcdatamodel */;
+			path = Math.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="iOS 5.0">
+    <entity name="Challenge" representedClassName="Challenge" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="profileChallengeScores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ProfileChallengeScore" inverseName="challenge" inverseEntity="ProfileChallengeScore" syncable="YES"/>
+        <relationship name="profiles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Profile" inverseName="challenge" inverseEntity="Profile" syncable="YES"/>
+        <relationship name="questions" toMany="YES" minCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="Question" inverseName="challenge" inverseEntity="Question" syncable="YES"/>
+        <relationship name="world" maxCount="1" deletionRule="Nullify" destinationEntity="World" inverseName="challenges" inverseEntity="World" syncable="YES"/>
+    </entity>
+    <entity name="Profile" representedClassName="Profile" syncable="YES">
+        <attribute name="current" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="challenge" maxCount="1" deletionRule="Nullify" destinationEntity="Challenge" inverseName="profiles" inverseEntity="Challenge" syncable="YES"/>
+        <relationship name="profileChallengeScores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ProfileChallengeScore" inverseName="profile" inverseEntity="ProfileChallengeScore" syncable="YES"/>
+        <relationship name="profileWorldScores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ProfileWorldScore" inverseName="profile" inverseEntity="ProfileWorldScore" syncable="YES"/>
+        <relationship name="world" maxCount="1" deletionRule="Nullify" destinationEntity="World" inverseName="profile" inverseEntity="World" syncable="YES"/>
+    </entity>
+    <entity name="ProfileChallengeScore" representedClassName="ProfileChallengeScore" syncable="YES">
+        <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="challenge" maxCount="1" deletionRule="Nullify" destinationEntity="Challenge" inverseName="profileChallengeScores" inverseEntity="Challenge" syncable="YES"/>
+        <relationship name="profile" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="profileChallengeScores" inverseEntity="Profile" syncable="YES"/>
+    </entity>
+    <entity name="ProfileWorldScore" representedClassName="ProfileWorldScore" syncable="YES">
+        <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="profile" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="profileWorldScores" inverseEntity="Profile" syncable="YES"/>
+        <relationship name="world" maxCount="1" deletionRule="Nullify" destinationEntity="World" inverseName="profileWorldScore" inverseEntity="World" syncable="YES"/>
+    </entity>
+    <entity name="Question" representedClassName="Question" syncable="YES">
+        <attribute name="correctAnswer" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="firstAnswer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fourthAnswer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isAnswersImages" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questionImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondAnswer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thirdAnswer" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="challenge" maxCount="1" deletionRule="Nullify" destinationEntity="Challenge" inverseName="questions" inverseEntity="Challenge" syncable="YES"/>
+    </entity>
+    <entity name="Universe" representedClassName="Universe" syncable="YES">
+        <relationship name="worlds" toMany="YES" minCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="World" inverseName="universe" inverseEntity="World" syncable="YES"/>
+    </entity>
+    <entity name="World" representedClassName="World" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="challenges" toMany="YES" minCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="Challenge" inverseName="world" inverseEntity="Challenge" syncable="YES"/>
+        <relationship name="profile" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Profile" inverseName="world" inverseEntity="Profile" syncable="YES"/>
+        <relationship name="profileWorldScore" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProfileWorldScore" inverseName="world" inverseEntity="ProfileWorldScore" syncable="YES"/>
+        <relationship name="universe" maxCount="1" deletionRule="Nullify" destinationEntity="Universe" inverseName="worlds" inverseEntity="Universe" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Challenge" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Profile" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ProfileChallengeScore" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ProfileWorldScore" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Question" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Universe" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="World" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>

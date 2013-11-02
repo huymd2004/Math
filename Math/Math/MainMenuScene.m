@@ -32,13 +32,13 @@
     label.position = ccp(winSize.width/2, (winSize.height*9)/10);
     [layer addChild:label];
     
-    CCMenuItem *playMenuItem = [CCMenuItemFont itemWithString:@"Done" target:self
+    CCMenuItem *playMenuItem = [CCMenuItemFont itemWithString:@"Play" target:self
                                                      selector:(@selector(playMenuItemSelected:))];
     
-    CCMenuItem *optionsMenuItem = [CCMenuItemFont itemWithString:@"Done" target:self
+    CCMenuItem *optionsMenuItem = [CCMenuItemFont itemWithString:@"Options" target:self
                                                         selector:(@selector(optionsMenuItemSelected:))];
     
-    CCMenuItem *profileMenuItem = [CCMenuItemFont itemWithString:@"Done" target:self
+    CCMenuItem *profileMenuItem = [CCMenuItemFont itemWithString:@"Profile" target:self
                                                         selector:(@selector(profileMenuItemSelected:))];
     
     CCMenu *menu = [CCMenu menuWithItems:playMenuItem, optionsMenuItem, profileMenuItem, nil];

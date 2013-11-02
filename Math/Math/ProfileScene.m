@@ -14,6 +14,10 @@
 
 #import "MainMenuScene.h"
 
+#import "World.h"
+
+#import "Challenge.h"
+
 @implementation ProfileScene
 
 -(id) init
@@ -42,17 +46,17 @@
     [layer addChild:profileTitleLabel];
     
     NSString *worldTitle = @"You are at world: ";
-    profileTitle = [profileTitle stringByAppendingString:profile.name];
+    worldTitle = [worldTitle stringByAppendingString:profile.world.name];
     
     CCLabelTTF *worldTitleLabel = [CCLabelTTF labelWithString:worldTitle fontName:@"SketchCollege" fontSize:24];
-    worldTitleLabel.position = ccp(winSize.width/2, (winSize.height*4)/5);
+    worldTitleLabel.position = ccp(winSize.width/2, (winSize.height*7)/10);
     [layer addChild:worldTitleLabel];
     
     NSString *challengeTitle = @"You are at challenge: ";
-    profileTitle = [profileTitle stringByAppendingString:profile.name];
+    challengeTitle = [challengeTitle stringByAppendingString:profile.challenge.name];
     
     CCLabelTTF *challengeTitleLabel = [CCLabelTTF labelWithString:challengeTitle fontName:@"SketchCollege" fontSize:24];
-    challengeTitleLabel.position = ccp(winSize.width/2, (winSize.height*4)/5);
+    challengeTitleLabel.position = ccp(winSize.width/2, (winSize.height*6)/10);
     [layer addChild:challengeTitleLabel];
     
     

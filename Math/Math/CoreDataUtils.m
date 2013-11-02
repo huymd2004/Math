@@ -53,7 +53,7 @@ static CoreDataUtils *_coreDataUtils;
     
     NSError *error;
     NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error == nil)
+    if (fetchedObjects != nil)
     {
         return fetchedObjects;
     }
@@ -67,13 +67,13 @@ static CoreDataUtils *_coreDataUtils;
 -(Universe *) getUniverse
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"World"
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Universe"
                                               inManagedObjectContext:_managedObjectContext];
     [fetchRequest setEntity:entity];
     
     NSError *error;
     NSArray *results = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error == nil && results.count > 0)
+    if (results != nil && results.count > 0)
     {
         Universe *universe = results[0];
         return universe;
@@ -97,18 +97,17 @@ static CoreDataUtils *_coreDataUtils;
                                               inManagedObjectContext:_managedObjectContext];
     [request setEntity:entity];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isCurrent == YES"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"current == YES"];
     [request setPredicate:predicate];
     NSError *error;
     NSArray *results = [_managedObjectContext executeFetchRequest:request error:&error];
     
-    if (error != nil)
+    if (results == nil)
     {
         [NSException raise:@"Invalid profiles fetch." format:@"%@", [error localizedDescription]];
     }
     
     return results[0];
-    
 }
 
 -(int) newProfileWithName:(NSString *) name
@@ -127,6 +126,7 @@ static CoreDataUtils *_coreDataUtils;
     Profile *profile = [NSEntityDescription
                         insertNewObjectForEntityForName:@"Profile"
                         inManagedObjectContext:_managedObjectContext];
+
     
     profile.name = name;
     profile.world = universe.worlds[0];

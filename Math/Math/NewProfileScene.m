@@ -50,7 +50,7 @@
     CCMenuItem *finishedMenuItem = [CCMenuItemFont itemWithString:@"Done" target:self selector:(@selector(finishMenuItemSelected:))];
     
     CCMenu *finishedMenu = [CCMenu menuWithItems:finishedMenuItem, nil];
-    finishedMenu.position = ccp(winSize.width/2, winSize.height/4);
+    finishedMenu.position = ccp(winSize.width/2, winSize.height/2);
     
     [layer addChild:finishedMenu];
     [self addChild:layer];
@@ -75,6 +75,7 @@
         }
         else
         {
+            [_nameField removeFromSuperview];
             [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                                                        transitionWithDuration:1.0 scene:[[MainMenuScene alloc] init]]];
         }
