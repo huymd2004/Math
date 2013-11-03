@@ -69,7 +69,7 @@
         profileNameLabel.position = ccp((winSize.width*2)/5, (winSize.height*(13 - i))/20); //TODO
         [layer addChild:profileNameLabel];
         
-        CCMenuItem *radioMenuItem = [CCMenuItemFont itemWithString:@"Delete"
+        CCMenuItem *radioMenuItem = [CCMenuItemFont itemWithString:@"Current"
                                             block:^(CCMenuItem *sender) {
                                                 for (CCMenuItem *menuItem in radioMenuItems)
                                                 {

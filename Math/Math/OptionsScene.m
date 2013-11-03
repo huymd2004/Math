@@ -51,6 +51,7 @@
                     resetProgressMenuItem, newProfileMenuItem, nil];
     [menu alignItemsVertically];
     menu.position = ccp(winSize.width/2, winSize.height/2);
+    [layer addChild:menu];
     
     CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"Back" target:self
                                                      selector:(@selector(backMenuItemSelected:))];
@@ -60,7 +61,6 @@
     
     [layer addChild:backMenu];
     
-    [layer addChild:menu];
     [self addChild:layer];
 }
 

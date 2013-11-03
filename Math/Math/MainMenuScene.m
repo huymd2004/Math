@@ -12,6 +12,8 @@
 
 #import "OptionsScene.h"
 
+#import "UniverseScene.h"
+
 @implementation MainMenuScene
 
 -(id) init
@@ -53,7 +55,8 @@
 
 -(void) playMenuItemSelected:(id) sender
 {
-    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
+                                               transitionWithDuration:1.0 scene:[[UniverseScene alloc] init]]];
 }
 
 -(void) optionsMenuItemSelected:(id) sender

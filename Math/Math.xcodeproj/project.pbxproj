@@ -156,6 +156,11 @@
 		11D7865418244C7800DCC0BE /* ProfileChallengeScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7865318244C7800DCC0BE /* ProfileChallengeScore.m */; };
 		11D7865718244C9B00DCC0BE /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7865618244C9B00DCC0BE /* Challenge.m */; };
 		11D7865A18244CEF00DCC0BE /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7865918244CEF00DCC0BE /* Profile.m */; };
+		11F4A3AE1826691E00640DC8 /* UniverseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4A3AD1826691E00640DC8 /* UniverseScene.m */; };
+		11F4A3B218266BE700640DC8 /* checkbox_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F4A3B118266BE700640DC8 /* checkbox_checked.png */; };
+		11F4A3B518266BFE00640DC8 /* WorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4A3B418266BFE00640DC8 /* WorldScene.m */; };
+		11F4A3B818267A3F00640DC8 /* ChallengeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F4A3B718267A3F00640DC8 /* ChallengeScene.m */; };
+		11F4A3BC1826855500640DC8 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F4A3BB1826855500640DC8 /* lock.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -466,6 +471,14 @@
 		11D7865818244CEF00DCC0BE /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		11D7865918244CEF00DCC0BE /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		11D7865B18244F9000DCC0BE /* SketchCollege.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SketchCollege.ttf; path = Resources/SketchCollege.ttf; sourceTree = "<group>"; };
+		11F4A3AC1826691E00640DC8 /* UniverseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniverseScene.h; sourceTree = "<group>"; };
+		11F4A3AD1826691E00640DC8 /* UniverseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniverseScene.m; sourceTree = "<group>"; };
+		11F4A3B118266BE700640DC8 /* checkbox_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_checked.png; sourceTree = "<group>"; };
+		11F4A3B318266BFE00640DC8 /* WorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldScene.h; sourceTree = "<group>"; };
+		11F4A3B418266BFE00640DC8 /* WorldScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldScene.m; sourceTree = "<group>"; };
+		11F4A3B618267A3F00640DC8 /* ChallengeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeScene.h; sourceTree = "<group>"; };
+		11F4A3B718267A3F00640DC8 /* ChallengeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeScene.m; sourceTree = "<group>"; };
+		11F4A3BB1826855500640DC8 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -530,6 +543,12 @@
 			children = (
 				1140BDA3182438DC00EB804B /* AppDelegate.h */,
 				1140BDA4182438DC00EB804B /* AppDelegate.m */,
+				11F4A3AC1826691E00640DC8 /* UniverseScene.h */,
+				11F4A3AD1826691E00640DC8 /* UniverseScene.m */,
+				11F4A3B318266BFE00640DC8 /* WorldScene.h */,
+				11F4A3B418266BFE00640DC8 /* WorldScene.m */,
+				11F4A3B618267A3F00640DC8 /* ChallengeScene.h */,
+				11F4A3B718267A3F00640DC8 /* ChallengeScene.m */,
 				11D7862D1824497700DCC0BE /* NewProfileScene.h */,
 				11D7862E1824497800DCC0BE /* NewProfileScene.m */,
 				11D78630182449A900DCC0BE /* MainMenuScene.h */,
@@ -552,6 +571,8 @@
 		1140BC13182438DA00EB804B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				11F4A3BB1826855500640DC8 /* lock.png */,
+				11F4A3B118266BE700640DC8 /* checkbox_checked.png */,
 				1140BC14182438DA00EB804B /* Default.png */,
 				1140BC16182438DA00EB804B /* Default@2x.png */,
 				11D7865B18244F9000DCC0BE /* SketchCollege.ttf */,
@@ -1018,6 +1039,8 @@
 				1165A00F182458EA007356C7 /* SketchCollege.ttf in Resources */,
 				1140BC25182438DA00EB804B /* Icon.png in Resources */,
 				1140BD83182438DC00EB804B /* ChangeLog in Resources */,
+				11F4A3BC1826855500640DC8 /* lock.png in Resources */,
+				11F4A3B218266BE700640DC8 /* checkbox_checked.png in Resources */,
 				1140BC17182438DA00EB804B /* Default@2x.png in Resources */,
 				1140BC21182438DA00EB804B /* Icon-Small.png in Resources */,
 				1140BC1D182438DA00EB804B /* Icon-72.png in Resources */,
@@ -1067,6 +1090,7 @@
 				1140BC35182438DA00EB804B /* CCActionCatmullRom.m in Sources */,
 				1140BCAC182438DB00EB804B /* CCParticleSystem.m in Sources */,
 				1140BD01182438DB00EB804B /* CCTransition.m in Sources */,
+				11F4A3AE1826691E00640DC8 /* UniverseScene.m in Sources */,
 				1140BCA9182438DB00EB804B /* CCParticleExamples.m in Sources */,
 				1140BCA6182438DB00EB804B /* CCParticleBatchNode.m in Sources */,
 				1140BCE9182438DB00EB804B /* CCTextureAtlas.m in Sources */,
@@ -1076,6 +1100,7 @@
 				1140BC50182438DA00EB804B /* CCActionTiledGrid.m in Sources */,
 				11D7865418244C7800DCC0BE /* ProfileChallengeScore.m in Sources */,
 				1140BDB61824391C00EB804B /* Math.xcdatamodeld in Sources */,
+				11F4A3B518266BFE00640DC8 /* WorldScene.m in Sources */,
 				1140BC97182438DA00EB804B /* CCMenuItem.m in Sources */,
 				1140BC32182438DA00EB804B /* CCActionCamera.m in Sources */,
 				1140BD64182438DC00EB804B /* CDXPropertyModifierAction.m in Sources */,
@@ -1101,6 +1126,7 @@
 				1140BC4D182438DA00EB804B /* CCActionProgressTimer.m in Sources */,
 				11D7864E18244C5600DCC0BE /* Universe.m in Sources */,
 				1140BC2F182438DA00EB804B /* CCAction.m in Sources */,
+				11F4A3B818267A3F00640DC8 /* ChallengeScene.m in Sources */,
 				1140BD67182438DC00EB804B /* CocosDenshion.m in Sources */,
 				11D7865718244C9B00DCC0BE /* Challenge.m in Sources */,
 				1140BCEC182438DB00EB804B /* CCTextureCache.m in Sources */,

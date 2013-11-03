@@ -10,8 +10,6 @@
 
 #import "CoreDataUtils.h"
 
-#import "Universe.h"
-
 #import "World.h"
 
 #import "Challenge.h"

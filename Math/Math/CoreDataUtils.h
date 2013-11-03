@@ -8,6 +8,8 @@
 
 #import "Profile.h"
 
+#import "Universe.h"
+
 @interface CoreDataUtils : NSObject
 {
     NSManagedObjectContext *_managedObjectContext;
@@ -20,6 +22,7 @@
 -(NSArray *) getProfiles;
 -(void) deleteProfile: (Profile *) profile;
 -(void) setProfileCurrent: (Profile *) currentProfile;
+-(Universe *) getUniverse;
 
 +(CoreDataUtils *) getInstance;
 +(void) createCoreDataWithManagedObjectContext: (NSManagedObjectContext *) managedObjectContext;
