@@ -151,12 +151,15 @@
 		1165A00F182458EA007356C7 /* SketchCollege.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D7865B18244F9000DCC0BE /* SketchCollege.ttf */; };
 		116D046C1825412700C4262D /* OptionsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D046B1825412700C4262D /* OptionsScene.m */; };
 		116D04721825486400C4262D /* ManageProfilesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D04711825486400C4262D /* ManageProfilesScene.m */; };
+		11865F93182BD32E003140BB /* QuestionScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865F92182BD32E003140BB /* QuestionScene.m */; };
+		11865F96182BD992003140BB /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865F95182BD992003140BB /* Question.m */; };
+		11865F99182C27F3003140BB /* ChallengeCompletedScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865F98182C27F3003140BB /* ChallengeCompletedScene.m */; };
+		11865F9C182C37CC003140BB /* GameCompletedScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865F9B182C37CC003140BB /* GameCompletedScene.m */; };
 		11C834F41827BEDE008745D8 /* World.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C834F31827BEDE008745D8 /* World.m */; };
 		11C834F71827BEDF008745D8 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C834F61827BEDF008745D8 /* Profile.m */; };
 		11C834FD1827BEDF008745D8 /* Universe.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C834FC1827BEDF008745D8 /* Universe.m */; };
 		11C835031827BEDF008745D8 /* ProfileChallengeScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C835021827BEDF008745D8 /* ProfileChallengeScore.m */; };
 		11C835061827BEDF008745D8 /* ProfileWorldScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C835051827BEDF008745D8 /* ProfileWorldScore.m */; };
-		11C8350C1827BEFE008745D8 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C8350B1827BEFE008745D8 /* Question.m */; };
 		11C8350F1827BF30008745D8 /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C8350E1827BF30008745D8 /* Answer.m */; };
 		11C835121827BF5A008745D8 /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C835111827BF5A008745D8 /* Challenge.m */; };
 		11D7862C1824491A00DCC0BE /* CoreDataUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7862B1824491A00DCC0BE /* CoreDataUtils.m */; };
@@ -462,6 +465,14 @@
 		116D046B1825412700C4262D /* OptionsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsScene.m; sourceTree = "<group>"; };
 		116D04701825486400C4262D /* ManageProfilesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageProfilesScene.h; sourceTree = "<group>"; };
 		116D04711825486400C4262D /* ManageProfilesScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageProfilesScene.m; sourceTree = "<group>"; };
+		11865F91182BD32E003140BB /* QuestionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionScene.h; sourceTree = "<group>"; };
+		11865F92182BD32E003140BB /* QuestionScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionScene.m; sourceTree = "<group>"; };
+		11865F94182BD992003140BB /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		11865F95182BD992003140BB /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		11865F97182C27F3003140BB /* ChallengeCompletedScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChallengeCompletedScene.h; sourceTree = "<group>"; };
+		11865F98182C27F3003140BB /* ChallengeCompletedScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeCompletedScene.m; sourceTree = "<group>"; };
+		11865F9A182C37CC003140BB /* GameCompletedScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCompletedScene.h; sourceTree = "<group>"; };
+		11865F9B182C37CC003140BB /* GameCompletedScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCompletedScene.m; sourceTree = "<group>"; };
 		11C834F21827BEDE008745D8 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
 		11C834F31827BEDE008745D8 /* World.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World.m; sourceTree = "<group>"; };
 		11C834F51827BEDF008745D8 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
@@ -472,8 +483,6 @@
 		11C835021827BEDF008745D8 /* ProfileChallengeScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileChallengeScore.m; sourceTree = "<group>"; };
 		11C835041827BEDF008745D8 /* ProfileWorldScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileWorldScore.h; sourceTree = "<group>"; };
 		11C835051827BEDF008745D8 /* ProfileWorldScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileWorldScore.m; sourceTree = "<group>"; };
-		11C8350A1827BEFE008745D8 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
-		11C8350B1827BEFE008745D8 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		11C8350D1827BF30008745D8 /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		11C8350E1827BF30008745D8 /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
 		11C835101827BF5A008745D8 /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Challenge.h; sourceTree = "<group>"; };
@@ -826,6 +835,12 @@
 				11F4A3B418266BFE00640DC8 /* WorldScene.m */,
 				11F4A3B618267A3F00640DC8 /* ChallengeScene.h */,
 				11F4A3B718267A3F00640DC8 /* ChallengeScene.m */,
+				11865F91182BD32E003140BB /* QuestionScene.h */,
+				11865F92182BD32E003140BB /* QuestionScene.m */,
+				11865F97182C27F3003140BB /* ChallengeCompletedScene.h */,
+				11865F98182C27F3003140BB /* ChallengeCompletedScene.m */,
+				11865F9A182C37CC003140BB /* GameCompletedScene.h */,
+				11865F9B182C37CC003140BB /* GameCompletedScene.m */,
 				11D7862D1824497700DCC0BE /* NewProfileScene.h */,
 				11D7862E1824497800DCC0BE /* NewProfileScene.m */,
 				11D78630182449A900DCC0BE /* MainMenuScene.h */,
@@ -1236,8 +1251,8 @@
 				1140BDB41824391C00EB804B /* Math.xcdatamodeld */,
 				11C8350D1827BF30008745D8 /* Answer.h */,
 				11C8350E1827BF30008745D8 /* Answer.m */,
-				11C8350A1827BEFE008745D8 /* Question.h */,
-				11C8350B1827BEFE008745D8 /* Question.m */,
+				11865F94182BD992003140BB /* Question.h */,
+				11865F95182BD992003140BB /* Question.m */,
 				11C835041827BEDF008745D8 /* ProfileWorldScore.h */,
 				11C835051827BEDF008745D8 /* ProfileWorldScore.m */,
 				11C835011827BEDF008745D8 /* ProfileChallengeScore.h */,
@@ -1357,6 +1372,7 @@
 				1140BC69182438DA00EB804B /* ccDeprecated.m in Sources */,
 				1140BD24182438DB00EB804B /* CCDirectorMac.m in Sources */,
 				1140BC7E182438DA00EB804B /* ccGLStateCache.m in Sources */,
+				11865F99182C27F3003140BB /* ChallengeCompletedScene.m in Sources */,
 				1140BD50182438DB00EB804B /* TransformUtils.m in Sources */,
 				1140BC9D182438DB00EB804B /* CCNode+Debug.m in Sources */,
 				116D04721825486400C4262D /* ManageProfilesScene.m in Sources */,
@@ -1374,6 +1390,7 @@
 				1140BC47182438DA00EB804B /* CCActionManager.m in Sources */,
 				1140BCAF182438DB00EB804B /* CCParticleSystemQuad.m in Sources */,
 				1140BC72182438DA00EB804B /* CCDrawNode.m in Sources */,
+				11865F96182BD992003140BB /* Question.m in Sources */,
 				1140BD04182438DB00EB804B /* CCTransitionPageTurn.m in Sources */,
 				1140BC35182438DA00EB804B /* CCActionCatmullRom.m in Sources */,
 				1140BCAC182438DB00EB804B /* CCParticleSystem.m in Sources */,
@@ -1399,6 +1416,7 @@
 				1140BCDA182438DB00EB804B /* CCSprite.m in Sources */,
 				1140BC81182438DA00EB804B /* CCGrabber.m in Sources */,
 				1140BD8B182438DC00EB804B /* mat3.c in Sources */,
+				11865F93182BD32E003140BB /* QuestionScene.m in Sources */,
 				1140BDA5182438DC00EB804B /* AppDelegate.m in Sources */,
 				116D046C1825412700C4262D /* OptionsScene.m in Sources */,
 				11D78632182449A900DCC0BE /* MainMenuScene.m in Sources */,
@@ -1448,6 +1466,7 @@
 				1140BC38182438DA00EB804B /* CCActionEase.m in Sources */,
 				1140BC75182438DA00EB804B /* CCFontDefinition.m in Sources */,
 				1140BCB5182438DB00EB804B /* CCPhysicsSprite.mm in Sources */,
+				11865F9C182C37CC003140BB /* GameCompletedScene.m in Sources */,
 				11C834FD1827BEDF008745D8 /* Universe.m in Sources */,
 				1140BD99182438DC00EB804B /* vec2.c in Sources */,
 				1140BD89182438DC00EB804B /* matrix.c in Sources */,
@@ -1473,7 +1492,6 @@
 				11C834F71827BEDF008745D8 /* Profile.m in Sources */,
 				1140BD6B182438DC00EB804B /* SimpleAudioEngine.m in Sources */,
 				1140BD1D182438DB00EB804B /* CCTouchDispatcher.m in Sources */,
-				11C8350C1827BEFE008745D8 /* Question.m in Sources */,
 				11D7862C1824491A00DCC0BE /* CoreDataUtils.m in Sources */,
 				1140BCA0182438DB00EB804B /* CCNode.m in Sources */,
 			);

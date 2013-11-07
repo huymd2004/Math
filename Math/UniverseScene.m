@@ -54,7 +54,7 @@
         
         if (i != currentWorld)
         {
-            NSString *imageFilePath = i > currentWorld ? @"lock.png" : @"checkbox_selected.png";
+            NSString *imageFilePath = i > currentWorld ? @"lock.png" : @"checkbox_checked.png";
             CCSprite *hasFinishedOrLockedSprite  = [CCSprite spriteWithFile:imageFilePath];
             
             hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/4, (winSize.height*(8-i))/10);

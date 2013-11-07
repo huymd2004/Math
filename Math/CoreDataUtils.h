@@ -10,6 +10,14 @@
 
 #import "Universe.h"
 
+#import "ProfileChallengeScore.h"
+
+#import "ProfileWorldScore.h"
+
+#import "Challenge.h"
+
+#import "World.h"
+
 @interface CoreDataUtils : NSObject
 {
     NSManagedObjectContext *_managedObjectContext;
@@ -23,6 +31,13 @@
 -(void) deleteProfile: (Profile *) profile;
 -(void) setProfileCurrent: (Profile *) currentProfile;
 -(Universe *) getUniverse;
+-(ProfileChallengeScore *) getProfileChallengeScore: (Profile *) profile challenge: (Challenge *) challenge;
+-(ProfileWorldScore *) getProfileWorldScore: (Profile *) profile world: (World *) world;
+-(BOOL) saveProfileChallengeScore: (Profile *)
+    profile withChallenge: (Challenge *) challenge andScore: (NSNumber *) score;
+-(BOOL) saveProfileWorldScore: (Profile *) profile withWorld: (World *) world andScore: (NSNumber *) score;
+-(void) updateChallengeForProfile: (Profile *) profile challenge: (Challenge *) challenge;
+-(void) updateWorldForProfile: (Profile *) profile world: (World *) world;
 
 +(CoreDataUtils *) getInstance;
 +(void) createCoreDataWithManagedObjectContext: (NSManagedObjectContext *) managedObjectContext;

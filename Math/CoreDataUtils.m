@@ -10,15 +10,7 @@
 
 #import "CoreDataUtils.h"
 
-#import "World.h"
-
-#import "Challenge.h"
-
 #import "Question.h"
-
-#import "ProfileWorldScore.h"
-
-#import "ProfileChallengeScore.h"
 
 #define PROFILE_LIMIT 8
 
@@ -212,6 +204,209 @@ static CoreDataUtils *_coreDataUtils;
     if (![_managedObjectContext save:&error])
     {
         [NSException raise:@"Invalid reset." format:@"%@", [error localizedDescription]];
+    }
+}
+
+-(ProfileChallengeScore *) getProfileChallengeScore: (Profile *) profile challenge: (Challenge *) challenge
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ProfileChallengeScore"
+                                              inManagedObjectContext:_managedObjectContext];
+    [request setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate
+                              predicateWithFormat:@"profile.name == %@ AND challenge.name == %@",
+                              profile.name, challenge.name];
+    [request setPredicate:predicate];
+    NSError *error;
+    NSArray *results = [_managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (results == nil)
+    {
+        [NSException raise:@"Invalid profileChallengeScore fetch."
+                    format:@"%@", [error localizedDescription]];
+    } else if (results.count == 0)
+    {
+        return nil;
+    }
+    
+    return results[0];
+}
+
+-(ProfileWorldScore *) getProfileWorldScore: (Profile *) profile world: (World *) world
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ProfileWorldScore"
+                                              inManagedObjectContext:_managedObjectContext];
+    [request setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate
+                              predicateWithFormat:@"profile.name == %@ AND world.name == %@",
+                              profile.name, world.name];
+    [request setPredicate:predicate];
+    NSError *error;
+    NSArray *results = [_managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (results == nil)
+    {
+        [NSException raise:@"Invalid profileWorldScore fetch."
+                    format:@"%@", [error localizedDescription]];
+    } else if (results.count == 0)
+    {
+        return nil;
+    }
+    
+    return results[0];
+}
+
+-(BOOL) saveProfileChallengeScore: (Profile *) profile withChallenge: (Challenge *) challenge andScore: (NSNumber *) score
+{
+    ProfileChallengeScore *oldScore =
+        [self getProfileChallengeScore:profile challenge:challenge];
+    
+    if (oldScore == nil || score > oldScore.score)
+    {
+        if (oldScore != nil)
+        {
+            [_managedObjectContext deleteObject:oldScore];
+        }
+        
+        ProfileChallengeScore *newScore =
+            [NSEntityDescription insertNewObjectForEntityForName:@"ProfileChallengeScore"
+                                           inManagedObjectContext:_managedObjectContext];
+        
+        newScore.profile = profile;
+        newScore.score = score;
+        newScore.challenge = challenge;
+        
+        NSError *error;
+        if (![_managedObjectContext save:&error])
+        {
+            [NSException raise:@"Invalid challenge score save."
+                        format:@"%@", [error localizedDescription]];
+        }
+        
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+-(BOOL) saveProfileWorldScore: (Profile *) profile withWorld: (World *) world andScore: (NSNumber *) score
+{
+    ProfileWorldScore *oldScore = [self getProfileWorldScore:profile world:world];
+    
+    if (oldScore == nil || score > oldScore.score)
+    {
+        if (oldScore != nil)
+        {
+            [_managedObjectContext deleteObject:oldScore];
+        }
+        
+        ProfileWorldScore *newScore =
+        [NSEntityDescription insertNewObjectForEntityForName:@"ProfileWorldScore"
+                                      inManagedObjectContext:_managedObjectContext];
+        
+        newScore.profile = profile;
+        newScore.score = score;
+        newScore.world = world;
+        
+        NSError *error;
+        if (![_managedObjectContext save:&error])
+        {
+            [NSException raise:@"Invalid world score save."
+                        format:@"%@", [error localizedDescription]];
+        }
+        
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+-(void) updateChallengeForProfile: (Profile *) profile challenge: (Challenge *) challenge
+{
+    Universe *universe = [self getUniverse];
+    
+    int profileWorldNumber = 0;
+    int profileChallengeNumber = 0;
+    int worldNumber = 0;
+    int challengeNumber = 0;
+    for (int i = 0; i < universe.worlds.count; ++i)
+    {
+        World *world = universe.worlds[i];
+        if ([world.name isEqualToString:profile.world.name])
+        {
+            profileWorldNumber = i+1;
+        }
+        else if ([world.name isEqualToString:challenge.world.name])
+        {
+            worldNumber = i+1;
+        }
+        
+            
+        for (int j = 0; j < world.challenges.count; ++j) {
+            Challenge *currentChallenge = world.challenges[j];
+            if ([currentChallenge.name isEqualToString:profile.challenge.name]
+                && profileWorldNumber != 0 && profileChallengeNumber == 0)
+            {
+                profileChallengeNumber = j+1;
+            }
+            else if ([currentChallenge.name isEqualToString:challenge.name]
+                     && worldNumber != 0 && challengeNumber == 0)
+            {
+                challengeNumber = j+1;
+            }
+        }
+    }
+    
+    if (worldNumber > profileWorldNumber ||
+        (worldNumber == profileWorldNumber && challengeNumber > profileChallengeNumber))
+    {
+        profile.challenge = challenge;
+    
+        NSError *error;
+        if (![_managedObjectContext save:&error])
+        {
+            [NSException raise:@"Invalid profile challenge save."
+                    format:@"%@", [error localizedDescription]];
+        }
+    }
+}
+
+-(void) updateWorldForProfile: (Profile *) profile world: (World *) world
+{
+    Universe *universe = [self getUniverse];
+    
+    int profileWorldNumber = 0;
+    int worldNumber = 0;
+    for (int i = 0; i < universe.worlds.count; ++i)
+    {
+        World *currentWorld = universe.worlds[i];
+        if ([currentWorld.name isEqualToString:profile.world.name])
+        {
+            profileWorldNumber = i+1;
+        }
+        else if ([currentWorld.name isEqualToString:world.name])
+        {
+            worldNumber = i+1;
+        }
+    }
+    
+    if (worldNumber > profileWorldNumber)
+    {
+        profile.world = world;
+    
+        NSError *error;
+        if (![_managedObjectContext save:&error])
+        {
+            [NSException raise:@"Invalid profile world save."
+                    format:@"%@", [error localizedDescription]];
+        }
     }
 }
 

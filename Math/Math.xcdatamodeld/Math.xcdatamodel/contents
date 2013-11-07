@@ -4,7 +4,7 @@
         <attribute name="isCorrect" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isImage" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="question" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="answer" inverseEntity="Question" syncable="YES"/>
+        <relationship name="question" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="answers" inverseEntity="Question" syncable="YES"/>
     </entity>
     <entity name="Challenge" representedClassName="Challenge" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,7 +34,7 @@
     <entity name="Question" representedClassName="Question" syncable="YES">
         <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="questionImage" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="answer" toMany="YES" minCount="2" deletionRule="Cascade" ordered="YES" destinationEntity="Answer" inverseName="question" inverseEntity="Answer" syncable="YES"/>
+        <relationship name="answers" toMany="YES" minCount="2" deletionRule="Cascade" ordered="YES" destinationEntity="Answer" inverseName="question" inverseEntity="Answer" syncable="YES"/>
         <relationship name="challenge" maxCount="1" deletionRule="Nullify" destinationEntity="Challenge" inverseName="questions" inverseEntity="Challenge" syncable="YES"/>
     </entity>
     <entity name="Universe" representedClassName="Universe" syncable="YES">

@@ -14,6 +14,10 @@
 
 #import "CoreDataUtils.h"
 
+#import "ProfileWorldScore.h"
+
+#import "Universe.h"
+
 @implementation WorldScene
 
 -(id) initWithWorld:(World *) world
@@ -41,14 +45,59 @@
     
     Profile *profile = [coreDataUtils getCurrentProfile];
     
-    int currentChallenge = [world.challenges indexOfObject:profile.challenge];
+    ProfileWorldScore *score = [coreDataUtils getProfileWorldScore:profile world:world];
+    
+    if (score != nil)
+    {
+        NSString *highScoreString = [NSString stringWithFormat:@"Highscore is %@ for %@",
+                                     score.score, world.name];
+        CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:highScoreString
+                                                        fontName:@"SketchCollege" fontSize:24];
+        highScoreLabel.position = ccp(winSize.width/2, (winSize.height*17)/20);
+        [layer addChild:highScoreLabel];
+    }
+    
+    int currentChallengeIndex = 0;
     for (int i = 0; i < world.challenges.count; ++i)
     {
         Challenge *challenge = world.challenges[i];
         
-        if (i != currentChallenge)
+        if ([challenge.name isEqualToString:profile.challenge.name])
         {
-            NSString *imageFilePath = i > currentChallenge ? @"lock.png" : @"checkbox_selected.png";
+            currentChallengeIndex = i;
+            break;
+        }
+    }
+    
+    int thisWorldIndex = 0;
+    int profileWorldIndex = 0;
+    
+    
+    Universe *universe = [coreDataUtils getUniverse];
+    for (int i = 0; i < universe.worlds.count; ++i)
+    {
+        World *currentWorld = universe.worlds[i];
+        
+        if ([currentWorld.name isEqualToString:world.name])
+        {
+            thisWorldIndex = i;
+        }
+        
+        if ([currentWorld.name isEqualToString:profile.world.name])
+        {
+            profileWorldIndex = i;
+        }
+    }
+    
+    currentChallengeIndex = thisWorldIndex == profileWorldIndex ? currentChallengeIndex : INT_MAX;
+    
+    for (int i = 0; i < world.challenges.count; ++i)
+    {
+        Challenge *challenge = world.challenges[i];
+        
+        if (i != currentChallengeIndex)
+        {
+            NSString *imageFilePath = i > currentChallengeIndex ? @"lock.png" : @"checkbox_checked.png";
             CCSprite *hasFinishedOrLockedSprite  = [CCSprite spriteWithFile:imageFilePath];
             
             hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/4, (winSize.height*(8-i))/10);

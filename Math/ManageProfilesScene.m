@@ -41,7 +41,8 @@
     NSString *profilesString = @"You have ";
     profilesString = [profilesString stringByAppendingString:
                       [NSString stringWithFormat:@"%i", profiles.count]];
-    profilesString = [profilesString stringByAppendingString:@" profiles!"];
+    profilesString =
+        [profilesString stringByAppendingString:profiles.count > 1 ? @" profiles!" : @" profile!"];
     
     CCLabelTTF *profilesLabel = [CCLabelTTF labelWithString:profilesString
                                            fontName:@"SketchCollege" fontSize:24];
@@ -66,18 +67,18 @@
         
         CCLabelTTF *profileNameLabel = [CCLabelTTF labelWithString:name
                                                    fontName:@"SketchCollege" fontSize:24];
-        profileNameLabel.position = ccp((winSize.width*2)/5, (winSize.height*(13 - i))/20); //TODO
+        profileNameLabel.position = ccp((winSize.width*2)/5, (winSize.height*(13 - i))/20);
         [layer addChild:profileNameLabel];
         
         CCMenuItem *radioMenuItem = [CCMenuItemFont itemWithString:@"Current"
                                             block:^(CCMenuItem *sender) {
                                                 for (CCMenuItem *menuItem in radioMenuItems)
                                                 {
-                                                    [menuItem unselected];
+                                                    [menuItem setIsEnabled:YES];
                                                 }
                                                 
-                                                [sender selected];
-                                                
+                                                [sender setIsEnabled:NO];
+                                                    
                                                 [coreDataUtils setProfileCurrent:profile];
                                             }];
         
@@ -85,7 +86,7 @@
         
         if ([profile.current intValue] == 1)
         {
-            [radioMenuItem selected];
+            [radioMenuItem setIsEnabled:NO];
         }
         
         CCMenu *radioMenu = [CCMenu menuWithItems:radioMenuItem, nil];

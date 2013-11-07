@@ -2,7 +2,7 @@
 //  Question.h
 //  Math
 //
-//  Created by Johan Stenberg on 2013-11-04.
+//  Created by Johan Stenberg on 2013-11-07.
 //  Copyright (c) 2013 Johan Stenberg. All rights reserved.
 //
 
@@ -15,20 +15,20 @@
 
 @property (nonatomic, retain) NSString * question;
 @property (nonatomic, retain) NSString * questionImage;
-@property (nonatomic, retain) NSOrderedSet *answer;
+@property (nonatomic, retain) NSOrderedSet *answers;
 @property (nonatomic, retain) Challenge *challenge;
 @end
 
 @interface Question (CoreDataGeneratedAccessors)
 
-- (void)insertObject:(Answer *)value inAnswerAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromAnswerAtIndex:(NSUInteger)idx;
-- (void)insertAnswer:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeAnswerAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInAnswerAtIndex:(NSUInteger)idx withObject:(Answer *)value;
-- (void)replaceAnswerAtIndexes:(NSIndexSet *)indexes withAnswer:(NSArray *)values;
-- (void)addAnswerObject:(Answer *)value;
-- (void)removeAnswerObject:(Answer *)value;
-- (void)addAnswer:(NSOrderedSet *)values;
-- (void)removeAnswer:(NSOrderedSet *)values;
+- (void)insertObject:(Answer *)value inAnswersAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromAnswersAtIndex:(NSUInteger)idx;
+- (void)insertAnswers:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeAnswersAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInAnswersAtIndex:(NSUInteger)idx withObject:(Answer *)value;
+- (void)replaceAnswersAtIndexes:(NSIndexSet *)indexes withAnswers:(NSArray *)values;
+- (void)addAnswersObject:(Answer *)value;
+- (void)removeAnswersObject:(Answer *)value;
+- (void)addAnswers:(NSOrderedSet *)values;
+- (void)removeAnswers:(NSOrderedSet *)values;
 @end
