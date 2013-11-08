@@ -52,7 +52,7 @@
         CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:highScoreString
                                                          fontName:@"SketchCollege" fontSize:24];
         highScoreLabel.position = ccp(winSize.width/2, (winSize.height*17)/20);
-        [layer addChild:sceneTitleLabel];
+        [layer addChild:highScoreLabel];
     }
     
     CCMenuItem *playMenuItem = [CCMenuItemFont itemWithString:@"Play"

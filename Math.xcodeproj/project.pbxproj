@@ -155,6 +155,10 @@
 		11865F96182BD992003140BB /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865F95182BD992003140BB /* Question.m */; };
 		11865F99182C27F3003140BB /* ChallengeCompletedScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865F98182C27F3003140BB /* ChallengeCompletedScene.m */; };
 		11865F9C182C37CC003140BB /* GameCompletedScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865F9B182C37CC003140BB /* GameCompletedScene.m */; };
+		1194CACB182D34700067A983 /* tiger.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CAC7182D34700067A983 /* tiger.png */; };
+		1194CACC182D34700067A983 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CAC8182D34700067A983 /* dog.png */; };
+		1194CACD182D34700067A983 /* bunny.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CAC9182D34700067A983 /* bunny.png */; };
+		1194CACE182D34700067A983 /* llama.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CACA182D34700067A983 /* llama.png */; };
 		11C834F41827BEDE008745D8 /* World.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C834F31827BEDE008745D8 /* World.m */; };
 		11C834F71827BEDF008745D8 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C834F61827BEDF008745D8 /* Profile.m */; };
 		11C834FD1827BEDF008745D8 /* Universe.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C834FC1827BEDF008745D8 /* Universe.m */; };
@@ -177,11 +181,11 @@
 		113B195E1827FE1600B423BC /* CoreDataBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataBuilder.h; sourceTree = "<group>"; };
 		113B195F1827FE1600B423BC /* CoreDataBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataBuilder.m; sourceTree = "<group>"; };
 		113B1962182801FF00B423BC /* Universe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Universe.json; sourceTree = "<group>"; };
-		113B196A182801FF00B423BC /* World1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = World1.json; sourceTree = "<group>"; };
-		113B19711828020000B423BC /* World2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = World2.json; sourceTree = "<group>"; };
-		113B19781828020000B423BC /* World3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = World3.json; sourceTree = "<group>"; };
-		113B197F1828020000B423BC /* World4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = World4.json; sourceTree = "<group>"; };
-		113B19861828020000B423BC /* World5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = World5.json; sourceTree = "<group>"; };
+		113B196A182801FF00B423BC /* World1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = World1.json; path = Worlds/World1.json; sourceTree = "<group>"; };
+		113B19711828020000B423BC /* World2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = World2.json; path = Worlds/World2.json; sourceTree = "<group>"; };
+		113B19781828020000B423BC /* World3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = World3.json; path = Worlds/World3.json; sourceTree = "<group>"; };
+		113B197F1828020000B423BC /* World4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = World4.json; path = Worlds/World4.json; sourceTree = "<group>"; };
+		113B19861828020000B423BC /* World5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = World5.json; path = Worlds/World5.json; sourceTree = "<group>"; };
 		1140BBFB182438DA00EB804B /* Math.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Math.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1140BBFE182438DA00EB804B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		1140BC00182438DA00EB804B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -473,6 +477,10 @@
 		11865F98182C27F3003140BB /* ChallengeCompletedScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChallengeCompletedScene.m; sourceTree = "<group>"; };
 		11865F9A182C37CC003140BB /* GameCompletedScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCompletedScene.h; sourceTree = "<group>"; };
 		11865F9B182C37CC003140BB /* GameCompletedScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCompletedScene.m; sourceTree = "<group>"; };
+		1194CAC7182D34700067A983 /* tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiger.png; sourceTree = "<group>"; };
+		1194CAC8182D34700067A983 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
+		1194CAC9182D34700067A983 /* bunny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bunny.png; sourceTree = "<group>"; };
+		1194CACA182D34700067A983 /* llama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = llama.png; sourceTree = "<group>"; };
 		11C834F21827BEDE008745D8 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
 		11C834F31827BEDE008745D8 /* World.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World.m; sourceTree = "<group>"; };
 		11C834F51827BEDF008745D8 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
@@ -532,261 +540,13 @@
 			isa = PBXGroup;
 			children = (
 				113B1962182801FF00B423BC /* Universe.json */,
-				113B1963182801FF00B423BC /* Worlds */,
-			);
-			path = PreloadData;
-			sourceTree = "<group>";
-		};
-		113B1963182801FF00B423BC /* Worlds */ = {
-			isa = PBXGroup;
-			children = (
-				113B1964182801FF00B423BC /* World1 */,
 				113B196A182801FF00B423BC /* World1.json */,
-				113B196B182801FF00B423BC /* World2 */,
 				113B19711828020000B423BC /* World2.json */,
-				113B19721828020000B423BC /* World3 */,
 				113B19781828020000B423BC /* World3.json */,
-				113B19791828020000B423BC /* World4 */,
 				113B197F1828020000B423BC /* World4.json */,
-				113B19801828020000B423BC /* World5 */,
 				113B19861828020000B423BC /* World5.json */,
 			);
-			path = Worlds;
-			sourceTree = "<group>";
-		};
-		113B1964182801FF00B423BC /* World1 */ = {
-			isa = PBXGroup;
-			children = (
-				113B1965182801FF00B423BC /* Challenge1 */,
-				113B1966182801FF00B423BC /* Challenge2 */,
-				113B1967182801FF00B423BC /* Challenge3 */,
-				113B1968182801FF00B423BC /* Challenge4 */,
-				113B1969182801FF00B423BC /* Challenge5 */,
-			);
-			path = World1;
-			sourceTree = "<group>";
-		};
-		113B1965182801FF00B423BC /* Challenge1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge1;
-			sourceTree = "<group>";
-		};
-		113B1966182801FF00B423BC /* Challenge2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge2;
-			sourceTree = "<group>";
-		};
-		113B1967182801FF00B423BC /* Challenge3 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge3;
-			sourceTree = "<group>";
-		};
-		113B1968182801FF00B423BC /* Challenge4 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge4;
-			sourceTree = "<group>";
-		};
-		113B1969182801FF00B423BC /* Challenge5 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge5;
-			sourceTree = "<group>";
-		};
-		113B196B182801FF00B423BC /* World2 */ = {
-			isa = PBXGroup;
-			children = (
-				113B196C182801FF00B423BC /* Challenge1 */,
-				113B196D182801FF00B423BC /* Challenge2 */,
-				113B196E1828020000B423BC /* Challenge3 */,
-				113B196F1828020000B423BC /* Challenge4 */,
-				113B19701828020000B423BC /* Challenge5 */,
-			);
-			path = World2;
-			sourceTree = "<group>";
-		};
-		113B196C182801FF00B423BC /* Challenge1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge1;
-			sourceTree = "<group>";
-		};
-		113B196D182801FF00B423BC /* Challenge2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge2;
-			sourceTree = "<group>";
-		};
-		113B196E1828020000B423BC /* Challenge3 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge3;
-			sourceTree = "<group>";
-		};
-		113B196F1828020000B423BC /* Challenge4 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge4;
-			sourceTree = "<group>";
-		};
-		113B19701828020000B423BC /* Challenge5 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge5;
-			sourceTree = "<group>";
-		};
-		113B19721828020000B423BC /* World3 */ = {
-			isa = PBXGroup;
-			children = (
-				113B19731828020000B423BC /* Challenge1 */,
-				113B19741828020000B423BC /* Challenge2 */,
-				113B19751828020000B423BC /* Challenge3 */,
-				113B19761828020000B423BC /* Challenge4 */,
-				113B19771828020000B423BC /* Challenge5 */,
-			);
-			path = World3;
-			sourceTree = "<group>";
-		};
-		113B19731828020000B423BC /* Challenge1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge1;
-			sourceTree = "<group>";
-		};
-		113B19741828020000B423BC /* Challenge2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge2;
-			sourceTree = "<group>";
-		};
-		113B19751828020000B423BC /* Challenge3 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge3;
-			sourceTree = "<group>";
-		};
-		113B19761828020000B423BC /* Challenge4 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge4;
-			sourceTree = "<group>";
-		};
-		113B19771828020000B423BC /* Challenge5 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge5;
-			sourceTree = "<group>";
-		};
-		113B19791828020000B423BC /* World4 */ = {
-			isa = PBXGroup;
-			children = (
-				113B197A1828020000B423BC /* Challenge1 */,
-				113B197B1828020000B423BC /* Challenge2 */,
-				113B197C1828020000B423BC /* Challenge3 */,
-				113B197D1828020000B423BC /* Challenge4 */,
-				113B197E1828020000B423BC /* Challenge5 */,
-			);
-			path = World4;
-			sourceTree = "<group>";
-		};
-		113B197A1828020000B423BC /* Challenge1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge1;
-			sourceTree = "<group>";
-		};
-		113B197B1828020000B423BC /* Challenge2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge2;
-			sourceTree = "<group>";
-		};
-		113B197C1828020000B423BC /* Challenge3 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge3;
-			sourceTree = "<group>";
-		};
-		113B197D1828020000B423BC /* Challenge4 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge4;
-			sourceTree = "<group>";
-		};
-		113B197E1828020000B423BC /* Challenge5 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge5;
-			sourceTree = "<group>";
-		};
-		113B19801828020000B423BC /* World5 */ = {
-			isa = PBXGroup;
-			children = (
-				113B19811828020000B423BC /* Challenge1 */,
-				113B19821828020000B423BC /* Challenge2 */,
-				113B19831828020000B423BC /* Challenge3 */,
-				113B19841828020000B423BC /* Challenge4 */,
-				113B19851828020000B423BC /* Challenge5 */,
-			);
-			path = World5;
-			sourceTree = "<group>";
-		};
-		113B19811828020000B423BC /* Challenge1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge1;
-			sourceTree = "<group>";
-		};
-		113B19821828020000B423BC /* Challenge2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge2;
-			sourceTree = "<group>";
-		};
-		113B19831828020000B423BC /* Challenge3 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge3;
-			sourceTree = "<group>";
-		};
-		113B19841828020000B423BC /* Challenge4 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge4;
-			sourceTree = "<group>";
-		};
-		113B19851828020000B423BC /* Challenge5 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge5;
+			path = PreloadData;
 			sourceTree = "<group>";
 		};
 		1140BBF2182438DA00EB804B = {
@@ -829,28 +589,7 @@
 			children = (
 				1140BDA3182438DC00EB804B /* AppDelegate.h */,
 				1140BDA4182438DC00EB804B /* AppDelegate.m */,
-				11F4A3AC1826691E00640DC8 /* UniverseScene.h */,
-				11F4A3AD1826691E00640DC8 /* UniverseScene.m */,
-				11F4A3B318266BFE00640DC8 /* WorldScene.h */,
-				11F4A3B418266BFE00640DC8 /* WorldScene.m */,
-				11F4A3B618267A3F00640DC8 /* ChallengeScene.h */,
-				11F4A3B718267A3F00640DC8 /* ChallengeScene.m */,
-				11865F91182BD32E003140BB /* QuestionScene.h */,
-				11865F92182BD32E003140BB /* QuestionScene.m */,
-				11865F97182C27F3003140BB /* ChallengeCompletedScene.h */,
-				11865F98182C27F3003140BB /* ChallengeCompletedScene.m */,
-				11865F9A182C37CC003140BB /* GameCompletedScene.h */,
-				11865F9B182C37CC003140BB /* GameCompletedScene.m */,
-				11D7862D1824497700DCC0BE /* NewProfileScene.h */,
-				11D7862E1824497800DCC0BE /* NewProfileScene.m */,
-				11D78630182449A900DCC0BE /* MainMenuScene.h */,
-				11D78631182449A900DCC0BE /* MainMenuScene.m */,
-				11D7863418244A0600DCC0BE /* ProfileScene.h */,
-				11D7863518244A0600DCC0BE /* ProfileScene.m */,
-				116D046A1825412700C4262D /* OptionsScene.h */,
-				116D046B1825412700C4262D /* OptionsScene.m */,
-				116D04701825486400C4262D /* ManageProfilesScene.h */,
-				116D04711825486400C4262D /* ManageProfilesScene.m */,
+				1194CACF182D34810067A983 /* Scenes */,
 				113B1961182801FF00B423BC /* PreloadData */,
 				11D786291824490900DCC0BE /* CoreDataUtils */,
 				1140BDB31824390500EB804B /* CoreDataModels */,
@@ -864,6 +603,10 @@
 		1140BC13182438DA00EB804B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1194CAC7182D34700067A983 /* tiger.png */,
+				1194CAC8182D34700067A983 /* dog.png */,
+				1194CAC9182D34700067A983 /* bunny.png */,
+				1194CACA182D34700067A983 /* llama.png */,
 				11F4A3BB1826855500640DC8 /* lock.png */,
 				11F4A3B118266BE700640DC8 /* checkbox_checked.png */,
 				1140BC14182438DA00EB804B /* Default.png */,
@@ -1269,6 +1012,35 @@
 			name = CoreDataModels;
 			sourceTree = "<group>";
 		};
+		1194CACF182D34810067A983 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				11F4A3AC1826691E00640DC8 /* UniverseScene.h */,
+				11F4A3AD1826691E00640DC8 /* UniverseScene.m */,
+				11F4A3B318266BFE00640DC8 /* WorldScene.h */,
+				11F4A3B418266BFE00640DC8 /* WorldScene.m */,
+				11F4A3B618267A3F00640DC8 /* ChallengeScene.h */,
+				11F4A3B718267A3F00640DC8 /* ChallengeScene.m */,
+				11865F91182BD32E003140BB /* QuestionScene.h */,
+				11865F92182BD32E003140BB /* QuestionScene.m */,
+				11865F97182C27F3003140BB /* ChallengeCompletedScene.h */,
+				11865F98182C27F3003140BB /* ChallengeCompletedScene.m */,
+				11865F9A182C37CC003140BB /* GameCompletedScene.h */,
+				11865F9B182C37CC003140BB /* GameCompletedScene.m */,
+				11D7862D1824497700DCC0BE /* NewProfileScene.h */,
+				11D7862E1824497800DCC0BE /* NewProfileScene.m */,
+				11D78630182449A900DCC0BE /* MainMenuScene.h */,
+				11D78631182449A900DCC0BE /* MainMenuScene.m */,
+				11D7863418244A0600DCC0BE /* ProfileScene.h */,
+				11D7863518244A0600DCC0BE /* ProfileScene.m */,
+				116D046A1825412700C4262D /* OptionsScene.h */,
+				116D046B1825412700C4262D /* OptionsScene.m */,
+				116D04701825486400C4262D /* ManageProfilesScene.h */,
+				116D04711825486400C4262D /* ManageProfilesScene.m */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		11D786291824490900DCC0BE /* CoreDataUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1339,6 +1111,7 @@
 				11F4A3B218266BE700640DC8 /* checkbox_checked.png in Resources */,
 				113B198C1828020000B423BC /* World5.json in Resources */,
 				1140BC17182438DA00EB804B /* Default@2x.png in Resources */,
+				1194CACD182D34700067A983 /* bunny.png in Resources */,
 				113B19871828020000B423BC /* Universe.json in Resources */,
 				1140BC21182438DA00EB804B /* Icon-Small.png in Resources */,
 				1140BC1D182438DA00EB804B /* Icon-72.png in Resources */,
@@ -1346,12 +1119,15 @@
 				1140BC1F182438DA00EB804B /* Icon-Small-50.png in Resources */,
 				1140BC2A182438DA00EB804B /* iTunesArtwork in Resources */,
 				1140BC23182438DA00EB804B /* Icon-Small@2x.png in Resources */,
+				1194CACC182D34700067A983 /* dog.png in Resources */,
+				1194CACE182D34700067A983 /* llama.png in Resources */,
 				1140BC1B182438DA00EB804B /* Default-Landscape~ipad.png in Resources */,
 				1140BC19182438DA00EB804B /* Default-568h@2x.png in Resources */,
 				113B19891828020000B423BC /* World2.json in Resources */,
 				113B19881828020000B423BC /* World1.json in Resources */,
 				1140BC27182438DA00EB804B /* Icon@2x.png in Resources */,
 				113B198A1828020000B423BC /* World3.json in Resources */,
+				1194CACB182D34700067A983 /* tiger.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

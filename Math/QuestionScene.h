@@ -16,6 +16,7 @@
     NSNumber *_score;
     CCLabelTTF *_scoreLabel;
     int _currentScore;
+    double _startTimeMilliseconds;
 }
 
 -(id) initWithQuestion: (Question *) question andScore: (NSNumber *) score andCount: (int) count;

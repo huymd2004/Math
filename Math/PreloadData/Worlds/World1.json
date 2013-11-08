@@ -5,28 +5,28 @@
                   "name":"Challenge1",
                   "questions":[
                                {
-                               "question":"What is 2 - 1?",
+                               "question":"Which animal rhymes with funny?",
                                "questionImage":null,
                                "answers":[
                                           {
                                           "isCorrect":true,
-                                          "isImage":false,
-                                          "text":"1"
+                                          "isImage":true,
+                                          "text":"bunny.png"
                                           },
                                           {
                                           "isCorrect":false,
-                                          "isImage":false,
-                                          "text":"2"
+                                          "isImage":true,
+                                          "text":"tiger.png"
                                           },
                                           {
                                           "isCorrect":false,
-                                          "isImage":false,
-                                          "text":"3"
+                                          "isImage":true,
+                                          "text":"dog.png"
                                           },
                                           {
                                           "isCorrect":false,
-                                          "isImage":false,
-                                          "text":"4"
+                                          "isImage":true,
+                                          "text":"llama.png"
                                           }
                                           ]
                                },

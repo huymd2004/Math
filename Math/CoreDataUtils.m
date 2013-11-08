@@ -215,8 +215,8 @@ static CoreDataUtils *_coreDataUtils;
     [request setEntity:entity];
     
     NSPredicate *predicate = [NSPredicate
-                              predicateWithFormat:@"profile.name == %@ AND challenge.name == %@",
-                              profile.name, challenge.name];
+                              predicateWithFormat:@"profile.name == %@ AND challenge.name == %@ AND challenge.world.name == %@",
+                              profile.name, challenge.name, challenge.world.name];
     [request setPredicate:predicate];
     NSError *error;
     NSArray *results = [_managedObjectContext executeFetchRequest:request error:&error];

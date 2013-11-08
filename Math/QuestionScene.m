@@ -29,10 +29,9 @@
         _question = question;
         _score = [score copy];
         _currentScore = START_SCORE;
+        _startTimeMilliseconds = [[NSDate date] timeIntervalSince1970] * 1000;
         
         [self setupLayout:_question andCount:count];
-        [self scheduleUpdate];
-        
     }
     
     return self;
@@ -57,10 +56,22 @@
     for (int i = 0; i < question.answers.count; ++i)
     {
         Answer *answer = question.answers[i];
-        CCMenuItem *questionMenuItem = [CCMenuItemFont itemWithString:answer.text
-                                            block:^(id sender) {
-                                                [self questionMenuItemSelected:answer andCount:count];
-                                            }];
+        CCMenuItem *questionMenuItem;
+        
+        if ([answer.isImage intValue] == 0)
+        {
+            questionMenuItem = [CCMenuItemFont itemWithString:answer.text
+                                                         block:^(id sender) {
+                                                             [self questionMenuItemSelected:answer andCount:count];
+                                                         }];
+        }
+        else
+        {
+            questionMenuItem = [CCMenuItemImage itemWithNormalImage:answer.text selectedImage:answer.text
+                                                              block:^(id sender) {
+                                                                  [self questionMenuItemSelected:answer andCount:count];
+                                                              }];
+        }
         
         CCMenu *questionMenu = [CCMenu menuWithItems:questionMenuItem, nil];
         
@@ -101,11 +112,16 @@
 {
     if ([answer.isCorrect intValue] == 0)
     {
+        _currentScore -= 1000;
         return;
     }
     
     Challenge *challenge = answer.question.challenge;
-    _score = [NSNumber numberWithInt:([_score intValue] + _currentScore)];
+    
+    double finishedTimeMilliseconds = [[NSDate date] timeIntervalSince1970] * 1000;
+    _currentScore -= finishedTimeMilliseconds - _startTimeMilliseconds;
+    _currentScore = _currentScore > 0 ? _currentScore : 0;
+    _score = [NSNumber numberWithInt:(_score.intValue + _currentScore)];
     
     if (challenge.questions.count == count)
     {
@@ -123,11 +139,6 @@
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                     transitionWithDuration:1.0 scene:[[ChallengeScene alloc] initWithChallenge:challenge]]];
-}
-
--(void) update:(ccTime) dt
-{
-    //_currentScore -= dt*100;
 }
 
 @end
