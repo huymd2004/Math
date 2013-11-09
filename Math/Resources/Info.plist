@@ -35,6 +35,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>gloriahallelujah.ttf</string>
 		<string>SketchCollege.ttf</string>
 	</array>
 	<key>UIPrerenderedIcon</key>

@@ -147,6 +147,11 @@
 		1140BDB2182438FA00EB804B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1140BDB1182438FA00EB804B /* CoreData.framework */; };
 		1140BDB61824391C00EB804B /* Math.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1140BDB41824391C00EB804B /* Math.xcdatamodeld */; };
 		1165A00F182458EA007356C7 /* SketchCollege.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 11D7865B18244F9000DCC0BE /* SketchCollege.ttf */; };
+		116A5C98182E436400FD6DE1 /* noisy_grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 116A5C97182E436400FD6DE1 /* noisy_grid.png */; };
+		116A5C9C182E439500FD6DE1 /* UIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 116A5C9B182E439500FD6DE1 /* UIUtils.m */; };
+		116A5C9E182E49E200FD6DE1 /* gloriahallelujah.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 116A5C9D182E499100FD6DE1 /* gloriahallelujah.ttf */; };
+		116A5CA9182E5F5200FD6DE1 /* blackboard-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 116A5CA7182E5F5200FD6DE1 /* blackboard-hd.png */; };
+		116A5CAA182E5F5200FD6DE1 /* blackboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 116A5CA8182E5F5200FD6DE1 /* blackboard.png */; };
 		116D046C1825412700C4262D /* OptionsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D046B1825412700C4262D /* OptionsScene.m */; };
 		116D04721825486400C4262D /* ManageProfilesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 116D04711825486400C4262D /* ManageProfilesScene.m */; };
 		11865F93182BD32E003140BB /* QuestionScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865F92182BD32E003140BB /* QuestionScene.m */; };
@@ -157,7 +162,6 @@
 		1194CACC182D34700067A983 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CAC8182D34700067A983 /* dog.png */; };
 		1194CACD182D34700067A983 /* bunny.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CAC9182D34700067A983 /* bunny.png */; };
 		1194CACE182D34700067A983 /* llama.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CACA182D34700067A983 /* llama.png */; };
-		1194CAD1182DAE320067A983 /* blackboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CAD0182DAE320067A983 /* blackboard.png */; };
 		1194CAD4182DBFC20067A983 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CAD2182DBFC20067A983 /* Default.png */; };
 		1194CAD5182DBFC20067A983 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1194CAD3182DBFC20067A983 /* Default@2x.png */; };
 		11C834F41827BEDE008745D8 /* World.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C834F31827BEDE008745D8 /* World.m */; };
@@ -464,6 +468,12 @@
 		1140BDA4182438DC00EB804B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1140BDB1182438FA00EB804B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1140BDB51824391C00EB804B /* Math.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Math.xcdatamodel; sourceTree = "<group>"; };
+		116A5C97182E436400FD6DE1 /* noisy_grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noisy_grid.png; sourceTree = "<group>"; };
+		116A5C9A182E439500FD6DE1 /* UIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtils.h; sourceTree = "<group>"; };
+		116A5C9B182E439500FD6DE1 /* UIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtils.m; sourceTree = "<group>"; };
+		116A5C9D182E499100FD6DE1 /* gloriahallelujah.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gloriahallelujah.ttf; sourceTree = "<group>"; };
+		116A5CA7182E5F5200FD6DE1 /* blackboard-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackboard-hd.png"; sourceTree = "<group>"; };
+		116A5CA8182E5F5200FD6DE1 /* blackboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackboard.png; sourceTree = "<group>"; };
 		116D046A1825412700C4262D /* OptionsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsScene.h; sourceTree = "<group>"; };
 		116D046B1825412700C4262D /* OptionsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsScene.m; sourceTree = "<group>"; };
 		116D04701825486400C4262D /* ManageProfilesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageProfilesScene.h; sourceTree = "<group>"; };
@@ -480,7 +490,6 @@
 		1194CAC8182D34700067A983 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
 		1194CAC9182D34700067A983 /* bunny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bunny.png; sourceTree = "<group>"; };
 		1194CACA182D34700067A983 /* llama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = llama.png; sourceTree = "<group>"; };
-		1194CAD0182DAE320067A983 /* blackboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackboard.png; sourceTree = "<group>"; };
 		1194CAD2182DBFC20067A983 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1194CAD3182DBFC20067A983 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		11C834F21827BEDE008745D8 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
@@ -591,6 +600,7 @@
 			children = (
 				1140BDA3182438DC00EB804B /* AppDelegate.h */,
 				1140BDA4182438DC00EB804B /* AppDelegate.m */,
+				116A5C99182E437A00FD6DE1 /* Utils */,
 				1194CACF182D34810067A983 /* Scenes */,
 				113B1961182801FF00B423BC /* PreloadData */,
 				11D786291824490900DCC0BE /* CoreDataUtils */,
@@ -605,9 +615,12 @@
 		1140BC13182438DA00EB804B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				116A5CA7182E5F5200FD6DE1 /* blackboard-hd.png */,
+				116A5CA8182E5F5200FD6DE1 /* blackboard.png */,
+				116A5C9D182E499100FD6DE1 /* gloriahallelujah.ttf */,
+				116A5C97182E436400FD6DE1 /* noisy_grid.png */,
 				1194CAD2182DBFC20067A983 /* Default.png */,
 				1194CAD3182DBFC20067A983 /* Default@2x.png */,
-				1194CAD0182DAE320067A983 /* blackboard.png */,
 				1194CAC7182D34700067A983 /* tiger.png */,
 				1194CAC8182D34700067A983 /* dog.png */,
 				1194CAC9182D34700067A983 /* bunny.png */,
@@ -1015,6 +1028,15 @@
 			name = CoreDataModels;
 			sourceTree = "<group>";
 		};
+		116A5C99182E437A00FD6DE1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				116A5C9A182E439500FD6DE1 /* UIUtils.h */,
+				116A5C9B182E439500FD6DE1 /* UIUtils.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		1194CACF182D34810067A983 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1106,19 +1128,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				116A5C9E182E49E200FD6DE1 /* gloriahallelujah.ttf in Resources */,
 				1165A00F182458EA007356C7 /* SketchCollege.ttf in Resources */,
 				1140BC25182438DA00EB804B /* Icon.png in Resources */,
 				1140BD83182438DC00EB804B /* ChangeLog in Resources */,
 				113B198B1828020000B423BC /* World4.json in Resources */,
 				11F4A3BC1826855500640DC8 /* lock.png in Resources */,
 				11F4A3B218266BE700640DC8 /* checkbox_checked.png in Resources */,
-				1194CAD1182DAE320067A983 /* blackboard.png in Resources */,
+				116A5C98182E436400FD6DE1 /* noisy_grid.png in Resources */,
 				113B198C1828020000B423BC /* World5.json in Resources */,
 				1194CAD5182DBFC20067A983 /* Default@2x.png in Resources */,
 				1194CACD182D34700067A983 /* bunny.png in Resources */,
 				113B19871828020000B423BC /* Universe.json in Resources */,
 				1140BC21182438DA00EB804B /* Icon-Small.png in Resources */,
 				1140BC1D182438DA00EB804B /* Icon-72.png in Resources */,
+				116A5CA9182E5F5200FD6DE1 /* blackboard-hd.png in Resources */,
 				1140BC1F182438DA00EB804B /* Icon-Small-50.png in Resources */,
 				1140BC2A182438DA00EB804B /* iTunesArtwork in Resources */,
 				1140BC23182438DA00EB804B /* Icon-Small@2x.png in Resources */,
@@ -1127,6 +1151,7 @@
 				1140BC1B182438DA00EB804B /* Default-Landscape~ipad.png in Resources */,
 				1140BC19182438DA00EB804B /* Default-568h@2x.png in Resources */,
 				113B19891828020000B423BC /* World2.json in Resources */,
+				116A5CAA182E5F5200FD6DE1 /* blackboard.png in Resources */,
 				113B19881828020000B423BC /* World1.json in Resources */,
 				1140BC27182438DA00EB804B /* Icon@2x.png in Resources */,
 				1194CAD4182DBFC20067A983 /* Default.png in Resources */,
@@ -1254,6 +1279,7 @@
 				1140BCD7182438DB00EB804B /* ccShaders.m in Sources */,
 				1140BD2D182438DB00EB804B /* CCWindow.m in Sources */,
 				11C835061827BEDF008745D8 /* ProfileWorldScore.m in Sources */,
+				116A5C9C182E439500FD6DE1 /* UIUtils.m in Sources */,
 				1140BD0B182438DB00EB804B /* cocos2d.m in Sources */,
 				1140BCB8182438DB00EB804B /* CCProgressTimer.m in Sources */,
 				1140BC8D182438DA00EB804B /* CCLabelTTF.m in Sources */,
