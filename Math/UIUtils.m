@@ -48,13 +48,47 @@
 +(void) setupDefaultBlackboardCCMenuSettings
 {
     [CCMenuItemFont setFontName:@"SketchCollege"];
-    [CCMenuItemFont setFontSize:30];
+    [CCMenuItemFont setFontSize:26];
 }
 
 +(void) setupDefaultDrawingPadCCMenuSettings
 {
     [CCMenuItemFont setFontName:@"Gloria Hallelujah"];
     [CCMenuItemFont setFontSize:40];
+}
+
++(CCControlButton *) createBlackBoardButton: (int) fontSize andText: (NSString *) text
+{
+    CGRect patchRect;
+    CGRect imageRect;
+    if (CC_CONTENT_SCALE_FACTOR() == 2.0f)
+    {
+        patchRect = CGRectMake(40, 40, 270, 165);
+        imageRect = CGRectMake(0, 0, 350, 245);
+    }
+    else
+    {
+        patchRect = CGRectMake(20, 20, 135, 83);
+        imageRect = CGRectMake(0, 0, 175, 123);
+    }
+    
+    CCScale9Sprite *background =
+        [CCScale9Sprite spriteWithFile:@"blackboard.png" rect:patchRect capInsets:imageRect];
+    
+    CCLabelTTF *label = [self createSketchCollegeCCLabel:fontSize andText:text];
+    label.color = ccc3(255, 255, 255);
+    CCControlButton *button = [CCControlButton buttonWithLabel:label backgroundSprite:background];
+    
+    return button;
+}
+
++(CCControlButton *) createBlackBoardButtonWithSize:(CGSize) size
+                                            andText:(NSString *) text
+                                            andFontSize: (int) fontSize
+{
+    CCControlButton *button = [self createBlackBoardButton:fontSize andText:text];
+    [button.backgroundSprite setPreferredSize:size];
+    return button;
 }
 
 @end

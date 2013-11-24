@@ -16,6 +16,8 @@
 
 #import "MainMenuScene.h"
 
+#import "UIUtils.h"
+
 @implementation OptionsScene
 
 -(id) init
@@ -30,12 +32,13 @@
 
 -(void) setupLayout
 {
+    [UIUtils addDrawingPadBackground:self];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Options" fontName:@"SketchCollege" fontSize:24];
-    label.position = ccp(winSize.width/2, (winSize.height*9)/10);
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahCCLabel:56 andText:@"Options"];
+    label.position = ccp(winSize.width/2, (winSize.height*4)/5);
     [layer addChild:label];
     
     CCMenuItem *manageProfilesMenuItem = [CCMenuItemFont itemWithString:@"Manage profiles" target:self
@@ -53,9 +56,13 @@
     menu.position = ccp(winSize.width/2, winSize.height/2);
     [layer addChild:menu];
     
-    CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"Back" target:self
-                                                     selector:(@selector(backMenuItemSelected:))];
+    [UIUtils setupDefaultDrawingPadCCMenuSettings];
     
+    CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"<" target:self
+                                                     selector:(@selector(backMenuItemSelected:))];
+
+    
+    [backMenuItem setColor:ccc3(1, 1, 1)];
     CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
     backMenu.position = ccp(winSize.width/10, winSize.height/10);
     

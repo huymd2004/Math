@@ -5,3 +5,5 @@
 3. Design yourself.
 
 4. Make problems yourself, worlds etc.
+
+5. Add hascompleted to profile

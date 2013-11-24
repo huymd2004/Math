@@ -16,6 +16,12 @@
 
 #import "UIUtils.h"
 
+#import "CoreDataUtils.h"
+
+#import "Profile.h"
+
+#import "CCControlExtension.h"
+
 @implementation MainMenuScene
 
 -(id) init
@@ -23,6 +29,7 @@
     if (self = [super init])
     {
         [self setupLayout];
+        [self scheduleUpdate];
     }
     
     return self;
@@ -31,15 +38,15 @@
 -(void) setupLayout
 {
     [UIUtils addDrawingPadBackground:self];
+    CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *label = [UIUtils createGloriaHallelujahCCLabel:56 andText:@"Welcome"];
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahCCLabel:56 andText:@"Blackboard Math"];
     label.position = ccp(winSize.width/2, (winSize.height*4)/5);
     [layer addChild:label];
-    
 
     [UIUtils setupDefaultBlackboardCCMenuSettings];
     
@@ -53,8 +60,7 @@
     [layer addChild:playMenu z:0];
 
     CCSprite *optionsMenuBackground = [CCSprite spriteWithFile:@"blackboard.png"];
-    CCMenuItem *optionsMenuItem = [CCMenuItemFont itemWithString:@"Options" target:self
-                                                        selector:(@selector(optionsMenuItemSelected:))];
+    CCMenuItem *optionsMenuItem = [CCMenuItemImage itemWithNormalImage:@"options_icon.png" selectedImage:@"options_icon_pressed.png" target:self selector:(@selector(optionsMenuItemSelected:))];
     CCMenu *optionsMenu = [CCMenu menuWithItems:optionsMenuItem, nil];
     optionsMenu.position = ccp(winSize.width/3, (winSize.height*3)/7);
     optionsMenuBackground.position = optionsMenu.position;
@@ -69,6 +75,16 @@
     profileMenuBackground.position = profileMenu.position;
     [layer addChild:profileMenuBackground z:-1];
     [layer addChild:profileMenu z:0];
+    
+    Profile *profile = [coreDataUtils getCurrentProfile];
+    NSString *currentProfileString = [NSString stringWithFormat:@"Current profile: %@", profile.name];
+    CCLabelTTF *profileLabel = [UIUtils createGloriaHallelujahCCLabel:16 andText:currentProfileString];
+    profileLabel.position = ccp((winSize.width*4)/5, (winSize.height)/10);
+    [layer addChild:profileLabel z:0];
+    
+    CCControlButton *test = [UIUtils createBlackBoardButton:30 andText:@"Inställningar"];
+    test.position = ccp((winSize.width)/2, (winSize.height)/5);
+    [layer addChild:test z:0];
     
     [self addChild:layer];
 }
@@ -89,6 +105,11 @@
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                 transitionWithDuration:1.0 scene:[[ProfileScene alloc] init]]];
+}
+
+-(void) update:(ccTime) dt
+{
+    
 }
 
 @end
