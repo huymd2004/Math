@@ -47,34 +47,33 @@
     CCLabelTTF *label = [UIUtils createGloriaHallelujahCCLabel:56 andText:@"Blackboard Math"];
     label.position = ccp(winSize.width/2, (winSize.height*4)/5);
     [layer addChild:label];
-
-    [UIUtils setupDefaultBlackboardCCMenuSettings];
     
-    CCSprite *playMenuBackground = [CCSprite spriteWithFile:@"blackboard.png"];
-    CCMenuItem *playMenuItem = [CCMenuItemFont itemWithString:@"Play" target:self
-                                                     selector:(@selector(playMenuItemSelected:))];
-    CCMenu *playMenu = [CCMenu menuWithItems:playMenuItem, nil];
-    playMenu.position = ccp(winSize.width/2, (winSize.height*3)/5);
-    playMenuBackground.position = playMenu.position;
-    [layer addChild:playMenuBackground z:-1];
-    [layer addChild:playMenu z:0];
-
-    CCSprite *optionsMenuBackground = [CCSprite spriteWithFile:@"blackboard.png"];
-    CCMenuItem *optionsMenuItem = [CCMenuItemImage itemWithNormalImage:@"options_icon.png" selectedImage:@"options_icon_pressed.png" target:self selector:(@selector(optionsMenuItemSelected:))];
-    CCMenu *optionsMenu = [CCMenu menuWithItems:optionsMenuItem, nil];
-    optionsMenu.position = ccp(winSize.width/3, (winSize.height*3)/7);
-    optionsMenuBackground.position = optionsMenu.position;
-    [layer addChild:optionsMenuBackground z:-1];
-    [layer addChild:optionsMenu z:0];
+    CCControlButton *playButton = [UIUtils createBlackBoardButton:30 andText:@"Play"];
+    playButton.position = ccp(winSize.width/2, (winSize.height*3)/5);
     
-    CCSprite *profileMenuBackground = [CCSprite spriteWithFile:@"blackboard.png"];
-    CCMenuItem *profileMenuItem = [CCMenuItemFont itemWithString:@"Profile" target:self
-                                                        selector:(@selector(profileMenuItemSelected:))];
-    CCMenu *profileMenu = [CCMenu menuWithItems:profileMenuItem, nil];
-    profileMenu.position = ccp((winSize.width*2)/3, (winSize.height*3)/7);
-    profileMenuBackground.position = profileMenu.position;
-    [layer addChild:profileMenuBackground z:-1];
-    [layer addChild:profileMenu z:0];
+    [playButton addTarget:self
+                action:@selector(playButtonSelected:)
+                forControlEvents:CCControlEventTouchDown];
+    
+    [layer addChild:playButton];
+    
+    CCControlButton *optionsButton = [UIUtils createBlackBoardButton:30 andText:@"Options"];
+    optionsButton.position = ccp(winSize.width/2, (winSize.height)/2);
+    
+    [optionsButton addTarget:self
+                   action:@selector(optionsButtonSelected:)
+         forControlEvents:CCControlEventTouchDown];
+    
+    [layer addChild:optionsButton];
+    
+    CCControlButton *profileButton = [UIUtils createBlackBoardButton:30 andText:@"Profile"];
+    profileButton.position = ccp(winSize.width/2, (winSize.height*2)/5);
+    
+    [profileButton addTarget:self
+                      action:@selector(profileButtonSelected:)
+            forControlEvents:CCControlEventTouchDown];
+    
+    [layer addChild:profileButton];
     
     Profile *profile = [coreDataUtils getCurrentProfile];
     NSString *currentProfileString = [NSString stringWithFormat:@"Current profile: %@", profile.name];
@@ -82,26 +81,22 @@
     profileLabel.position = ccp((winSize.width*4)/5, (winSize.height)/10);
     [layer addChild:profileLabel z:0];
     
-    CCControlButton *test = [UIUtils createBlackBoardButton:30 andText:@"Inställningar"];
-    test.position = ccp((winSize.width)/2, (winSize.height)/5);
-    [layer addChild:test z:0];
-    
     [self addChild:layer];
 }
 
--(void) playMenuItemSelected:(id) sender
+-(void) playButtonSelected:(id) sender
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                 transitionWithDuration:1.0 scene:[[UniverseScene alloc] init]]];
 }
 
--(void) optionsMenuItemSelected:(id) sender
+-(void) optionsButtonSelected:(id) sender
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                 transitionWithDuration:1.0 scene:[[OptionsScene alloc] init]]];
 }
 
--(void) profileMenuItemSelected:(id) sender
+-(void) profileButtonSelected:(id) sender
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                 transitionWithDuration:1.0 scene:[[ProfileScene alloc] init]]];

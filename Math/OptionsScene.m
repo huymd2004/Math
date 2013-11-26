@@ -60,12 +60,9 @@
     
     CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"<" target:self
                                                      selector:(@selector(backMenuItemSelected:))];
-
-    
     [backMenuItem setColor:ccc3(1, 1, 1)];
     CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
     backMenu.position = ccp(winSize.width/10, winSize.height/10);
-    
     [layer addChild:backMenu];
     
     [self addChild:layer];
