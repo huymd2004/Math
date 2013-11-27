@@ -41,20 +41,35 @@
     label.position = ccp(winSize.width/2, (winSize.height*4)/5);
     [layer addChild:label];
     
-    CCMenuItem *manageProfilesMenuItem = [CCMenuItemFont itemWithString:@"Manage profiles" target:self
-                                                     selector:(@selector(manageProfileMenuItemSelected:))];
+    CCControlButton *manageProfilesButton =
+        [UIUtils createBlackBoardButton:20 andText:@"Manage profiles"];
+    manageProfilesButton.position = ccp(winSize.width/2, (winSize.height*3)/5);
     
-    CCMenuItem *resetProgressMenuItem = [CCMenuItemFont itemWithString:@"Reset progress" target:self
-                                                        selector:(@selector(resetProgressMenuItemSelected:))];
+    [manageProfilesButton addTarget:self
+                   action:@selector(manageProfilesButtonSelected:)
+         forControlEvents:CCControlEventTouchDown];
     
-    CCMenuItem *newProfileMenuItem = [CCMenuItemFont itemWithString:@"New profile" target:self
-                                                        selector:(@selector(newProfileMenuItemSelected:))];
+    [layer addChild:manageProfilesButton];
     
-    CCMenu *menu = [CCMenu menuWithItems:manageProfilesMenuItem,
-                    resetProgressMenuItem, newProfileMenuItem, nil];
-    [menu alignItemsVertically];
-    menu.position = ccp(winSize.width/2, winSize.height/2);
-    [layer addChild:menu];
+    CCControlButton *resetProgressButton =
+    [UIUtils createBlackBoardButton:20 andText:@"Reset progress"];
+    resetProgressButton.position = ccp(winSize.width/2, (winSize.height)/2);
+    
+    [resetProgressButton addTarget:self
+                             action:@selector(resetProgressButtonSelected:)
+                   forControlEvents:CCControlEventTouchDown];
+    
+    [layer addChild:resetProgressButton];
+    
+    CCControlButton *newProfileButton =
+    [UIUtils createBlackBoardButton:20 andText:@"New profile"];
+    newProfileButton.position = ccp(winSize.width/2, (winSize.height*2)/5);
+    
+    [newProfileButton addTarget:self
+                            action:@selector(newProfileButtonSelected:)
+                  forControlEvents:CCControlEventTouchDown];
+    
+    [layer addChild:newProfileButton];
     
     [UIUtils setupDefaultDrawingPadCCMenuSettings];
     
@@ -68,13 +83,13 @@
     [self addChild:layer];
 }
 
--(void) manageProfileMenuItemSelected:(id) sender
+-(void) manageProfilesButtonSelected:(id) sender
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                                                transitionWithDuration:1.0 scene:[[ManageProfilesScene alloc] init]]];
 }
 
--(void) resetProgressMenuItemSelected:(id) sender
+-(void) resetProgressButtonSelected:(id) sender
 {
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     Profile *profile = [coreDataUtils getCurrentProfile];
@@ -100,7 +115,7 @@
     }
 }
 
--(void) newProfileMenuItemSelected:(id) sender
+-(void) newProfileButtonSelected:(id) sender
 {
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     
