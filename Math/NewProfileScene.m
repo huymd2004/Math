@@ -14,6 +14,8 @@
 
 #import "OptionsScene.h"
 
+#import "UIUtils.h"
+
 #define MAX_LENGTH_NAME_FIELD 10
 
 @implementation NewProfileScene
@@ -24,17 +26,16 @@
     
     if (self != nil)
     {
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
-        
         CCLayer *layer = [[CCLayer alloc] init];
         
-        CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"Back" target:self
-                                                         selector:(@selector(backMenuItemSelected:))];
+        CCControlButton *backButton = [UIUtils createBackButton];
         
-        CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
-        backMenu.position = ccp(winSize.width/10, winSize.height/10);
+        [backButton addTarget:self
+                       action:@selector(backMenuItemSelected:)
+             forControlEvents:CCControlEventTouchDown];
         
-        [layer addChild:backMenu];
+        [layer addChild:backButton];
+        
         [self addChild:layer z:1];
     }
     
@@ -60,16 +61,17 @@
 
 -(void) setupLayout
 {
+    [UIUtils addDrawingPadBackground:self];
+    
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *label = [CCLabelTTF labelWithString:@"Create new profile" fontName:@"SketchCollege" fontSize:24];
-    label.position = ccp(winSize.width/2, (winSize.height*9)/10);
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Create new profile"];
     [layer addChild:label];
     
     _nameField =
-    [[UITextField alloc] initWithFrame:CGRectMake(winSize.width/2 - 100, winSize.height/5, 200,40)];
+    [[UITextField alloc] initWithFrame:CGRectMake(winSize.width/2 - 100, winSize.height/3, 200,40)];
     _nameField.delegate = self;
     _nameField.placeholder = @"Enter name here!";
     _nameField.borderStyle = UITextBorderStyleRoundedRect;
@@ -77,18 +79,23 @@
     
     [_nameField addTarget:self action:@selector(textFieldEditingDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    [[[CCDirector sharedDirector] view] addSubview:_nameField];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5f * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+        [[[CCDirector sharedDirector] view] addSubview:_nameField];
+    });
     
-    CCMenuItem *finishedMenuItem = [CCMenuItemFont itemWithString:@"Done" target:self selector:(@selector(finishMenuItemSelected:))];
+    CCControlButton *doneButton = [UIUtils createBlackBoardButton:30 andText:@"Done"];
+    doneButton.position = ccp(winSize.width/2, (winSize.height)/2);
     
-    CCMenu *finishedMenu = [CCMenu menuWithItems:finishedMenuItem, nil];
-    finishedMenu.position = ccp(winSize.width/2, winSize.height/2);
+    [doneButton addTarget:self
+                   action:@selector(doneButtonSelected:)
+         forControlEvents:CCControlEventTouchDown];
     
-    [layer addChild:finishedMenu];
+    [layer addChild:doneButton];
+    
     [self addChild:layer z:0];
 }
 
--(void) finishMenuItemSelected:(id) sender
+-(void) doneButtonSelected:(id) sender
 {
     NSString *name = _nameField.text;
     if (name.length > 0)

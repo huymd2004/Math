@@ -1,9 +1,11 @@
 1. Add descriptions to all worlds.
 
-2. Name of app?
-
 3. Design yourself.
 
 4. Make problems yourself, worlds etc.
 
 5. Add hascompleted to profile
+
+6. Fix completed challenge and highscore bugs
+
+7. Icon

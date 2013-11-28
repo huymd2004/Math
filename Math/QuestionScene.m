@@ -18,6 +18,8 @@
 
 #import "ChallengeCompletedScene.h"
 
+#import "UIUtils.h"
+
 #define START_SCORE 10000
 
 @implementation QuestionScene
@@ -39,72 +41,67 @@
 
 -(void) setupLayout: (Question *) question andCount: (int) count
 {
+    [UIUtils addBlackboardBackground:self];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    NSString *questionString = [NSString stringWithFormat:@"%@", question.question];
-    CCLabelTTF *questionLabel = [CCLabelTTF labelWithString:questionString
-                                                     fontName:@"SketchCollege" fontSize:24];
-    questionLabel.position = ccp(winSize.width/2, (winSize.height*9)/10);
+    CCLabelTTF *questionLabel = [UIUtils createBlackBoardTitle:question.question];
     [layer addChild:questionLabel];
     
     _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %@", _score] fontName:@"SketchCollege" fontSize:24];
-    _scoreLabel.position = ccp(winSize.width/2, (winSize.height*8)/10);
+    _scoreLabel.position = ccp((winSize.width*4)/5, winSize.height/12);
     [layer addChild:_scoreLabel];
     
     for (int i = 0; i < question.answers.count; ++i)
     {
         Answer *answer = question.answers[i];
-        CCMenuItem *questionMenuItem;
+        CCControlButton *answerButton;
         
         if ([answer.isImage intValue] == 0)
         {
-            questionMenuItem = [CCMenuItemFont itemWithString:answer.text
-                                                         block:^(id sender) {
-                                                             [self questionMenuItemSelected:answer andCount:count];
-                                                         }];
+            answerButton = [UIUtils createSketchCollegeButton:answer.text];
         }
         else
         {
-            questionMenuItem = [CCMenuItemImage itemWithNormalImage:answer.text selectedImage:answer.text
-                                                              block:^(id sender) {
-                                                                  [self questionMenuItemSelected:answer andCount:count];
-                                                              }];
+            answerButton = [UIUtils createAnswerImageButton:answer.text];
         }
         
-        CCMenu *questionMenu = [CCMenu menuWithItems:questionMenuItem, nil];
+        [answerButton setBlock:^(id sender, CCControlEvent event)
+         {
+             [self questionMenuItemSelected:answer andCount:count];
+         } forControlEvents:CCControlEventTouchUpInside];
         
         if (i < 2)
         {
-            questionMenu.position = ccp(((winSize.width*i) + (winSize.width))/3, (winSize.height*6)/10);
+            answerButton.position = ccp(((winSize.width*i) + (winSize.width))/3, (winSize.height*6)/10);
         }
         else
         {
             switch (question.answers.count)
             {
                 case 3:
-                    questionMenu.position = ccp(winSize.width/2, (winSize.height*5)/10);
+                    answerButton.position = ccp(winSize.width/2, (winSize.height*4)/10);
                     break;
                 case 4:
-                    questionMenu.position =
-                        ccp(((winSize.width*(i - 2)) + (winSize.width))/3, (winSize.height*5)/10);
+                    answerButton.position =
+                        ccp(((winSize.width*(i - 2)) + (winSize.width))/3, (winSize.height*4)/10);
                     break;
             }
         }
         
-        [layer addChild:questionMenu];
+        [layer addChild:answerButton];
     }
     
-    CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"Back"
-                                                        block:^(id sender) {
-                                                            [self backMenuItemSelected:question.challenge];
-                                                        }];
+    CCControlButton *backButton = [UIUtils createBlackBoardBackButton];
     
-    CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
-    backMenu.position = ccp(winSize.width/10, winSize.height/10);
+    [backButton setBlock:^(id sender, CCControlEvent event)
+     {
+         [self backMenuItemSelected:question.challenge];
+     } forControlEvents:CCControlEventTouchUpInside];
     
-    [layer addChild:backMenu];
+    [layer addChild:backButton];
+    
     [self addChild:layer];
 }
 

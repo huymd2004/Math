@@ -18,6 +18,8 @@
 
 #import "Universe.h"
 
+#import "UIUtils.h"
+
 @implementation WorldScene
 
 -(id) initWithWorld:(World *) world
@@ -32,15 +34,15 @@
 
 -(void) setupLayoutWithWorld:(World *) world
 {
+    [UIUtils addDrawingPadBackground:self];
+    
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayer *layer = [[CCLayer alloc] init];
     
     NSString *sceneTitleString = [NSString stringWithFormat:@"Challenges for %@", world.name];
-    CCLabelTTF *sceneTitleLabel = [CCLabelTTF labelWithString:sceneTitleString
-                                                     fontName:@"SketchCollege" fontSize:24];
-    sceneTitleLabel.position = ccp(winSize.width/2, (winSize.height*9)/10);
+    CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:sceneTitleString];
     [layer addChild:sceneTitleLabel];
     
     Profile *profile = [coreDataUtils getCurrentProfile];
@@ -100,27 +102,29 @@
             NSString *imageFilePath = i > currentChallengeIndex ? @"lock.png" : @"checkbox_checked.png";
             CCSprite *hasFinishedOrLockedSprite  = [CCSprite spriteWithFile:imageFilePath];
             
-            hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/4, (winSize.height*(8-i))/10);
+            hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/4, (winSize.height*(13-2*i))/20);
             [layer addChild:hasFinishedOrLockedSprite];
         }
         
-        CCMenuItem *challengeMenuItem = [CCMenuItemFont itemWithString:challenge.name
-                                                             block:^(CCMenuItem *sender) {
-                                                                 [self startSceneWithChallenge:challenge];
-                                                             }];
+        CCControlButton *challengeButton = [UIUtils createBlackBoardButton:30 andText:challenge.name];
+        challengeButton.position = ccp(winSize.width/2, (winSize.height*(13-2*i))/20);
         
-        CCMenu *challengeMenu = [CCMenu menuWithItems:challengeMenuItem, nil];
-        challengeMenu.position = ccp(winSize.width/2, (winSize.height*(8-i))/10);
-        [layer addChild:challengeMenu];
+        [challengeButton setBlock:^(id sender, CCControlEvent event)
+         {
+            [self startSceneWithChallenge:challenge];
+         } forControlEvents:CCControlEventTouchUpInside];
+        
+        [layer addChild:challengeButton];
     }
     
-    CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"Back" target:self
-                                                     selector:(@selector(backMenuItemSelected:))];
+    CCControlButton *backButton = [UIUtils createBackButton];
     
-    CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
-    backMenu.position = ccp(winSize.width/10, winSize.height/10);
+    [backButton addTarget:self
+                   action:@selector(backMenuItemSelected:)
+         forControlEvents:CCControlEventTouchDown];
     
-    [layer addChild:backMenu];
+    [layer addChild:backButton];
+    
     [self addChild:layer];
 }
 

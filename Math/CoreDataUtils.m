@@ -12,7 +12,7 @@
 
 #import "Question.h"
 
-#define PROFILE_LIMIT 8
+#define PROFILE_LIMIT 5
 
 @implementation CoreDataUtils
 

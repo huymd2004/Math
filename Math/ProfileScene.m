@@ -43,42 +43,37 @@
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     Profile *profile = [coreDataUtils getCurrentProfile];
     
-    CCLabelTTF *label = [UIUtils createGloriaHallelujahCCLabel:56 andText:@"Profile"];
-    label.position = ccp(winSize.width/2, (winSize.height*4)/5);
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Profile"];
     [layer addChild:label];
     
     NSString *profileTitle = @"Profile for: ";
     profileTitle = [NSString stringWithFormat:@"%@\n\n%@", profileTitle, profile.name];
     
-    CCControlButton *profilePresenterLabel = [UIUtils createBlackBoardButton:24 andText:profileTitle];
+    CCControlButton *profilePresenterLabel = [UIUtils createBlackBoardLabel:24 andText:profileTitle];
     profilePresenterLabel.position = ccp(winSize.width/2, (winSize.height*13)/20);
-    profilePresenterLabel.enabled = NO;
     [layer addChild:profilePresenterLabel];
     
-    NSString *worldTitle = @"You are at world: ";
+    NSString *worldTitle = @"Current world: ";
     worldTitle = [NSString stringWithFormat:@"%@\n\n%@", worldTitle, profile.world.name];
     
-    CCControlButton *worldPresenterLabel = [UIUtils createBlackBoardButton:20 andText:worldTitle];
+    CCControlButton *worldPresenterLabel = [UIUtils createBlackBoardLabel:24 andText:worldTitle];
     worldPresenterLabel.position = ccp(winSize.width/2, (winSize.height*1)/2);
-    worldPresenterLabel.enabled = NO;
     [layer addChild:worldPresenterLabel];
     
-    NSString *challengeTitle = @"You are at challenge: ";
+    NSString *challengeTitle = @"Current challenge: ";
     challengeTitle = [NSString stringWithFormat:@"%@\n\n%@", challengeTitle, profile.challenge.name];
     
-    CCControlButton *challengePresenterLabel = [UIUtils createBlackBoardButton:20 andText:challengeTitle];
+    CCControlButton *challengePresenterLabel = [UIUtils createBlackBoardLabel:24 andText:challengeTitle];
     challengePresenterLabel.position = ccp(winSize.width/2, (winSize.height*7)/20);
-    challengePresenterLabel.enabled = NO;
     [layer addChild:challengePresenterLabel];
     
-    [UIUtils setupDefaultDrawingPadCCMenuSettings];
+    CCControlButton *backButton = [UIUtils createBackButton];
     
-    CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"<" target:self
-                                                     selector:(@selector(backMenuItemSelected:))];
-    [backMenuItem setColor:ccc3(1, 1, 1)];
-    CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
-    backMenu.position = ccp(winSize.width/10, winSize.height/10);
-    [layer addChild:backMenu];
+    [backButton addTarget:self
+                   action:@selector(backMenuItemSelected:)
+         forControlEvents:CCControlEventTouchDown];
+    
+    [layer addChild:backButton];
     
     [self addChild:layer];
 }

@@ -16,6 +16,8 @@
 
 #import "QuestionScene.h"
 
+#import "UIUtils.h"
+
 @implementation ChallengeScene
 
 -(id) initWithChallenge: (Challenge *) challenge
@@ -31,15 +33,15 @@
 
 -(void) setupLayout: (Challenge *) challenge
 {
+    [UIUtils addDrawingPadBackground:self];
+    
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayer *layer = [[CCLayer alloc] init];
     
     NSString *sceneTitleString = [NSString stringWithFormat:@"Welcome to %@", challenge.name];
-    CCLabelTTF *sceneTitleLabel = [CCLabelTTF labelWithString:sceneTitleString
-                                                     fontName:@"SketchCollege" fontSize:24];
-    sceneTitleLabel.position = ccp(winSize.width/2, (winSize.height*9)/10);
+    CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:sceneTitleString];
     [layer addChild:sceneTitleLabel];
     
     Profile *profile = [coreDataUtils getCurrentProfile];
@@ -48,32 +50,29 @@
     
     if (score != nil)
     {
-        NSString *highScoreString = [NSString stringWithFormat:@"Highscore is %@ for %@", score.score, challenge.name];
-        CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:highScoreString
-                                                         fontName:@"SketchCollege" fontSize:24];
-        highScoreLabel.position = ccp(winSize.width/2, (winSize.height*17)/20);
+        NSString *highScoreString =
+            [NSString stringWithFormat:@"Highscore for this challenge\n is %@", score.score];
+        CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubTitle:highScoreString];
         [layer addChild:highScoreLabel];
     }
     
-    CCMenuItem *playMenuItem = [CCMenuItemFont itemWithString:@"Play"
-                                                        block:^(id sender) {
-                                                            [self playMenuItemSelected:challenge];
-                                                        }];
+    CCControlButton *playButton = [UIUtils createBlackBoardButton:30 andText:@"Play"];
+    playButton.position = ccp(winSize.width/2, winSize.height/2);
     
-    CCMenu *playMenu = [CCMenu menuWithItems:playMenuItem, nil];
-    playMenu.position = ccp(winSize.width/2, (winSize.height*3)/4);
+    [playButton setBlock:^(id sender, CCControlEvent event)
+     {
+         [self playMenuItemSelected:challenge];
+     } forControlEvents:CCControlEventTouchUpInside];
     
-    [layer addChild:playMenu];
+    [layer addChild:playButton];
     
-    CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"Back"
-                                                    block:^(id sender) {
-                                                        [self backMenuItemSelected:challenge];
-                                                    }];
+    CCControlButton *backButton = [UIUtils createBackButton];
     
-    CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
-    backMenu.position = ccp(winSize.width/10, winSize.height/10);
+    [backButton addTarget:self
+                   action:@selector(backMenuItemSelected:)
+         forControlEvents:CCControlEventTouchDown];
     
-    [layer addChild:backMenu];
+    [layer addChild:backButton];
     [self addChild:layer];
 }
 

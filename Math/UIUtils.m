@@ -91,4 +91,80 @@
     return button;
 }
 
++(CCControlButton *) createBackButton
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCControlButton *button =
+        [CCControlButton buttonWithTitle:@"<" fontName:@"Gloria Hallelujah" fontSize:48];
+    button.color = ccc3(0, 0, 0);
+    button.position = ccp(winSize.width/10, winSize.height/12);
+    return button;
+}
+
++(CCControlButton *) createBlackBoardBackButton
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCControlButton *button =
+        [CCControlButton buttonWithTitle:@"<" fontName:@"SketchCollege" fontSize:64];
+    button.position = ccp(winSize.width/10, winSize.height/12);
+    return button;
+}
+
++(CCLabelTTF *) createGloriaHallelujahTitle: (NSString *)text
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahCCLabel:56 andText:text];
+    label.position = ccp(winSize.width/2, (winSize.height*4)/5);
+    return label;
+}
+
++(CCLabelTTF *) createGloriaHallelujahSubTitle: (NSString *) text
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahCCLabel:30 andText:text];
+    label.position = ccp(winSize.width/2, (winSize.height*7)/10);
+    return label;
+}
+
++(CCControlButton *) createBlackBoardLabel: (int) fontSize andText: (NSString *) text
+{
+    CCControlButton *label = [UIUtils createBlackBoardButton:fontSize andText:text];
+    label.enabled = NO;
+    return label;
+}
+
++(CCControlButton *) createDeleteButton: (int) fontSize
+{
+    CCControlButton *button =
+        [CCControlButton buttonWithTitle:@"X" fontName:@"Gloria Hallelujah" fontSize:fontSize];
+    button.color = ccc3(255, 0, 0);
+    [button setTitleColor:button.color forState:CCControlEventTouchDown];
+    return button;
+}
+
++(CCLabelTTF *) createBlackBoardTitle: (NSString *) text
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCLabelTTF *label = [UIUtils createSketchCollegeCCLabel:30 andText:text];
+    label.position = ccp(winSize.width/2, (winSize.height*4)/5);
+    return label;
+}
+
++(CCControlButton *) createSketchCollegeButton: (NSString *) text
+{
+    CCControlButton *button =
+    [CCControlButton buttonWithTitle:text fontName:@"SketchCollege" fontSize:56];
+    button.color = ccc3(255, 255, 255);
+    [button setTitleColor:button.color forState:CCControlEventTouchDown];
+    return button;
+}
+
++(CCControlButton *) createAnswerImageButton: (NSString *) imagePath
+{
+    CCScale9Sprite *sprite = [CCScale9Sprite spriteWithFile:imagePath ];
+    CCControlButton *button = [CCControlButton buttonWithBackgroundSprite:sprite];
+    button.adjustBackgroundImage = NO;
+    return button;
+}
+
 @end

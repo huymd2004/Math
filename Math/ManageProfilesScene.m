@@ -12,6 +12,8 @@
 
 #import "CoreDataUtils.h"
 
+#import "UIUtils.h"
+
 @implementation ManageProfilesScene
 
 -(id) init
@@ -26,14 +28,13 @@
 
 -(void) setupLayout
 {
+    [UIUtils addDrawingPadBackground:self];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *titleLabel = [CCLabelTTF labelWithString:@"Manage profiles"
-                                           fontName:@"SketchCollege" fontSize:24];
-    titleLabel.position = ccp(winSize.width/2, (winSize.height*9)/10);
-    [layer addChild:titleLabel];
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Manage Profiles"];
+    [layer addChild:label];
     
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     NSArray *profiles = [coreDataUtils getProfiles];
@@ -44,72 +45,75 @@
     profilesString =
         [profilesString stringByAppendingString:profiles.count > 1 ? @" profiles!" : @" profile!"];
     
-    CCLabelTTF *profilesLabel = [CCLabelTTF labelWithString:profilesString
-                                           fontName:@"SketchCollege" fontSize:24];
-    profilesLabel.position = ccp(winSize.width/2, (winSize.height*8)/10);
-    [layer addChild:profilesLabel];
+    CCControlButton *profilesTitleLabel = [UIUtils createBlackBoardLabel:24 andText:profilesString];
+    profilesTitleLabel.position = ccp(winSize.width/2, (winSize.height*7)/10);
+    [layer addChild:profilesTitleLabel];
     
-    CCLabelTTF *nameLabel = [CCLabelTTF labelWithString:@"Name"
-                                                   fontName:@"SketchCollege" fontSize:24];
-    nameLabel.position = ccp((winSize.width*2)/5, (winSize.height*3)/4);
+    CCControlButton *nameLabel = [UIUtils createBlackBoardLabel:24 andText:@"Name:"];
+    nameLabel.position = ccp((winSize.width*3)/10, (winSize.height*6)/10);
     [layer addChild:nameLabel];
     
-    CCLabelTTF *currentLabel = [CCLabelTTF labelWithString:@"Current"
-                                               fontName:@"SketchCollege" fontSize:24];
-    currentLabel.position = ccp((winSize.width*3)/5, (winSize.height*3)/4);
+    CCControlButton *currentLabel = [UIUtils createBlackBoardLabel:24 andText:@"Current:"];
+    currentLabel.position = ccp((winSize.width*7)/10, (winSize.height*6)/10);
     [layer addChild:currentLabel];
     
     NSMutableArray *radioMenuItems = [[NSMutableArray alloc] init];
     for (int i = 0; i < profiles.count; ++i)
     {
         Profile *profile = profiles[i];
-        NSString *name = profile.name;
         
-        CCLabelTTF *profileNameLabel = [CCLabelTTF labelWithString:name
-                                                   fontName:@"SketchCollege" fontSize:24];
-        profileNameLabel.position = ccp((winSize.width*2)/5, (winSize.height*(13 - i))/20);
+        CCControlButton *profileNameLabel = [UIUtils createBlackBoardLabel:24 andText:profile.name];
+        profileNameLabel.position = ccp((winSize.width*3)/10, (winSize.height*(41 - 7*i))/80);
         [layer addChild:profileNameLabel];
         
-        CCMenuItem *radioMenuItem = [CCMenuItemFont itemWithString:@"Current"
-                                            block:^(CCMenuItem *sender) {
-                                                for (CCMenuItem *menuItem in radioMenuItems)
+        CCMenuItemFont *radioMenuItem = [CCMenuItemFont itemWithString:@"[ ]"
+                                            block:^(CCMenuItemFont *sender) {
+                                                for (CCMenuItemFont *menuItem in radioMenuItems)
                                                 {
                                                     [menuItem setIsEnabled:YES];
+                                                    [menuItem setString:@"[ ]"];
+                                                    menuItem.color = ccc3(0, 0, 0);
                                                 }
                                                 
                                                 [sender setIsEnabled:NO];
+                                                [sender setString:@"[x]"];
                                                     
                                                 [coreDataUtils setProfileCurrent:profile];
                                             }];
         
+        
+        radioMenuItem.color = ccc3(0, 0, 0);
+        radioMenuItem.disabledColor = ccc3(0, 0, 0);
         [radioMenuItems addObject:radioMenuItem];
         
         if ([profile.current intValue] == 1)
         {
             [radioMenuItem setIsEnabled:NO];
+            [radioMenuItem setString:@"[x]"];
         }
         
         CCMenu *radioMenu = [CCMenu menuWithItems:radioMenuItem, nil];
-        radioMenu.position = ccp((winSize.width*3)/5, (winSize.height*(13 - i))/20);
+        radioMenu.position = ccp((winSize.width*7)/10, (winSize.height*(41 - 7*i))/80);
         [layer addChild:radioMenu];
         
-        CCMenuItem *deleteProfileMenuItem = [CCMenuItemFont itemWithString:@"Delete"
-                                            block:^(id sender) {
-                                              [self showDeleteProfileDialogForProfile:profile];
-                                            }];
+        CCControlButton *deleteProfileButton = [UIUtils createDeleteButton:32];
         
-        CCMenu *deleteProfileMenu = [CCMenu menuWithItems:deleteProfileMenuItem, nil];
-        deleteProfileMenu.position = ccp((winSize.width*4)/5, (winSize.height*(13 - i))/20);
-        [layer addChild:deleteProfileMenu];
+        [deleteProfileButton setBlock:^(id sender, CCControlEvent event)
+        {
+            [self showDeleteProfileDialogForProfile:profile];
+        } forControlEvents:CCControlEventTouchUpInside];
+        
+        deleteProfileButton.position = ccp((winSize.width*17)/20, (winSize.height*(41 - 7*i))/80);
+        [layer addChild:deleteProfileButton];
     }
     
-    CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"Back" target:self
-                                                     selector:(@selector(backMenuItemSelected:))];
+    CCControlButton *backButton = [UIUtils createBackButton];
     
-    CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
-    backMenu.position = ccp(winSize.width/10, winSize.height/10);
+    [backButton addTarget:self
+                   action:@selector(backMenuItemSelected:)
+         forControlEvents:CCControlEventTouchUpInside];
     
-    [layer addChild:backMenu];
+    [layer addChild:backButton];
     [self addChild:layer];
 }
 

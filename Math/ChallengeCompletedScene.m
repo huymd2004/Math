@@ -24,6 +24,10 @@
 
 #import "GameCompletedScene.h"
 
+#import "UIUtils.h"
+
+//TODO: Fixa spara challenge completed om man trycker meny
+
 @implementation ChallengeCompletedScene
 
 -(id) initWithChallenge: (Challenge *) challenge andScore: (NSNumber *) score
@@ -38,6 +42,8 @@
 
 -(void) setupLayout: (Challenge *) challenge andScore: (NSNumber *) score
 {
+    [UIUtils addDrawingPadBackground:self];
+    
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
@@ -48,9 +54,7 @@
     BOOL completedWorld = [worldsLastChallenge.name isEqualToString: challenge.name];
     
     NSString *sceneTitleString = [NSString stringWithFormat:@"%@ completed!", completedWorld ? world.name : challenge.name];
-    CCLabelTTF *sceneTitleLabel = [CCLabelTTF labelWithString:sceneTitleString
-                                                     fontName:@"SketchCollege" fontSize:24];
-    sceneTitleLabel.position = ccp(winSize.width/2, (winSize.height*9)/10);
+    CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:sceneTitleString];
     [layer addChild:sceneTitleLabel];
     
     Profile *profile = [coreDataUtils getCurrentProfile];
@@ -59,9 +63,7 @@
     {
         NSString *highScoreString = [NSString
                                      stringWithFormat:@"Congratulations! New highscore \n for %@ is %d!", challenge.name, score.integerValue];
-        CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:highScoreString
-                                                        fontName:@"SketchCollege" fontSize:24];
-        highScoreLabel.position = ccp(winSize.width/2, (winSize.height*17)/20);
+        CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubTitle:highScoreString];
         [layer addChild:highScoreLabel];
     }
     
@@ -120,33 +122,35 @@
         }
     }
     
-    CCMenuItem *nextMenuItem = [CCMenuItemFont itemWithString:@"Next"
-                                                          block:^(id sender) {
-                                                              [self nextMenuItemSelected:nextChallenge orWorld:nextWorld];
-                                                          }];
+    CCControlButton *nextButton = [UIUtils createBlackBoardButton:30 andText:@"Next"];
+    nextButton.position = ccp((winSize.width*4)/5, winSize.height/10);
     
-    CCMenu *nextMenu = [CCMenu menuWithItems:nextMenuItem, nil];
-    nextMenu.position = ccp((winSize.width*9)/10, winSize.height/10);
+    [nextButton setBlock:^(id sender, CCControlEvent event)
+     {
+        [self nextMenuItemSelected:nextChallenge orWorld:nextWorld];
+     } forControlEvents:CCControlEventTouchUpInside];
     
-    [layer addChild:nextMenu];
+    [layer addChild:nextButton];
     
-    CCMenuItem *replayMenuItem = [CCMenuItemFont itemWithString:@"Replay"
-                                                        block:^(id sender) {
-                                                            [self replayMenuItemSelected:challenge];
-                                                        }];
+    CCControlButton *replayButton = [UIUtils createBlackBoardButton:30 andText:@"Replay"];
+    replayButton.position = ccp(winSize.width/2, winSize.height/10);
     
-    CCMenu *replayMenu = [CCMenu menuWithItems:replayMenuItem, nil];
-    replayMenu.position = ccp(winSize.width/2, winSize.height/10);
+    [replayButton setBlock:^(id sender, CCControlEvent event)
+     {
+        [self replayMenuItemSelected:challenge];
+     } forControlEvents:CCControlEventTouchUpInside];
     
-    [layer addChild:replayMenu];
+    [layer addChild:replayButton];
     
-    CCMenuItem *menuMenuItem = [CCMenuItemFont itemWithString:@"Menu" target:self selector:@selector(menuMenuItemSelected:)];
-                                
+    CCControlButton *menuButton = [UIUtils createBlackBoardButton:30 andText:@"Menu"];
+    menuButton.position = ccp(winSize.width/5, winSize.height/10);
     
-    CCMenu *menuMenu = [CCMenu menuWithItems:menuMenuItem, nil];
-    menuMenu.position = ccp(winSize.width/10, winSize.height/10);
+    [menuButton addTarget:self
+                         action:@selector(menuMenuItemSelected:)
+               forControlEvents:CCControlEventTouchUpInside];
     
-    [layer addChild:menuMenu];
+    [layer addChild:menuButton];
+    
     [self addChild:layer];
 }
 

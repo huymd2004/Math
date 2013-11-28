@@ -19,6 +19,15 @@
 +(CCControlButton *) createBlackBoardButtonWithSize:(CGSize) size
                                             andText:(NSString *) text
                                             andFontSize: (int) fontSize;
++(CCControlButton *) createSketchCollegeButton: (NSString *) text;
++(CCControlButton *) createAnswerImageButton: (NSString *) imagePath;
++(CCControlButton *) createBlackBoardLabel: (int) fontSize andText: (NSString *) text;
 +(void) setupDefaultBlackboardCCMenuSettings;
 +(void) setupDefaultDrawingPadCCMenuSettings;
++(CCControlButton *) createBackButton;
++(CCControlButton *) createBlackBoardBackButton;
++(CCLabelTTF *) createGloriaHallelujahTitle: (NSString *) text;
++(CCLabelTTF *) createGloriaHallelujahSubTitle: (NSString *) text;
++(CCLabelTTF *) createBlackBoardTitle: (NSString *) text;
++(CCControlButton *) createDeleteButton: (int) fontSize;
 @end

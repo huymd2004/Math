@@ -5,7 +5,7 @@
                   "name":"Challenge1",
                   "questions":[
                                {
-                               "question":"Which animal rhymes with funny?",
+                               "question":"Which animal\n rhymes with funny?",
                                "questionImage":null,
                                "answers":[
                                           {

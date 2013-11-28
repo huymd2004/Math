@@ -14,6 +14,8 @@
 
 #import "CoreDataUtils.h"
 
+#import "UIUtils.h"
+
 @implementation GameCompletedScene
 
 -(id) init
@@ -28,6 +30,8 @@
 
 -(void) setupLayout
 {
+    [UIUtils addBlackboardBackground:self];
+    
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
@@ -37,18 +41,18 @@
     
     NSString *sceneTitle = [NSString stringWithFormat:@"Congratulations %@! You completed the game!",
                             profile.name];
-    CCLabelTTF *sceneTitleLabel = [CCLabelTTF labelWithString:sceneTitle
-                                                     fontName:@"SketchCollege" fontSize:24];
-    sceneTitleLabel.position = ccp(winSize.width/2, (winSize.height*9)/10);
+    CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:sceneTitle];
     [layer addChild:sceneTitleLabel];
     
-    CCMenuItem *menuMenuItem = [CCMenuItemFont itemWithString:@"Menu" target:self
-                                                     selector:(@selector(menuMenuItemSelected:))];
+    CCControlButton *menuButton = [UIUtils createBlackBoardButton:30 andText:@"Menu"];
+    menuButton.position = ccp(winSize.width/2, (winSize.height)/2);
     
-    CCMenu *menuMenu = [CCMenu menuWithItems:menuMenuItem, nil];
-    menuMenu.position = ccp(winSize.width/10, winSize.height/10);
+    [menuButton addTarget:self
+                   action:@selector(menuMenuItemSelected:)
+         forControlEvents:CCControlEventTouchDown];
     
-    [layer addChild:menuMenu];
+    [layer addChild:menuButton];
+    
     [self addChild:layer];
 }
 

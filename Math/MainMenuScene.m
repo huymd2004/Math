@@ -44,8 +44,7 @@
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *label = [UIUtils createGloriaHallelujahCCLabel:56 andText:@"Blackboard Math"];
-    label.position = ccp(winSize.width/2, (winSize.height*4)/5);
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Blackboard Math"];
     [layer addChild:label];
     
     CCControlButton *playButton = [UIUtils createBlackBoardButton:30 andText:@"Play"];
@@ -53,7 +52,7 @@
     
     [playButton addTarget:self
                 action:@selector(playButtonSelected:)
-                forControlEvents:CCControlEventTouchDown];
+                forControlEvents:CCControlEventTouchUpInside];
     
     [layer addChild:playButton];
     
@@ -62,7 +61,7 @@
     
     [optionsButton addTarget:self
                    action:@selector(optionsButtonSelected:)
-         forControlEvents:CCControlEventTouchDown];
+         forControlEvents:CCControlEventTouchUpInside];
     
     [layer addChild:optionsButton];
     
@@ -71,14 +70,14 @@
     
     [profileButton addTarget:self
                       action:@selector(profileButtonSelected:)
-            forControlEvents:CCControlEventTouchDown];
+            forControlEvents:CCControlEventTouchUpInside];
     
     [layer addChild:profileButton];
     
     Profile *profile = [coreDataUtils getCurrentProfile];
     NSString *currentProfileString = [NSString stringWithFormat:@"Current profile: %@", profile.name];
     CCLabelTTF *profileLabel = [UIUtils createGloriaHallelujahCCLabel:16 andText:currentProfileString];
-    profileLabel.position = ccp((winSize.width*4)/5, (winSize.height)/10);
+    profileLabel.position = ccp((winSize.width*7)/10, (winSize.height)/10);
     [layer addChild:profileLabel z:0];
     
     [self addChild:layer];

@@ -37,48 +37,46 @@
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *label = [UIUtils createGloriaHallelujahCCLabel:56 andText:@"Options"];
-    label.position = ccp(winSize.width/2, (winSize.height*4)/5);
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Options"];
     [layer addChild:label];
     
     CCControlButton *manageProfilesButton =
-        [UIUtils createBlackBoardButton:20 andText:@"Manage profiles"];
+        [UIUtils createBlackBoardButton:30 andText:@"Manage profiles"];
     manageProfilesButton.position = ccp(winSize.width/2, (winSize.height*3)/5);
     
     [manageProfilesButton addTarget:self
                    action:@selector(manageProfilesButtonSelected:)
-         forControlEvents:CCControlEventTouchDown];
+         forControlEvents:CCControlEventTouchUpInside];
     
     [layer addChild:manageProfilesButton];
     
     CCControlButton *resetProgressButton =
-    [UIUtils createBlackBoardButton:20 andText:@"Reset progress"];
+    [UIUtils createBlackBoardButton:30 andText:@"Reset progress"];
     resetProgressButton.position = ccp(winSize.width/2, (winSize.height)/2);
     
     [resetProgressButton addTarget:self
                              action:@selector(resetProgressButtonSelected:)
-                   forControlEvents:CCControlEventTouchDown];
+                   forControlEvents:CCControlEventTouchUpInside];
     
     [layer addChild:resetProgressButton];
     
     CCControlButton *newProfileButton =
-    [UIUtils createBlackBoardButton:20 andText:@"New profile"];
+    [UIUtils createBlackBoardButton:30 andText:@"New profile"];
     newProfileButton.position = ccp(winSize.width/2, (winSize.height*2)/5);
     
     [newProfileButton addTarget:self
                             action:@selector(newProfileButtonSelected:)
-                  forControlEvents:CCControlEventTouchDown];
+                  forControlEvents:CCControlEventTouchUpInside];
     
     [layer addChild:newProfileButton];
     
-    [UIUtils setupDefaultDrawingPadCCMenuSettings];
+    CCControlButton *backButton = [UIUtils createBackButton];
     
-    CCMenuItem *backMenuItem = [CCMenuItemFont itemWithString:@"<" target:self
-                                                     selector:(@selector(backMenuItemSelected:))];
-    [backMenuItem setColor:ccc3(1, 1, 1)];
-    CCMenu *backMenu = [CCMenu menuWithItems:backMenuItem, nil];
-    backMenu.position = ccp(winSize.width/10, winSize.height/10);
-    [layer addChild:backMenu];
+    [backButton addTarget:self
+                         action:@selector(backMenuItemSelected:)
+               forControlEvents:CCControlEventTouchUpInside];
+    
+    [layer addChild:backButton];
     
     [self addChild:layer];
 }
