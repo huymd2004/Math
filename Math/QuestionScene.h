@@ -10,14 +10,20 @@
 
 #import "Question.h"
 
+#import "Challenge.h"
+
 @interface QuestionScene : CCScene
 {
-    Question *_question;
+    NSArray *_questions;
     NSNumber *_score;
     CCLabelTTF *_scoreLabel;
     int _currentScore;
     double _startTimeMilliseconds;
+    Challenge *_challenge;
 }
 
--(id) initWithQuestion: (Question *) question andScore: (NSNumber *) score andCount: (int) count;
+-(id) initWithQuestions: (NSArray *) questions
+      andQuestionIndex: (int) index
+          andChallenge: (Challenge *) challenge
+              andScore: (NSNumber *) score;
 @end

@@ -75,62 +75,8 @@
     
     NSString *name = [challengeDictionary objectForKey:@"name"];
     challenge.name = name;
-    challenge.questions = [[NSOrderedSet alloc] init];
-    
-    NSArray *questionDictionaris = [challengeDictionary objectForKey:@"questions"];
-    
-    for (NSDictionary *questionDictionary in questionDictionaris)
-    {
-        Question *question = [self createQuestionFromDictionary:questionDictionary
-                                                        andContext:context];
-        question.challenge = challenge;
-    }
     
     return challenge;
-}
-    
-+(Question *) createQuestionFromDictionary: (NSDictionary *) questionDictionary andContext: (NSManagedObjectContext *) context
-{
-    Question *question = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Question"
-                            inManagedObjectContext:context];
-    
-    question.question = [questionDictionary objectForKey:@"question"];
-    
-    id questionImage = [questionDictionary objectForKey:@"questionImage"];
-    if (questionImage == [NSNull null])
-    {
-        question.questionImage = nil;
-    }
-    else
-    {
-        question.questionImage = (NSString *) questionImage;
-    }
-    
-    NSArray *answerDictionaries = [questionDictionary objectForKey:@"answers"];
-    
-    for (NSDictionary *answerDictionary in answerDictionaries)
-    {
-        Answer *answer = [self createAnswerFromDictionary:answerDictionary
-                                                     andContext:context];
-        answer.question = question;
-    }
-    
-    return question;
-}
-
-+(Answer *) createAnswerFromDictionary: (NSDictionary *) answerDictionary andContext:
-    (NSManagedObjectContext *) context
-{
-    Answer *answer = [NSEntityDescription
-                          insertNewObjectForEntityForName:@"Answer"
-                          inManagedObjectContext:context];
-    
-    answer.isCorrect = [answerDictionary objectForKey:@"isCorrect"];
-    answer.isImage = [answerDictionary objectForKey:@"isImage"];
-    answer.text = [answerDictionary objectForKey:@"text"];
-    
-    return answer;
 }
 
 +(BOOL) hasBuiltUniverse

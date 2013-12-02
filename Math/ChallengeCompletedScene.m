@@ -26,6 +26,8 @@
 
 #import "UIUtils.h"
 
+#import "GenMathInterface.h"
+
 //TODO: Fixa spara challenge completed om man trycker meny
 
 @implementation ChallengeCompletedScene
@@ -175,7 +177,8 @@
 
 -(void) replayMenuItemSelected: (Challenge *) challenge
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[QuestionScene alloc] initWithQuestion:challenge.questions[0] andScore:[NSNumber numberWithInt:0] andCount:1]]];
+    NSArray *questions = [GenMathInterface getQuestionsForChallenge:challenge];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[QuestionScene alloc] initWithQuestions:questions andQuestionIndex:0 andChallenge:challenge andScore:0]]];
 }
 
 -(void) menuMenuItemSelected: (id) sender
