@@ -82,13 +82,13 @@
 {
     NSArray *questions = [GenMathInterface getQuestionsForChallenge:challenge];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
-                                               transitionWithDuration:1.0 scene:[[QuestionScene alloc] initWithQuestions:questions andQuestionIndex:0 andChallenge:challenge andScore:0]]];
+                                               transitionWithDuration:1.0 scene:[[QuestionScene alloc] initWithQuestions:questions andQuestionIndex:0 andChallenge:challenge andScore:[[NSNumber alloc] initWithInt:0]]]];
 }
 
--(void) backMenuItemSelected: (Challenge *) challenge
+-(void) backMenuItemSelected:(id) sender
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
-                                               transitionWithDuration:1.0 scene:[[WorldScene alloc] initWithWorld:challenge.world]]];
+                transitionWithDuration:1.0 scene:[[WorldScene alloc] initWithWorld:_challenge.world]]];
 }
 
 @end

@@ -63,13 +63,20 @@
             [layer addChild:hasFinishedOrLockedSprite];
         }
         
-        CCControlButton *worldButton = [UIUtils createBlackBoardButton:30 andText:world.name];
+        CCControlButton *worldButton = [UIUtils createBlackBoardButton:24 andText:world.name];
         worldButton.position = ccp(winSize.width/2, (winSize.height*(13-2*i))/20);
         
         [worldButton setBlock:^(id sender, CCControlEvent event)
-         {
-            [self startSceneWithWorld:world];
-         } forControlEvents:CCControlEventTouchUpInside];
+        {
+            if (i <= currentWorld)
+            {
+                [self startSceneWithWorld:world];
+            }
+            else
+            {
+                [self pressedLockedWorld];
+            }
+        } forControlEvents:CCControlEventTouchUpInside];
         
         [layer addChild:worldButton];
     }
@@ -81,7 +88,6 @@
          forControlEvents:CCControlEventTouchDown];
     
     [layer addChild:backButton];
-    
     [self addChild:layer];
 }
 
@@ -89,6 +95,17 @@
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                                                transitionWithDuration:1.0 scene:[[WorldScene alloc] initWithWorld:world]]];
+}
+
+-(void) pressedLockedWorld
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Locked World!"
+                          message:@"To play this world complete the previous ones!"
+                          delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 -(void) backMenuItemSelected:(id) sender

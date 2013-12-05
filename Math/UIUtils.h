@@ -28,6 +28,7 @@
 +(CCControlButton *) createBlackBoardBackButton;
 +(CCLabelTTF *) createGloriaHallelujahTitle: (NSString *) text;
 +(CCLabelTTF *) createGloriaHallelujahSubTitle: (NSString *) text;
++(CCLabelTTF *) createGloriaHallelujahSubSubTitle: (NSString *) text;
 +(CCLabelTTF *) createBlackBoardTitle: (NSString *) text;
 +(CCControlButton *) createDeleteButton: (int) fontSize;
 @end

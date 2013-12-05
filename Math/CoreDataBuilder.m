@@ -24,59 +24,39 @@
 
 +(void) buildWithContext: (NSManagedObjectContext *) context
 {
-    NSError *err = nil;
-    NSString *dataPath = [[NSBundle mainBundle] pathForResource:@"Universe" ofType:@"json"];
-    NSArray *worldDictionaries = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath] options:kNilOptions error:&err];
-    
     Universe *universe = [NSEntityDescription
                           insertNewObjectForEntityForName:@"Universe"
                           inManagedObjectContext:context];
     
-    for (NSString *worldName in worldDictionaries)
+    NSArray *challengeNames = @[@"One", @"Two", @"Three", @"Four", @"Five", @"Six", @"Seven", @"Eight", @"Nine", @"Ten"];
+    NSArray *worldNames = @[@"Addition", @"Subtraction", @"Multiplication", @"Division"];
+    
+    for (NSString *name in worldNames)
     {
-        NSString *worldDataPath = [[NSBundle mainBundle] pathForResource:worldName ofType:@"json"];
-        NSDictionary *worldDictionary = [NSJSONSerialization JSONObjectWithData:
-                          [NSData dataWithContentsOfFile:worldDataPath]
-                                                            options:NSJSONReadingMutableContainers
-                                                           error:&err];
-        
-        World *world = [self createWorldFromDictionary:worldDictionary andContext:context];
+        World *world = [self createWorld:name andContext:context andChallengeNames:challengeNames];
         world.universe = universe;
     }
 }
-    
-+(World *) createWorldFromDictionary: (NSDictionary *) worldDictionary
-                          andContext: (NSManagedObjectContext *) context
+
++(World *) createWorld: (NSString *) name andContext: (NSManagedObjectContext *) context andChallengeNames: (NSArray *) challengeNames
 {
     World *world = [NSEntityDescription
-                    insertNewObjectForEntityForName:@"World"
-                    inManagedObjectContext:context];
+                          insertNewObjectForEntityForName:@"World"
+                          inManagedObjectContext:context];
     
-    NSString *name = [worldDictionary objectForKey:@"name"];
     world.name = name;
     
-    NSArray *challengeDictionaries = [worldDictionary objectForKey:@"challenges"];
-    
-    for (NSDictionary *challengeDictionary in challengeDictionaries)
+    for (NSString *challengeName in challengeNames)
     {
-        Challenge *challenge = [self createChallengeFromDictionary:challengeDictionary
-                                                        andContext:context];
+        Challenge *challenge = [NSEntityDescription
+                                insertNewObjectForEntityForName:@"Challenge"
+                                inManagedObjectContext:context];
+        
+        challenge.name = challengeName;
         challenge.world = world;
     }
     
     return world;
-}
-    
-+(Challenge *) createChallengeFromDictionary: (NSDictionary *) challengeDictionary andContext: (NSManagedObjectContext *) context
-{
-    Challenge *challenge = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Challenge"
-                            inManagedObjectContext:context];
-    
-    NSString *name = [challengeDictionary objectForKey:@"name"];
-    challenge.name = name;
-    
-    return challenge;
 }
 
 +(BOOL) hasBuiltUniverse

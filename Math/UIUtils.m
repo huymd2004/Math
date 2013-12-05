@@ -126,6 +126,14 @@
     return label;
 }
 
++(CCLabelTTF *) createGloriaHallelujahSubSubTitle: (NSString *) text
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    CCLabelTTF *label = [self createGloriaHallelujahSubTitle:text];
+    label.position = ccp(winSize.width/2, (winSize.height*3)/5);
+    return label;
+}
+
 +(CCControlButton *) createBlackBoardLabel: (int) fontSize andText: (NSString *) text
 {
     CCControlButton *label = [UIUtils createBlackBoardButton:fontSize andText:text];

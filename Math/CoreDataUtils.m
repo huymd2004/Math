@@ -343,11 +343,11 @@ static CoreDataUtils *_coreDataUtils;
         {
             profileWorldNumber = i+1;
         }
-        else if ([world.name isEqualToString:challenge.world.name])
+
+        if ([world.name isEqualToString:challenge.world.name])
         {
             worldNumber = i+1;
         }
-        
             
         for (int j = 0; j < world.challenges.count; ++j) {
             Challenge *currentChallenge = world.challenges[j];

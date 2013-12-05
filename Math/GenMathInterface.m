@@ -21,7 +21,7 @@
     World *world = challenge.world;
     Universe *universe = world.universe;
     
-    int whichWorld = [universe.worlds indexOfObject:world] + 1;
+    int whichWorld = [universe.worlds indexOfObject:world];
     enum ProblemType problemType = [GenMath intToProblemType:whichWorld];
     
     int difficulty = [world.challenges indexOfObject:challenge] + 1;

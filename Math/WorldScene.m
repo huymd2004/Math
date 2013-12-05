@@ -20,6 +20,8 @@
 
 #import "UIUtils.h"
 
+#import "CCScrollLayerVertical.h"
+
 @implementation WorldScene
 
 -(id) initWithWorld:(World *) world
@@ -39,10 +41,10 @@
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
-    CCLayer *layer = [[CCLayer alloc] init];
+    CCLayer *layer = [CCLayer node];
+    layer.position = ccp(winSize.width, winSize.height);
     
-    NSString *sceneTitleString = [NSString stringWithFormat:@"Challenges for %@", world.name];
-    CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:sceneTitleString];
+    CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:world.name];
     [layer addChild:sceneTitleLabel];
     
     Profile *profile = [coreDataUtils getCurrentProfile];
@@ -53,9 +55,7 @@
     {
         NSString *highScoreString = [NSString stringWithFormat:@"Highscore is %@ for %@",
                                      score.score, world.name];
-        CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:highScoreString
-                                                        fontName:@"SketchCollege" fontSize:24];
-        highScoreLabel.position = ccp(winSize.width/2, (winSize.height*17)/20);
+        CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubTitle:highScoreString];
         [layer addChild:highScoreLabel];
     }
     
@@ -93,6 +93,7 @@
     
     currentChallengeIndex = thisWorldIndex == profileWorldIndex ? currentChallengeIndex : INT_MAX;
     
+    float smallestHeight = 0;
     for (int i = 0; i < world.challenges.count; ++i)
     {
         Challenge *challenge = world.challenges[i];
@@ -102,19 +103,33 @@
             NSString *imageFilePath = i > currentChallengeIndex ? @"lock.png" : @"checkbox_checked.png";
             CCSprite *hasFinishedOrLockedSprite  = [CCSprite spriteWithFile:imageFilePath];
             
-            hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/4, (winSize.height*(13-2*i))/20);
+            
+            hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/5, (winSize.height*6)/10 + i*-100);
+            
             [layer addChild:hasFinishedOrLockedSprite];
         }
         
         CCControlButton *challengeButton = [UIUtils createBlackBoardButton:30 andText:challenge.name];
-        challengeButton.position = ccp(winSize.width/2, (winSize.height*(13-2*i))/20);
+        challengeButton.position = ccp((winSize.width*2)/5, (winSize.height*6)/10 + i*-100);
         
         [challengeButton setBlock:^(id sender, CCControlEvent event)
-         {
-            [self startSceneWithChallenge:challenge];
-         } forControlEvents:CCControlEventTouchUpInside];
+        {
+            if (i <= currentChallengeIndex)
+            {
+                [self startSceneWithChallenge:challenge];
+            }
+            else
+            {
+                [self pressedLockedChallenge];
+            }
+        } forControlEvents:CCControlEventTouchUpInside];
         
         [layer addChild:challengeButton];
+        
+        if (i == world.challenges.count - 1)
+        {
+            smallestHeight = (winSize.height*6)/10 + i*-100;
+        }
     }
     
     CCControlButton *backButton = [UIUtils createBackButton];
@@ -123,15 +138,28 @@
                    action:@selector(backMenuItemSelected:)
          forControlEvents:CCControlEventTouchDown];
     
-    [layer addChild:backButton];
+    [self addChild:backButton z:1];
     
-    [self addChild:layer];
+    layer.contentSize = CGSizeMake(winSize.width, winSize.height  - smallestHeight + 100);
+    CCScrollLayerVertical *scrollLayer = [[CCScrollLayerVertical alloc] initWithLayer:layer];
+    [self addChild:scrollLayer z:0];
 }
 
 -(void) startSceneWithChallenge: (Challenge *) challenge
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                                                transitionWithDuration:1.0 scene:[[ChallengeScene alloc] initWithChallenge:challenge]]];
+}
+
+-(void) pressedLockedChallenge
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Locked Challenge!"
+                          message:@"To play this challenge complete the previous ones!"
+                          delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 -(void) backMenuItemSelected:(id) sender

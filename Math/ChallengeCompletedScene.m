@@ -85,9 +85,7 @@
         {
             NSString *highScoreString = [NSString
                                          stringWithFormat:@"Congratulations! New highscore \n for %@ is %d!", world.name, worldScore.integerValue];
-            CCLabelTTF *highScoreLabel = [CCLabelTTF labelWithString:highScoreString
-                                                            fontName:@"SketchCollege" fontSize:24];
-            highScoreLabel.position = ccp(winSize.width/2, (winSize.height*14)/20);
+            CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubSubTitle:highScoreString];
             [layer addChild:highScoreLabel];
         }
     }
