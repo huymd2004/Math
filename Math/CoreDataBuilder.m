@@ -20,6 +20,8 @@
 
 #import "CoreDataUtils.h"
 
+#import "StringUtils.h"
+
 @implementation CoreDataBuilder
 
 +(void) buildWithContext: (NSManagedObjectContext *) context
@@ -28,8 +30,9 @@
                           insertNewObjectForEntityForName:@"Universe"
                           inManagedObjectContext:context];
     
-    NSArray *challengeNames = @[@"One", @"Two", @"Three", @"Four", @"Five", @"Six", @"Seven", @"Eight", @"Nine", @"Ten"];
-    NSArray *worldNames = @[@"Addition", @"Subtraction", @"Multiplication", @"Division"];
+    NSArray *challengeNames = [StringUtils getWorldNames];
+    
+    NSArray *worldNames = [StringUtils getChallengeNames];
     
     for (NSString *name in worldNames)
     {

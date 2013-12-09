@@ -14,6 +14,8 @@
 
 #import "UIUtils.h"
 
+#import "StringUtils.h"
+
 @implementation ManageProfilesScene
 
 -(id) init
@@ -33,27 +35,21 @@
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Manage Profiles"];
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:[StringUtils getManageProfilesString]];
     [layer addChild:label];
     
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     NSArray *profiles = [coreDataUtils getProfiles];
     
-    NSString *profilesString = @"You have ";
-    profilesString = [profilesString stringByAppendingString:
-                      [NSString stringWithFormat:@"%i", profiles.count]];
-    profilesString =
-        [profilesString stringByAppendingString:profiles.count > 1 ? @" profiles!" : @" profile!"];
-    
-    CCControlButton *profilesTitleLabel = [UIUtils createBlackBoardLabel:24 andText:profilesString];
+    CCControlButton *profilesTitleLabel = [UIUtils createBlackBoardLabel:28 andText:[StringUtils getNumberOfProfilesString:profiles.count]];
     profilesTitleLabel.position = ccp(winSize.width/2, (winSize.height*7)/10);
     [layer addChild:profilesTitleLabel];
     
-    CCControlButton *nameLabel = [UIUtils createBlackBoardLabel:24 andText:@"Name:"];
+    CCControlButton *nameLabel = [UIUtils createBlackBoardLabel:28 andText:[StringUtils getNameWithColonString]];
     nameLabel.position = ccp((winSize.width*3)/10, (winSize.height*6)/10);
     [layer addChild:nameLabel];
     
-    CCControlButton *currentLabel = [UIUtils createBlackBoardLabel:24 andText:@"Current:"];
+    CCControlButton *currentLabel = [UIUtils createBlackBoardLabel:28 andText:[StringUtils getCurrentWithColonString]];
     currentLabel.position = ccp((winSize.width*7)/10, (winSize.height*6)/10);
     [layer addChild:currentLabel];
     
@@ -62,7 +58,7 @@
     {
         Profile *profile = profiles[i];
         
-        CCControlButton *profileNameLabel = [UIUtils createBlackBoardLabel:24 andText:profile.name];
+        CCControlButton *profileNameLabel = [UIUtils createBlackBoardLabel:28 andText:profile.name];
         profileNameLabel.position = ccp((winSize.width*3)/10, (winSize.height*(41 - 7*i))/80);
         [layer addChild:profileNameLabel];
         
@@ -124,30 +120,21 @@
     
     if ([profile.name isEqualToString:currentProfile.name])
     {
-        NSString *title = @"Can't delete ";
-        title = [title stringByAppendingString:profile.name];
-        
-        NSString *message = profile.name;
-        message = [message stringByAppendingString:@" is your current profile!"];
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:title
-                              message:message
+                              initWithTitle:[StringUtils getCantDeleteProfileStringTitle:profile.name]
+                              message:[StringUtils getCantDeleteProfileStringMessage:profile.name]
                               delegate:nil
-                              cancelButtonTitle:@"OK"
+                              cancelButtonTitle:[StringUtils getOKString]
                               otherButtonTitles:nil];
         [alert show];
     }
     else
     {
-        _profileToBeDeleted = profile;
-        NSString *message = @"Are you sure you want to delete the profile ";
-        message = [message stringByAppendingString:profile.name];
-        message = [message stringByAppendingString:@"?"];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Are you sure?"
-                                                          message:message
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[StringUtils getDeleteProfileTitle]
+                                                          message:[StringUtils getDeleteProfileMessage:profile.name]
                                                          delegate:self
-                                                cancelButtonTitle:@"No"
-                                                otherButtonTitles:@"Yes", nil];
+                                                cancelButtonTitle:[StringUtils getNoString]
+                                                otherButtonTitles:[StringUtils getYesString], nil];
         
         [alertView show];
     }

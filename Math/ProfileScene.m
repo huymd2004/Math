@@ -22,6 +22,8 @@
 
 #import "CCControlExtension.h"
 
+#import "StringUtils.h"
+
 @implementation ProfileScene
 
 -(id) init
@@ -43,28 +45,22 @@
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     Profile *profile = [coreDataUtils getCurrentProfile];
     
-    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Profile"];
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:[StringUtils getProfileString]];
     [layer addChild:label];
     
-    NSString *profileTitle = @"Profile for: ";
-    profileTitle = [NSString stringWithFormat:@"%@\n\n%@", profileTitle, profile.name];
-    
-    CCControlButton *profilePresenterLabel = [UIUtils createBlackBoardLabel:24 andText:profileTitle];
-    profilePresenterLabel.position = ccp(winSize.width/2, (winSize.height*13)/20);
+    NSString *profileTitle = [StringUtils getProfileForString:profile.name];
+    CCControlButton *profilePresenterLabel = [UIUtils createBlackBoardLabel:36 andText:profileTitle];
+    profilePresenterLabel.position = ccp(winSize.width/2, (winSize.height*3)/5);
     [layer addChild:profilePresenterLabel];
     
-    NSString *worldTitle = @"Current world: ";
-    worldTitle = [NSString stringWithFormat:@"%@\n\n%@", worldTitle, profile.world.name];
-    
-    CCControlButton *worldPresenterLabel = [UIUtils createBlackBoardLabel:24 andText:worldTitle];
-    worldPresenterLabel.position = ccp(winSize.width/2, (winSize.height*1)/2);
+    NSString *worldTitle = [StringUtils getCurrentWorldString:profile.world.name];
+    CCControlButton *worldPresenterLabel = [UIUtils createBlackBoardLabel:36 andText:worldTitle];
+    worldPresenterLabel.position = ccp(winSize.width/2, (winSize.height*13)/30);
     [layer addChild:worldPresenterLabel];
     
-    NSString *challengeTitle = @"Current challenge: ";
-    challengeTitle = [NSString stringWithFormat:@"%@\n\n%@", challengeTitle, profile.challenge.name];
-    
-    CCControlButton *challengePresenterLabel = [UIUtils createBlackBoardLabel:24 andText:challengeTitle];
-    challengePresenterLabel.position = ccp(winSize.width/2, (winSize.height*7)/20);
+    NSString *challengeTitle = [StringUtils getCurrentChallengeString:profile.challenge.name];
+    CCControlButton *challengePresenterLabel = [UIUtils createBlackBoardLabel:36 andText:challengeTitle];
+    challengePresenterLabel.position = ccp(winSize.width/2, (winSize.height*4)/15);
     [layer addChild:challengePresenterLabel];
     
     CCControlButton *backButton = [UIUtils createBackButton];

@@ -22,6 +22,8 @@
 
 #import "CCControlExtension.h"
 
+#import "StringUtils.h"
+
 @implementation MainMenuScene
 
 -(id) init
@@ -44,11 +46,11 @@
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Blackboard Math"];
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:[StringUtils getMainMenuTitle]];
     [layer addChild:label];
     
-    CCControlButton *playButton = [UIUtils createBlackBoardButton:30 andText:@"Play"];
-    playButton.position = ccp(winSize.width/2, (winSize.height*3)/5);
+    CCControlButton *playButton = [UIUtils createBlackBoardButton:40 andText:[StringUtils getPlayString]];
+    playButton.position = ccp(winSize.width/2, (winSize.height*9)/15);
     
     [playButton addTarget:self
                 action:@selector(playButtonSelected:)
@@ -56,8 +58,8 @@
     
     [layer addChild:playButton];
     
-    CCControlButton *optionsButton = [UIUtils createBlackBoardButton:30 andText:@"Options"];
-    optionsButton.position = ccp(winSize.width/2, (winSize.height)/2);
+    CCControlButton *optionsButton = [UIUtils createBlackBoardButton:40 andText:[StringUtils getOptionsString]];
+    optionsButton.position = ccp(winSize.width/2, (winSize.height*7)/15);
     
     [optionsButton addTarget:self
                    action:@selector(optionsButtonSelected:)
@@ -65,8 +67,8 @@
     
     [layer addChild:optionsButton];
     
-    CCControlButton *profileButton = [UIUtils createBlackBoardButton:30 andText:@"Profile"];
-    profileButton.position = ccp(winSize.width/2, (winSize.height*2)/5);
+    CCControlButton *profileButton = [UIUtils createBlackBoardButton:40 andText:[StringUtils getProfileString]];
+    profileButton.position = ccp(winSize.width/2, (winSize.height*5)/15);
     
     [profileButton addTarget:self
                       action:@selector(profileButtonSelected:)
@@ -75,7 +77,7 @@
     [layer addChild:profileButton];
     
     Profile *profile = [coreDataUtils getCurrentProfile];
-    NSString *currentProfileString = [NSString stringWithFormat:@"Current profile: %@", profile.name];
+    NSString *currentProfileString = [StringUtils getCurrentProfileString:profile.name];
     CCLabelTTF *profileLabel = [UIUtils createGloriaHallelujahCCLabel:16 andText:currentProfileString];
     profileLabel.position = ccp((winSize.width*7)/10, (winSize.height)/10);
     [layer addChild:profileLabel z:0];

@@ -18,6 +18,8 @@
 
 #import "UIUtils.h"
 
+#import "StringUtils.h"
+
 @implementation OptionsScene
 
 -(id) init
@@ -37,11 +39,11 @@
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Options"];
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:[StringUtils getOptionsString]];
     [layer addChild:label];
     
     CCControlButton *manageProfilesButton =
-        [UIUtils createBlackBoardButton:30 andText:@"Manage profiles"];
+        [UIUtils createBlackBoardButton:40 andText:[StringUtils getManageProfilesString]];
     manageProfilesButton.position = ccp(winSize.width/2, (winSize.height*3)/5);
     
     [manageProfilesButton addTarget:self
@@ -51,8 +53,8 @@
     [layer addChild:manageProfilesButton];
     
     CCControlButton *resetProgressButton =
-    [UIUtils createBlackBoardButton:30 andText:@"Reset progress"];
-    resetProgressButton.position = ccp(winSize.width/2, (winSize.height)/2);
+    [UIUtils createBlackBoardButton:40 andText:[StringUtils getResetProgressString]];
+    resetProgressButton.position = ccp(winSize.width/2, (winSize.height*7)/15);
     
     [resetProgressButton addTarget:self
                              action:@selector(resetProgressButtonSelected:)
@@ -61,8 +63,8 @@
     [layer addChild:resetProgressButton];
     
     CCControlButton *newProfileButton =
-    [UIUtils createBlackBoardButton:30 andText:@"New profile"];
-    newProfileButton.position = ccp(winSize.width/2, (winSize.height*2)/5);
+    [UIUtils createBlackBoardButton:40 andText:[StringUtils getNewProfileString]];
+    newProfileButton.position = ccp(winSize.width/2, (winSize.height)/3);
     
     [newProfileButton addTarget:self
                             action:@selector(newProfileButtonSelected:)
@@ -92,15 +94,13 @@
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     Profile *profile = [coreDataUtils getCurrentProfile];
     
-    NSString *alertViewMessage = @"Are you sure you want to reset progress for ";
-    alertViewMessage = [alertViewMessage stringByAppendingString:profile.name];
-    alertViewMessage = [alertViewMessage stringByAppendingString:@"?"];
+    NSString *alertViewMessage = [StringUtils getRestProgressMessage:profile.name];
     
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Reset progress"
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:[StringUtils getResetProgressString]
                                                       message:alertViewMessage
                                                      delegate:self
-                                            cancelButtonTitle:@"No"
-                                            otherButtonTitles:@"Yes", nil];
+                                            cancelButtonTitle:[StringUtils getNoString]
+                                            otherButtonTitles:[StringUtils getYesString], nil];
     [message show];
 }
 
@@ -125,10 +125,10 @@
     else
     {
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Already max profiles"
-                              message:@"To delete a profile press \"Manage Profiles\"!"
+                              initWithTitle:[StringUtils getTooManyProfilesTitle]
+                              message:[StringUtils getTooManyProfilesMessage]
                               delegate:nil
-                              cancelButtonTitle:@"OK"
+                              cancelButtonTitle:[StringUtils getOKString]
                               otherButtonTitles:nil];
         [alert show];
     }

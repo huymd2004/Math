@@ -13,12 +13,7 @@ enum ProblemType {
     Subtraction,
     Multiplication,
     Division,
-    MixedArithmetics,
-    Puzzle,
-    Geometry,
-    Fraction,
-    Time,
-    Statistics
+    Mixed
 };
 
 #ifndef MIN_DIFFICULTY

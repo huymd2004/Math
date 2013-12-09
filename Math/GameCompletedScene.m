@@ -16,6 +16,8 @@
 
 #import "UIUtils.h"
 
+#import "StringUtils.h"
+
 @implementation GameCompletedScene
 
 -(id) init
@@ -30,7 +32,7 @@
 
 -(void) setupLayout
 {
-    [UIUtils addBlackboardBackground:self];
+    [UIUtils addDrawingPadBackground:self];
     
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -39,12 +41,11 @@
     
     Profile *profile = [coreDataUtils getCurrentProfile];
     
-    NSString *sceneTitle = [NSString stringWithFormat:@"Congratulations %@! You completed the game!",
-                            profile.name];
+    NSString *sceneTitle = [StringUtils getCompletedGameString:profile.name];
     CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:sceneTitle];
     [layer addChild:sceneTitleLabel];
     
-    CCControlButton *menuButton = [UIUtils createBlackBoardButton:30 andText:@"Menu"];
+    CCControlButton *menuButton = [UIUtils createBlackBoardButton:30 andText:[StringUtils getMenuString]];
     menuButton.position = ccp(winSize.width/2, (winSize.height)/2);
     
     [menuButton addTarget:self

@@ -22,6 +22,8 @@
 
 #import "CCScrollLayerVertical.h"
 
+#import "StringUtils.h"
+
 @implementation WorldScene
 
 -(id) initWithWorld:(World *) world
@@ -53,9 +55,9 @@
     
     if (score != nil)
     {
-        NSString *highScoreString = [NSString stringWithFormat:@"Highscore is %@ for %@",
-                                     score.score, world.name];
-        CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubTitle:highScoreString];
+        NSString *highScoreString = [StringUtils getHighScoreLabel:world.name andScore:score.score];
+        CCControlButton *highScoreLabel = [UIUtils createBlackBoardLabel:40 andText:highScoreString];
+        highScoreLabel.position = ccp(winSize.width/2, (winSize.height*7)/10);
         [layer addChild:highScoreLabel];
     }
     
@@ -98,19 +100,19 @@
     {
         Challenge *challenge = world.challenges[i];
         
-        if (i != currentChallengeIndex)
+        if (i > currentChallengeIndex)
         {
-            NSString *imageFilePath = i > currentChallengeIndex ? @"lock.png" : @"checkbox_checked.png";
+            NSString *imageFilePath = @"lock.png";
             CCSprite *hasFinishedOrLockedSprite  = [CCSprite spriteWithFile:imageFilePath];
             
             
-            hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/5, (winSize.height*6)/10 + i*-100);
+            hasFinishedOrLockedSprite.position = ccp((winSize.width*7)/10, (winSize.height*6)/10 + i*-125);
             
             [layer addChild:hasFinishedOrLockedSprite];
         }
         
-        CCControlButton *challengeButton = [UIUtils createBlackBoardButton:30 andText:challenge.name];
-        challengeButton.position = ccp((winSize.width*2)/5, (winSize.height*6)/10 + i*-100);
+        CCControlButton *challengeButton = [UIUtils createBlackBoardButton:36 andText:challenge.name];
+        challengeButton.position = ccp((winSize.width)/2, (winSize.height*6)/10 + i*-125);
         
         [challengeButton setBlock:^(id sender, CCControlEvent event)
         {
@@ -154,10 +156,10 @@
 -(void) pressedLockedChallenge
 {
     UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"Locked Challenge!"
-                          message:@"To play this challenge complete the previous ones!"
+                          initWithTitle:[StringUtils getLockedChallengeStringTitle]
+                          message:[StringUtils getLockedChallengeStringMessage]
                           delegate:nil
-                          cancelButtonTitle:@"OK"
+                          cancelButtonTitle:[StringUtils getOKString]
                           otherButtonTitles:nil];
     [alert show];
 }

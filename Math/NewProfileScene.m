@@ -16,6 +16,8 @@
 
 #import "UIUtils.h"
 
+#import "StringUtils.h"
+
 #define MAX_LENGTH_NAME_FIELD 10
 
 @implementation NewProfileScene
@@ -67,13 +69,13 @@
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:@"Create new profile"];
+    CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:[StringUtils getCreateNewProfileTitle]];
     [layer addChild:label];
     
     _nameField =
     [[UITextField alloc] initWithFrame:CGRectMake(winSize.width/2 - 100, winSize.height/3, 200,40)];
     _nameField.delegate = self;
-    _nameField.placeholder = @"Enter name here!";
+    _nameField.placeholder = [StringUtils getCreatenewProfileInputPlaceHolder];
     _nameField.borderStyle = UITextBorderStyleRoundedRect;
     _nameField.returnKeyType = UIReturnKeyDone;
     
@@ -83,7 +85,7 @@
         [[[CCDirector sharedDirector] view] addSubview:_nameField];
     });
     
-    CCControlButton *doneButton = [UIUtils createBlackBoardButton:30 andText:@"Done"];
+    CCControlButton *doneButton = [UIUtils createBlackBoardButton:40 andText:[StringUtils getDoneString]];
     doneButton.position = ccp(winSize.width/2, (winSize.height)/2);
     
     [doneButton addTarget:self
@@ -105,10 +107,10 @@
         if (result == 1)
         {
             UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Taken name"
-                                  message:@"There already exists a profile with that name!"
+                                  initWithTitle:[StringUtils getTakenNameTitle]
+                                  message:[StringUtils getTakenNameMessage]
                                   delegate:nil
-                                  cancelButtonTitle:@"OK"
+                                  cancelButtonTitle:[StringUtils getOKString]
                                   otherButtonTitles:nil];
             [alert show];
         }
@@ -122,10 +124,10 @@
     else
     {
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Please enter a name"
-                              message:@"To complete your profile you must enter a name!"
+                              initWithTitle:[StringUtils getNothingEnteredNewProfileNameTitle]
+                              message:[StringUtils getNothingEnteredNewProfileNameMessage]
                               delegate:nil
-                              cancelButtonTitle:@"OK"
+                              cancelButtonTitle:[StringUtils getOKString]
                               otherButtonTitles:nil];
         [alert show];
     }

@@ -20,6 +20,8 @@
 
 #import "GenMathInterface.h"
 
+#import "StringUtils.h"
+
 @implementation ChallengeScene
 
 -(id) initWithChallenge: (Challenge *) challenge
@@ -42,7 +44,7 @@
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    NSString *sceneTitleString = [NSString stringWithFormat:@"Welcome to %@", challenge.name];
+    NSString *sceneTitleString = [StringUtils getWelcomeToLevel:challenge.name];
     CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:sceneTitleString];
     [layer addChild:sceneTitleLabel];
     
@@ -52,13 +54,13 @@
     
     if (score != nil)
     {
-        NSString *highScoreString =
-            [NSString stringWithFormat:@"Highscore for this challenge\n is %@", score.score];
-        CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubTitle:highScoreString];
+        NSString *highScoreString = [StringUtils getCurrentChallengeHighScore:score.score];
+        CCControlButton *highScoreLabel = [UIUtils createBlackBoardLabel:40 andText:highScoreString];
+        highScoreLabel.position = ccp(winSize.width/2, (winSize.height*1)/5);
         [layer addChild:highScoreLabel];
     }
     
-    CCControlButton *playButton = [UIUtils createBlackBoardButton:30 andText:@"Play"];
+    CCControlButton *playButton = [UIUtils createBlackBoardButton:40 andText:[StringUtils getPlayString]];
     playButton.position = ccp(winSize.width/2, winSize.height/2);
     
     [playButton setBlock:^(id sender, CCControlEvent event)

@@ -14,6 +14,8 @@
 
 #import "RandomUtils.h"
 
+#import "StringUtils.h"
+
 @implementation IntegerArithmeticGenerator
 
 +(NSArray *) generateQuestionsOne: (int) size andProblemType: (enum ProblemType) problemType
@@ -298,7 +300,10 @@
         Question *question = [[Question alloc] init];
         NSArray *matrix = [RandomUtils randomizeUniqueHorizontalIntMatrixWithY:4 andX:2 andMin:0 andMax:max];
         
-        question.question = isMin ? @"Smallest?" : @"Largest?";
+        NSString *smallest = [StringUtils getSmallestString];
+        NSString *largest = [StringUtils getLargestString];
+        
+        question.question = isMin ? smallest : largest;
         
         NSArray *answers = [self createMinMaxAnswers:matrix isMin:isMin andProblemType:problemType];
         
@@ -406,6 +411,48 @@
     [RandomUtils shuffleArray:answers];
     
     return answers;
+}
+
++(NSArray *) generateMixedOneQuestions: (enum ProblemType) problemType andDifficulty: (int) difficulty andSize: (int) size
+{
+    NSArray *shuffledArray = [self getShuffledQuestionsArray:size];
+    
+    NSMutableArray *questions = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < shuffledArray.count; ++i)
+    {
+        NSNumber *number = shuffledArray[i];
+        NSArray *partialQuestions = [super generateQuestions:i andDifficulty:difficulty andSize:number.intValue];
+        [questions addObjectsFromArray:partialQuestions];
+    }
+    
+    [RandomUtils shuffleArray:questions];
+    
+    return [questions copy];
+}
+
++(NSArray *) getShuffledQuestionsArray: (int) size
+{
+    int quarter = size / 4;
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 4; ++i)
+    {
+        [array addObject:[[NSNumber alloc] initWithInt:quarter]];
+    }
+    
+    int diff = size - quarter * 4;
+    if (diff > 0) {
+        for (int i = 0; i < 4 && diff > 0; ++i)
+        {
+            NSNumber *number = array[i];
+            array[i] = [[NSNumber alloc] initWithInt:number.intValue + 1];
+            --diff;
+        }
+    }
+    
+    [RandomUtils shuffleArray:array];
+    return [array copy];
 }
 
 @end

@@ -1,11 +1,9 @@
-1. Add descriptions to all worlds.
+1. Fixa visa fel och countdown
 
-3. Design yourself.
+2. Göra rutorna med svaren så att de alltid får plats
 
-4. Make problems yourself, worlds etc.
+3. Fixa texten med nytt highscore på värld
 
-5. Add hascompleted to profile
+4. fixa scrolllistan på worlds
 
-6. Fix completed challenge and highscore bugs
-
-7. Icon
+5. Fixa bugg då man spammar alla knappar

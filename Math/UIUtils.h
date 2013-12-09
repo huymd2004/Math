@@ -14,16 +14,14 @@
 +(void) addBlackboardBackground: (CCScene *) scene;
 +(void) addDrawingPadBackground: (CCScene *) scene;
 +(CCLabelTTF *) createGloriaHallelujahCCLabel: (int) fontSize andText: (NSString *) text;
-+(CCLabelTTF *) createSketchCollegeCCLabel: (int) fontSize andText: (NSString *) text;
++(CCLabelTTF *) createOrangeJuiceCCLabel: (int) fontSize andText: (NSString *) text;
 +(CCControlButton *) createBlackBoardButton: (int) fontSize andText: (NSString *) text;
 +(CCControlButton *) createBlackBoardButtonWithSize:(CGSize) size
                                             andText:(NSString *) text
                                             andFontSize: (int) fontSize;
-+(CCControlButton *) createSketchCollegeButton: (NSString *) text;
-+(CCControlButton *) createAnswerImageButton: (NSString *) imagePath;
++(CCControlButton *) createOrangeJuiceButton: (NSString *) text;
++(CCControlButton *) createImageButton: (NSString *) imagePath;
 +(CCControlButton *) createBlackBoardLabel: (int) fontSize andText: (NSString *) text;
-+(void) setupDefaultBlackboardCCMenuSettings;
-+(void) setupDefaultDrawingPadCCMenuSettings;
 +(CCControlButton *) createBackButton;
 +(CCControlButton *) createBlackBoardBackButton;
 +(CCLabelTTF *) createGloriaHallelujahTitle: (NSString *) text;

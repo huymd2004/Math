@@ -12,7 +12,13 @@
 
 +(NSArray *) generateQuestions:(enum ProblemType) problemType andDifficulty: (int) difficulty andSize: (int) size;
 {
-    switch (difficulty) {
+    if (problemType == Mixed)
+    {
+        return [self generateMixedOneQuestions:problemType andDifficulty:difficulty andSize:size];
+    }
+    
+    switch (difficulty)
+    {
         case 1:
             return [self generateQuestionsOne:size andProblemType:problemType];
             break;
@@ -49,6 +55,12 @@
             break;
     }
     
+    return nil;
+}
+
++(NSArray *) generateMixedOneQuestions: (enum ProblemType) problemType
+                         andDifficulty: (int) difficulty andSize: (int) size
+{
     return nil;
 }
 

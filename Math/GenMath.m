@@ -20,20 +20,8 @@
         case Subtraction:
         case Multiplication:
         case Division:
+        case Mixed:
             return [IntegerArithmeticGenerator generateQuestions:problemType andDifficulty:difficulty andSize:size];
-            break;
-        case MixedArithmetics:
-            break;
-        case Puzzle:
-            break;
-        case Geometry:
-            break;
-        case Fraction:
-            break;
-        case Time:
-            break;
-        case Statistics:
-            break;
         default:
             [NSException raise:@"Invalid ProblemType!"
                         format:@"ProblemType %d is invalid", problemType];
@@ -56,18 +44,6 @@
         case Division:
             return Division;
             break;
-        case MixedArithmetics:
-            return MixedArithmetics;
-        case Puzzle:
-            return Puzzle;
-        case Geometry:
-            return Geometry;
-        case Fraction:
-            return Fraction;
-        case Time:
-            return Time;
-        case Statistics:
-            return Statistics;
         default:
             [NSException raise:@"Invalid ProblemType!"
                         format:@"ProblemType %d is invalid", i];

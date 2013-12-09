@@ -12,6 +12,8 @@
 
 #import "Answer.h"
 
+#import "StringUtils.h"
+
 @implementation AbstractGeneratorTests
 
 - (void) testGenerateQuestionsForDifficultyOneOrSix: (enum ProblemType) problemType andDifficulty: (int) difficulty
@@ -37,6 +39,7 @@
             case Subtraction:
             case Multiplication:
             case Division:
+            case Mixed:
             {
                 NSExpression *expression = [NSExpression expressionWithFormat:question.question];
                 int correctAnswer = [[expression expressionValueWithObject:nil context:nil] intValue];
@@ -70,6 +73,16 @@
     for (int i = 0; i < size; ++i)
     {
         Question *question = questions[i];
+        
+        enum ProblemType temp = problemType;
+        if (problemType == Mixed)
+        {
+            problemType = [question.question rangeOfString:@"+"].location != NSNotFound ? Addition : problemType;
+            problemType = [question.question rangeOfString:@"-"].location != NSNotFound ? Subtraction : problemType;
+            problemType = [question.question rangeOfString:@"*"].location != NSNotFound ? Multiplication : problemType;
+                problemType = [question.question rangeOfString:@"/"].location != NSNotFound ? Division : problemType;
+        }
+        
         switch (problemType)
         {
             case Addition:
@@ -179,6 +192,8 @@
                 break;
                 
         }
+        
+        problemType = temp;
     }
 }
 
@@ -205,6 +220,7 @@
             case Subtraction:
             case Multiplication:
             case Division:
+            case Mixed:
             {
                 NSExpression *expression = [NSExpression expressionWithFormat:question.question];
                 int correctAnswer = [[expression expressionValueWithObject:nil context:nil] intValue];
@@ -242,11 +258,13 @@
         Question *question = questions[i];
         if (isMin)
         {
-            XCTAssertTrue([question.question isEqualToString:@"Smallest?"], @"Wrong question!");
+            NSString *stringToBeComparedWith = [StringUtils getSmallestString];
+            XCTAssertTrue([question.question isEqualToString:stringToBeComparedWith], @"Wrong question!");
         }
         else
         {
-            XCTAssertTrue([question.question isEqualToString:@"Largest?"], @"Wrong question!");
+            NSString *stringToBeComparedWith = [StringUtils getLargestString];
+            XCTAssertTrue([question.question isEqualToString:stringToBeComparedWith], @"Wrong question!");
         }
         
         int correctAnswer = isMin ? INT_MAX : INT_MIN;
@@ -260,6 +278,7 @@
                 case Subtraction:
                 case Multiplication:
                 case Division:
+                case Mixed:
                 {
                     NSExpression *expression = [NSExpression expressionWithFormat:currentAnswer.text];
                     int current = [[expression expressionValueWithObject:nil context:nil] intValue];

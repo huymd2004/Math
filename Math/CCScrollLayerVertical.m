@@ -167,6 +167,7 @@ enum
     startYPosition_ = self.position.y;
     startSwipe_ = touchPoint.y;
 	state_ = kCCScrollLayerStateIdle;
+    timestampTouchStarted_ = event.timestamp;
 	return YES;
 }
 
@@ -214,6 +215,10 @@ enum
     CGPoint touchPoint = [touch locationInView:[touch view]];
 	touchPoint = [[CCDirector sharedDirector] convertToGL:touchPoint];
     
+    NSTimeInterval timeDiff = event.timestamp - timestampTouchStarted_;
+    CGFloat yDiff = touchPoint.y - startSwipe_;
+    CGFloat moveDiff = (yDiff / (timeDiff * 2));
+    
     CGFloat endPosition = layer_.contentSize.height - marginOffset_;
 
     CGPoint position = CGPointMake(0, self.position.y);
@@ -221,6 +226,13 @@ enum
         position.y = endPosition;
     } else if (self.position.y < 0) {
         position.y = 0;
+    } else if (abs(moveDiff) > 100) {
+        position.y = moveDiff + self.position.y;
+        if (position.y - endPosition > 0) {
+            position.y = endPosition;
+        } else if (position.y < 0) {
+            position.y = 0;
+        }
     }
     
     id changePage = [CCMoveTo actionWithDuration:0.3 position: position];

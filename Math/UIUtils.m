@@ -35,9 +35,9 @@
     return label;
 }
 
-+(CCLabelTTF *) createSketchCollegeCCLabel: (int) fontSize andText: (NSString *) text
++(CCLabelTTF *) createOrangeJuiceCCLabel: (int) fontSize andText: (NSString *) text
 {
-    return [self createCCLabelTTF: fontSize andText: text andFont: @"SketchCollege"];
+    return [self createCCLabelTTF: fontSize andText: text andFont: @"orangejuice"];
 }
 
 +(CCLabelTTF *) createCCLabelTTF: (int) fontSize andText: (NSString *) text andFont: (NSString *) font
@@ -45,37 +45,15 @@
     return [CCLabelTTF labelWithString:text fontName:font fontSize:fontSize];
 }
 
-+(void) setupDefaultBlackboardCCMenuSettings
-{
-    [CCMenuItemFont setFontName:@"SketchCollege"];
-    [CCMenuItemFont setFontSize:26];
-}
-
-+(void) setupDefaultDrawingPadCCMenuSettings
-{
-    [CCMenuItemFont setFontName:@"Gloria Hallelujah"];
-    [CCMenuItemFont setFontSize:40];
-}
-
 +(CCControlButton *) createBlackBoardButton: (int) fontSize andText: (NSString *) text
 {
-    CGRect patchRect;
-    CGRect imageRect;
-    if (CC_CONTENT_SCALE_FACTOR() == 2.0f)
-    {
-        patchRect = CGRectMake(40, 40, 270, 165);
-        imageRect = CGRectMake(0, 0, 350, 245);
-    }
-    else
-    {
-        patchRect = CGRectMake(20, 20, 135, 83);
-        imageRect = CGRectMake(0, 0, 175, 123);
-    }
+    CGRect patchRect = CGRectMake(20, 20, 135, 83);
+    CGRect imageRect = CGRectMake(0, 0, 175, 123);
     
     CCScale9Sprite *background =
         [CCScale9Sprite spriteWithFile:@"blackboard.png" rect:patchRect capInsets:imageRect];
     
-    CCLabelTTF *label = [self createSketchCollegeCCLabel:fontSize andText:text];
+    CCLabelTTF *label = [self createOrangeJuiceCCLabel:fontSize andText:text];
     label.color = ccc3(255, 255, 255);
     CCControlButton *button = [CCControlButton buttonWithLabel:label backgroundSprite:background];
     
@@ -88,6 +66,7 @@
 {
     CCControlButton *button = [self createBlackBoardButton:fontSize andText:text];
     [button.backgroundSprite setPreferredSize:size];
+    button.preferredSize = size;
     return button;
 }
 
@@ -105,7 +84,7 @@
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     CCControlButton *button =
-        [CCControlButton buttonWithTitle:@"<" fontName:@"SketchCollege" fontSize:64];
+        [CCControlButton buttonWithTitle:@"<" fontName:@"orangejuice" fontSize:64];
     button.position = ccp(winSize.width/10, winSize.height/12);
     return button;
 }
@@ -153,21 +132,21 @@
 +(CCLabelTTF *) createBlackBoardTitle: (NSString *) text
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCLabelTTF *label = [UIUtils createSketchCollegeCCLabel:30 andText:text];
+    CCLabelTTF *label = [UIUtils createOrangeJuiceCCLabel:30 andText:text];
     label.position = ccp(winSize.width/2, (winSize.height*4)/5);
     return label;
 }
 
-+(CCControlButton *) createSketchCollegeButton: (NSString *) text
++(CCControlButton *) createOrangeJuiceButton: (NSString *) text
 {
     CCControlButton *button =
-    [CCControlButton buttonWithTitle:text fontName:@"SketchCollege" fontSize:56];
+    [CCControlButton buttonWithTitle:text fontName:@"orangejuice" fontSize:56];
     button.color = ccc3(255, 255, 255);
     [button setTitleColor:button.color forState:CCControlEventTouchDown];
     return button;
 }
 
-+(CCControlButton *) createAnswerImageButton: (NSString *) imagePath
++(CCControlButton *) createImageButton: (NSString *) imagePath
 {
     CCScale9Sprite *sprite = [CCScale9Sprite spriteWithFile:imagePath ];
     CCControlButton *button = [CCControlButton buttonWithBackgroundSprite:sprite];

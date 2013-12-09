@@ -51,6 +51,8 @@
     CGFloat startYPosition_;
 	
 	CGFloat minimumTouchLengthToSlide_;
+    
+    NSTimeInterval timestampTouchStarted_;
 	
 	int state_;
 	

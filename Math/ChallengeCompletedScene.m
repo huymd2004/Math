@@ -28,7 +28,7 @@
 
 #import "GenMathInterface.h"
 
-//TODO: Fixa spara challenge completed om man trycker meny
+#import "StringUtils.h"
 
 @implementation ChallengeCompletedScene
 
@@ -54,8 +54,8 @@
     World *world = challenge.world;
     Challenge *worldsLastChallenge = world.challenges[world.challenges.count - 1];
     BOOL completedWorld = [worldsLastChallenge.name isEqualToString: challenge.name];
-    
-    NSString *sceneTitleString = [NSString stringWithFormat:@"%@ completed!", completedWorld ? world.name : challenge.name];
+
+    NSString *sceneTitleString = [StringUtils getCompletedString:completedWorld ? world.name : challenge.name];
     CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:sceneTitleString];
     [layer addChild:sceneTitleLabel];
     
@@ -63,8 +63,7 @@
     
     if ([coreDataUtils saveProfileChallengeScore:profile withChallenge:challenge andScore:score])
     {
-        NSString *highScoreString = [NSString
-                                     stringWithFormat:@"Congratulations! New highscore \n for %@ is %d!", challenge.name, score.integerValue];
+        NSString *highScoreString = [StringUtils getCompletedChallengeOrWorldNewHighscoreString:challenge.name andScore:score];
         CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubTitle:highScoreString];
         [layer addChild:highScoreLabel];
     }
@@ -83,8 +82,7 @@
         
         if ([coreDataUtils saveProfileWorldScore:profile withWorld:world andScore:worldScore])
         {
-            NSString *highScoreString = [NSString
-                                         stringWithFormat:@"Congratulations! New highscore \n for %@ is %d!", world.name, worldScore.integerValue];
+            NSString *highScoreString = [StringUtils getCompletedChallengeOrWorldNewHighscoreString:world.name andScore:worldScore];
             CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubSubTitle:highScoreString];
             [layer addChild:highScoreLabel];
         }
@@ -122,7 +120,7 @@
         }
     }
     
-    CCControlButton *nextButton = [UIUtils createBlackBoardButton:30 andText:@"Next"];
+    CCControlButton *nextButton = [UIUtils createBlackBoardButton:30 andText:[StringUtils getNextString]];
     nextButton.position = ccp((winSize.width*4)/5, winSize.height/10);
     
     [nextButton setBlock:^(id sender, CCControlEvent event)
@@ -132,7 +130,7 @@
     
     [layer addChild:nextButton];
     
-    CCControlButton *replayButton = [UIUtils createBlackBoardButton:30 andText:@"Replay"];
+    CCControlButton *replayButton = [UIUtils createBlackBoardButton:30 andText:[StringUtils getReplayString]];
     replayButton.position = ccp(winSize.width/2, winSize.height/10);
     
     [replayButton setBlock:^(id sender, CCControlEvent event)
@@ -142,7 +140,7 @@
     
     [layer addChild:replayButton];
     
-    CCControlButton *menuButton = [UIUtils createBlackBoardButton:30 andText:@"Menu"];
+    CCControlButton *menuButton = [UIUtils createBlackBoardButton:30 andText:[StringUtils getMenuString]];
     menuButton.position = ccp(winSize.width/5, winSize.height/10);
     
     [menuButton addTarget:self

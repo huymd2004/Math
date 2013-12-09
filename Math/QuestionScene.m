@@ -22,6 +22,10 @@
 
 #import "GenMathInterface.h"
 
+#import "StringUtils.h"
+
+#import "PauseGameScene.h"
+
 #define START_SCORE 10000
 
 @implementation QuestionScene
@@ -47,15 +51,15 @@
 
 -(void) setupLayout: (Question *) question andIndex: (int) index
 {
-    [UIUtils addBlackboardBackground:self];
+    [UIUtils addDrawingPadBackground:self];
     CGSize winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *questionLabel = [UIUtils createBlackBoardTitle:question.question];
+    CCLabelTTF *questionLabel = [UIUtils createGloriaHallelujahTitle:question.question];
     [layer addChild:questionLabel];
     
-    _scoreLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Score: %@", _score] fontName:@"SketchCollege" fontSize:24];
+    _scoreLabel = [UIUtils createGloriaHallelujahCCLabel:28 andText:[StringUtils getScoreLabel:_score]];
     _scoreLabel.position = ccp((winSize.width*4)/5, winSize.height/12);
     [layer addChild:_scoreLabel];
     
@@ -66,11 +70,13 @@
         
         if ([answer.isImage intValue] == 0)
         {
-            answerButton = [UIUtils createSketchCollegeButton:answer.text];
+            CGSize size = CGSizeMake(100, 100);
+            answerButton = [UIUtils createBlackBoardButtonWithSize:size  andText:answer.text
+                                    andFontSize:66];
         }
         else
         {
-            answerButton = [UIUtils createAnswerImageButton:answer.text];
+            answerButton = [UIUtils createImageButton:answer.text];
         }
         
         [answerButton setBlock:^(id sender, CCControlEvent event)
@@ -99,7 +105,7 @@
         [layer addChild:answerButton];
     }
     
-    CCControlButton *backButton = [UIUtils createBlackBoardBackButton];
+    CCControlButton *backButton = [UIUtils createBackButton];
     
     [backButton setBlock:^(id sender, CCControlEvent event)
      {
@@ -107,6 +113,16 @@
      } forControlEvents:CCControlEventTouchUpInside];
     
     [layer addChild:backButton];
+    
+    CCControlButton *pauseButton = [UIUtils createImageButton:@"pause.png"];
+    
+    [pauseButton addTarget:self
+                    action:@selector(pauseButtonSelected:)
+          forControlEvents:CCControlEventTouchUpInside];
+    
+    [layer addChild:pauseButton];
+    
+    pauseButton.position = ccp((winSize.width)/2, winSize.height/12);
     
     [self addChild:layer];
 }
@@ -140,6 +156,18 @@
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                     transitionWithDuration:1.0 scene:[[ChallengeScene alloc] initWithChallenge:challenge]]];
+}
+
+-(void) pauseButtonSelected: (id) sender
+{
+    _pauseTimeMilliseconds = [[NSDate date] timeIntervalSince1970] * 1000;
+    [[CCDirector sharedDirector] pushScene:[[PauseGameScene alloc] initWithQuestionScene:self]];
+}
+
+-(void) resume
+{
+    double timeNow = [[NSDate date] timeIntervalSince1970] * 1000;
+    _startTimeMilliseconds = _startTimeMilliseconds + (timeNow - _pauseTimeMilliseconds);
 }
 
 @end

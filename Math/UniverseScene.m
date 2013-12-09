@@ -22,6 +22,10 @@
 
 #import "UIUtils.h"
 
+#import "StringUtils.h"
+
+#import "CCScrollLayerVertical.h"
+
 @implementation UniverseScene
 
 -(id) init
@@ -43,28 +47,30 @@
     
     CCLayer *layer = [[CCLayer alloc] init];
     
-    CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:@"Worlds"];
+    CCLabelTTF *sceneTitleLabel = [UIUtils createGloriaHallelujahTitle:[StringUtils getWorldsString]];
     [layer addChild:sceneTitleLabel];
     
     Profile *profile = [coreDataUtils getCurrentProfile];
     Universe *universe = [coreDataUtils getUniverse];
+    
+    float smallestHeight = INT_MAX;
     
     int currentWorld = [universe.worlds indexOfObject:profile.world];
     for (int i = 0; i < universe.worlds.count; ++i)
     {
         World *world = universe.worlds[i];
         
-        if (i != currentWorld)
+        if (i > currentWorld)
         {
-            NSString *imageFilePath = i > currentWorld ? @"lock.png" : @"checkbox_checked.png";
+            NSString *imageFilePath = @"lock.png";
             CCSprite *hasFinishedOrLockedSprite  = [CCSprite spriteWithFile:imageFilePath];
             
-            hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/4, (winSize.height*(13-2*i))/20);
+            hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/4, (winSize.height*(26-5*i))/40);
             [layer addChild:hasFinishedOrLockedSprite];
         }
         
-        CCControlButton *worldButton = [UIUtils createBlackBoardButton:24 andText:world.name];
-        worldButton.position = ccp(winSize.width/2, (winSize.height*(13-2*i))/20);
+        CCControlButton *worldButton = [UIUtils createBlackBoardButton:40 andText:world.name];
+        worldButton.position = ccp(winSize.width/2, (winSize.height*(26-5*i))/40);
         
         [worldButton setBlock:^(id sender, CCControlEvent event)
         {
@@ -79,6 +85,13 @@
         } forControlEvents:CCControlEventTouchUpInside];
         
         [layer addChild:worldButton];
+        
+        smallestHeight = min(worldButton.position.y, smallestHeight);
+        
+        if (worldButton.position.y < smallestHeight)
+        {
+            smallestHeight = worldButton.position.y;
+        }
     }
     
     CCControlButton *backButton = [UIUtils createBackButton];
@@ -100,10 +113,10 @@
 -(void) pressedLockedWorld
 {
     UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"Locked World!"
-                          message:@"To play this world complete the previous ones!"
+                          initWithTitle:[StringUtils getLockedWorldStringTitle]
+                          message:[StringUtils getLockedWorldStringMessage]
                           delegate:nil
-                          cancelButtonTitle:@"OK"
+                          cancelButtonTitle:[StringUtils getOKString]
                           otherButtonTitles:nil];
     [alert show];
 }

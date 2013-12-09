@@ -20,10 +20,14 @@
     int _currentScore;
     double _startTimeMilliseconds;
     Challenge *_challenge;
+    double _pauseTimeMilliseconds;
 }
 
 -(id) initWithQuestions: (NSArray *) questions
       andQuestionIndex: (int) index
           andChallenge: (Challenge *) challenge
               andScore: (NSNumber *) score;
+
+-(void) resume;
+
 @end
