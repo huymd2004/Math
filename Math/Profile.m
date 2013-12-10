@@ -2,7 +2,7 @@
 //  Profile.m
 //  Math
 //
-//  Created by Johan Stenberg on 2013-12-02.
+//  Created by Johan Stenberg on 2013-12-10.
 //  Copyright (c) 2013 Johan Stenberg. All rights reserved.
 //
 
@@ -17,6 +17,7 @@
 
 @dynamic current;
 @dynamic name;
+@dynamic hasCompletedGame;
 @dynamic challenge;
 @dynamic profileChallengeScores;
 @dynamic profileWorldScores;

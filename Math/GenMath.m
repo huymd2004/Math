@@ -43,6 +43,8 @@
             return Multiplication;
         case Division:
             return Division;
+        case Mixed:
+            return Mixed;
             break;
         default:
             [NSException raise:@"Invalid ProblemType!"

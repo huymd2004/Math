@@ -2,7 +2,7 @@
 //  Profile.h
 //  Math
 //
-//  Created by Johan Stenberg on 2013-12-02.
+//  Created by Johan Stenberg on 2013-12-10.
 //  Copyright (c) 2013 Johan Stenberg. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSNumber * current;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * hasCompletedGame;
 @property (nonatomic, retain) Challenge *challenge;
 @property (nonatomic, retain) NSSet *profileChallengeScores;
 @property (nonatomic, retain) NSSet *profileWorldScores;

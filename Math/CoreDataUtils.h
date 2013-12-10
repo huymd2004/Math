@@ -38,7 +38,10 @@
 -(BOOL) saveProfileWorldScore: (Profile *) profile withWorld: (World *) world andScore: (NSNumber *) score;
 -(void) updateChallengeForProfile: (Profile *) profile challenge: (Challenge *) challenge;
 -(void) updateWorldForProfile: (Profile *) profile world: (World *) world;
+-(BOOL) hasUserCompletedWorld: (Profile *) profile world: (World *) world;
+-(void) setHasCompletedGame: (Profile *) profile;
 
 +(CoreDataUtils *) getInstance;
 +(void) createCoreDataWithManagedObjectContext: (NSManagedObjectContext *) managedObjectContext;
+
 @end

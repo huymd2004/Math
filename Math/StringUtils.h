@@ -114,4 +114,6 @@
 
 +(NSString *) getScoreLabel: (NSNumber *) score;
 
++(NSString *) getHasCompletedGameString: (NSString *) name;
+
 @end

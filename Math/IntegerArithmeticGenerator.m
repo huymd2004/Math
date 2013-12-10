@@ -298,6 +298,11 @@
     for (int i = 0; i < size; ++i)
     {
         Question *question = [[Question alloc] init];
+        if ((problemType == Multiplication || problemType == Division) && max > 50)
+        {
+            max /= 2;
+        }
+        
         NSArray *matrix = [RandomUtils randomizeUniqueHorizontalIntMatrixWithY:4 andX:2 andMin:0 andMax:max];
         
         NSString *smallest = [StringUtils getSmallestString];

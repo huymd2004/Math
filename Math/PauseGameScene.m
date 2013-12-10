@@ -14,6 +14,8 @@
 
 #import "MainMenuScene.h"
 
+#import "CountdownScene.h"
+
 @implementation PauseGameScene
 
 -(id) initWithQuestionScene: (QuestionScene *) questionScene
@@ -61,13 +63,12 @@
 
 -(void) resumeButtonSelected: (id) sender
 {
-    [[CCDirector sharedDirector] popScene];
-    [_questionScene resume];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
+                                               transitionWithDuration:1.0 scene:[[CountdownScene alloc] initWithQuestionScene:_questionScene andIsPaused:YES]]];
 }
 
 -(void) menuButtonSelected: (id) sender
 {
-    [[CCDirector sharedDirector] popScene];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
                                                transitionWithDuration:1.0 scene:[[MainMenuScene alloc] init]]];
 }

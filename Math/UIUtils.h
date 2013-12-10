@@ -29,4 +29,5 @@
 +(CCLabelTTF *) createGloriaHallelujahSubSubTitle: (NSString *) text;
 +(CCLabelTTF *) createBlackBoardTitle: (NSString *) text;
 +(CCControlButton *) createDeleteButton: (int) fontSize;
++(CCControlButton *) createWrongAnswerImage;
 @end

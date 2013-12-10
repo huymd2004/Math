@@ -1,9 +1,1 @@
-1. Fixa visa fel och countdown
-
-2. Göra rutorna med svaren så att de alltid får plats
-
-3. Fixa texten med nytt highscore på värld
-
-4. fixa scrolllistan på worlds
-
-5. Fixa bugg då man spammar alla knappar
+1. Fixa iphone app

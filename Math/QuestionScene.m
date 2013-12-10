@@ -70,7 +70,7 @@
         
         if ([answer.isImage intValue] == 0)
         {
-            CGSize size = CGSizeMake(100, 100);
+            CGSize size = CGSizeMake(220, 90);
             answerButton = [UIUtils createBlackBoardButtonWithSize:size  andText:answer.text
                                     andFontSize:66];
         }
@@ -80,27 +80,11 @@
         }
         
         [answerButton setBlock:^(id sender, CCControlEvent event)
-         {
-             [self questionMenuItemSelected:answer andIndex:index];
-         } forControlEvents:CCControlEventTouchUpInside];
+        {
+             [self questionMenuItemSelected:answer andIndex:index andQuestionIndex:i];
+        } forControlEvents:CCControlEventTouchUpInside];
         
-        if (i < 2)
-        {
-            answerButton.position = ccp(((winSize.width*i) + (winSize.width))/3, (winSize.height*6)/10);
-        }
-        else
-        {
-            switch (question.answers.count)
-            {
-                case 3:
-                    answerButton.position = ccp(winSize.width/2, (winSize.height*4)/10);
-                    break;
-                case 4:
-                    answerButton.position =
-                        ccp(((winSize.width*(i - 2)) + (winSize.width))/3, (winSize.height*4)/10);
-                    break;
-            }
-        }
+        answerButton.position = [self getPositionForAnswerWithIndex:i];
         
         [layer addChild:answerButton];
     }
@@ -127,16 +111,27 @@
     [self addChild:layer];
 }
 
--(void) questionMenuItemSelected: (Answer *) answer andIndex: (int) index
+-(CGPoint) getPositionForAnswerWithIndex: (int) index
+{
+    CGSize winSize = [[CCDirector sharedDirector] winSize];
+    return ccp(((winSize.width*4*(index % 2)) +
+         (winSize.width*3))/10, (winSize.height*(6 - (index > 1 ? 2 : 0)))/10);
+}
+
+-(void) questionMenuItemSelected: (Answer *) answer andIndex: (int) index andQuestionIndex: (int) i
 {
     if ([answer.isCorrect intValue] == 0)
     {
-        _currentScore -= 1000;
+        _currentScore -= 5000;
+        _currentScore = _currentScore > 0 ? _currentScore : 0;
+        CCControlButton *wrongAnswerImage = [UIUtils createWrongAnswerImage];
+        wrongAnswerImage.position = [self getPositionForAnswerWithIndex:i];
+        [self addChild:wrongAnswerImage];
         return;
     }
     
     double finishedTimeMilliseconds = [[NSDate date] timeIntervalSince1970] * 1000;
-    _currentScore -= finishedTimeMilliseconds - _startTimeMilliseconds;
+    _currentScore -= (finishedTimeMilliseconds - _startTimeMilliseconds) / 3;
     _currentScore = _currentScore > 0 ? _currentScore : 0;
     _score = [NSNumber numberWithInt:(_score.intValue + _currentScore)];
     
@@ -161,7 +156,8 @@
 -(void) pauseButtonSelected: (id) sender
 {
     _pauseTimeMilliseconds = [[NSDate date] timeIntervalSince1970] * 1000;
-    [[CCDirector sharedDirector] pushScene:[[PauseGameScene alloc] initWithQuestionScene:self]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
+                                                 transitionWithDuration:1.0 scene:[[PauseGameScene alloc] initWithQuestionScene:self]]];
 }
 
 -(void) resume

@@ -8,6 +8,7 @@
     </entity>
     <entity name="Profile" representedClassName="Profile" syncable="YES">
         <attribute name="current" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasCompletedGame" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="challenge" maxCount="1" deletionRule="Nullify" destinationEntity="Challenge" inverseName="profiles" inverseEntity="Challenge" syncable="YES"/>
         <relationship name="profileChallengeScores" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ProfileChallengeScore" inverseName="profile" inverseEntity="ProfileChallengeScore" syncable="YES"/>

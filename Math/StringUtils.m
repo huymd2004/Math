@@ -22,16 +22,16 @@
 
 +(NSArray *) getWorldNames
 {
-    NSString *levelOne = NSLocalizedString(@"Level One", @"Name for first level in each world.");
-    NSString *levelTwo = NSLocalizedString(@"Level Two", @"Name for second level in each world.");
-    NSString *levelThree = NSLocalizedString(@"Level Three", @"Name for third level in each world.");
-    NSString *levelFour = NSLocalizedString(@"Level Four", @"Name for fourth level in each world.");
-    NSString *levelFive = NSLocalizedString(@"Level Five", @"Name for fifth level in each world.");
-    NSString *levelSix = NSLocalizedString(@"Level Six", @"Name for sixth level in each world.");
-    NSString *levelSeven = NSLocalizedString(@"Level Seven", @"Name for seventh level in each world.");
-    NSString *levelEight = NSLocalizedString(@"Level Eight", @"Name for eighth level in each world.");
-    NSString *levelNine = NSLocalizedString(@"Level Nine", @"Name for ninth level in each world.");
-    NSString *levelTen = NSLocalizedString(@"Level Ten", @"Name for tenth level in each world.");
+    NSString *levelOne = NSLocalizedString(@"Level one", @"Name for first level in each world.");
+    NSString *levelTwo = NSLocalizedString(@"Level two", @"Name for second level in each world.");
+    NSString *levelThree = NSLocalizedString(@"Level three", @"Name for third level in each world.");
+    NSString *levelFour = NSLocalizedString(@"Level four", @"Name for fourth level in each world.");
+    NSString *levelFive = NSLocalizedString(@"Level five", @"Name for fifth level in each world.");
+    NSString *levelSix = NSLocalizedString(@"Level six", @"Name for sixth level in each world.");
+    NSString *levelSeven = NSLocalizedString(@"Level seven", @"Name for seventh level in each world.");
+    NSString *levelEight = NSLocalizedString(@"Level eight", @"Name for eighth level in each world.");
+    NSString *levelNine = NSLocalizedString(@"Level nine", @"Name for ninth level in each world.");
+    NSString *levelTen = NSLocalizedString(@"Level ten", @"Name for tenth level in each world.");
     
     NSArray *challengeNames = @[levelOne, levelTwo, levelThree, levelFour, levelFive, levelSix, levelSeven, levelEight, levelNine, levelTen];
     return challengeNames;
@@ -43,7 +43,7 @@
     NSString *subtraction = NSLocalizedString(@"Subtraction", @"Subtraction world name.");
     NSString *multiplication = NSLocalizedString(@"Multiplication", @"Multiplication world name.");
     NSString *division = NSLocalizedString(@"Division", @"Division world name.");
-    NSString *mixed = NSLocalizedString(@"Mixed One", @"Mixed world name");
+    NSString *mixed = NSLocalizedString(@"Mixed", @"Mixed world name");
     
     NSArray *worldNames = @[addition, subtraction, multiplication, division, mixed];
     return worldNames;
@@ -71,7 +71,7 @@
 
 +(NSString *) getHighScoreLabel: (NSString *) name andScore: (NSNumber *) score
 {
-    return [NSString stringWithFormat:NSLocalizedString(@"Highscore for %@ is %@", @"Highscore string with 2 arguments."), name, score];
+    return [NSString stringWithFormat:NSLocalizedString(@"Highscore for \n%@ is %@", @"Highscore string with 2 arguments."), name, score];
 }
 
 +(NSString *) getLockedChallengeStringTitle
@@ -126,7 +126,7 @@
 
 +(NSString *) getCompletedGameString: (NSString *) profileName
 {
-    return [NSString stringWithFormat:NSLocalizedString(@"Congratulations %@! You completed the game!", @"Completed game title with argument."), profileName];
+    return [NSString stringWithFormat:NSLocalizedString(@"Congratulations %@!\nYou completed the game!", @"Completed game title with argument."), profileName];
 }
 
 +(NSString *) getCreateNewProfileTitle
@@ -294,6 +294,11 @@
 +(NSString *) getScoreLabel: (NSNumber *) score
 {
     return [NSString stringWithFormat:NSLocalizedString(@"Score: %@", @"Score label."), score];
+}
+
++(NSString *) getHasCompletedGameString: (NSString *) name
+{
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ has\ncompleted the game!", @"Has completed the game string in profile."), name];
 }
 
 @end

@@ -143,6 +143,7 @@ static CoreDataUtils *_coreDataUtils;
 
     
     profile.name = name;
+    profile.hasCompletedGame = NO;
     profile.world = universe.worlds[0];
     profile.challenge = profile.world.challenges[0];
     profile.current = [NSNumber numberWithBool:YES];
@@ -298,7 +299,7 @@ static CoreDataUtils *_coreDataUtils;
 {
     ProfileWorldScore *oldScore = [self getProfileWorldScore:profile world:world];
     
-    if (oldScore == nil || score > oldScore.score)
+    if (oldScore == nil || score.intValue > oldScore.score.intValue)
     {
         if (oldScore != nil)
         {
@@ -407,6 +408,42 @@ static CoreDataUtils *_coreDataUtils;
             [NSException raise:@"Invalid profile world save."
                     format:@"%@", [error localizedDescription]];
         }
+    }
+}
+
+-(BOOL) hasUserCompletedWorld: (Profile *) profile world: (World *) world
+{
+    int currentWorldIndex = -1;
+    int worldIndex = -1;
+    
+    Universe *universe = world.universe;
+    
+    for (int i = 0; i < universe.worlds.count; ++i)
+    {
+        World *currentWorld = universe.worlds[i];
+        if ([currentWorld.name isEqualToString:world.name])
+        {
+            worldIndex = i;
+        }
+        
+        if ([currentWorld.name isEqualToString:profile.world.name])
+        {
+            currentWorldIndex = i;
+        }
+    }
+    
+    return worldIndex < currentWorldIndex;
+}
+
+-(void) setHasCompletedGame: (Profile *) profile
+{
+    profile.hasCompletedGame = [[NSNumber alloc] initWithBool:YES];
+    
+    NSError *error;
+    if (![_managedObjectContext save:&error])
+    {
+        [NSException raise:@"Invalid profile hasCompletedGame save."
+                    format:@"%@", [error localizedDescription]];
     }
 }
 

@@ -53,11 +53,13 @@
     
     ProfileWorldScore *score = [coreDataUtils getProfileWorldScore:profile world:world];
     
-    if (score != nil)
+    bool hasHighscore = score != nil;
+    
+    if (hasHighscore)
     {
         NSString *highScoreString = [StringUtils getHighScoreLabel:world.name andScore:score.score];
         CCControlButton *highScoreLabel = [UIUtils createBlackBoardLabel:40 andText:highScoreString];
-        highScoreLabel.position = ccp(winSize.width/2, (winSize.height*7)/10);
+        highScoreLabel.position = ccp(winSize.width/2, (winSize.height*13)/20);
         [layer addChild:highScoreLabel];
     }
     
@@ -96,6 +98,7 @@
     currentChallengeIndex = thisWorldIndex == profileWorldIndex ? currentChallengeIndex : INT_MAX;
     
     float smallestHeight = 0;
+    int start = hasHighscore ? 5 : 6;
     for (int i = 0; i < world.challenges.count; ++i)
     {
         Challenge *challenge = world.challenges[i];
@@ -106,13 +109,13 @@
             CCSprite *hasFinishedOrLockedSprite  = [CCSprite spriteWithFile:imageFilePath];
             
             
-            hasFinishedOrLockedSprite.position = ccp((winSize.width*7)/10, (winSize.height*6)/10 + i*-125);
+            hasFinishedOrLockedSprite.position = ccp((winSize.width*7)/10, (winSize.height*start)/10 + i*-125);
             
             [layer addChild:hasFinishedOrLockedSprite];
         }
         
         CCControlButton *challengeButton = [UIUtils createBlackBoardButton:36 andText:challenge.name];
-        challengeButton.position = ccp((winSize.width)/2, (winSize.height*6)/10 + i*-125);
+        challengeButton.position = ccp((winSize.width)/2, (winSize.height*start)/10 + i*-125);
         
         [challengeButton setBlock:^(id sender, CCControlEvent event)
         {
@@ -130,7 +133,7 @@
         
         if (i == world.challenges.count - 1)
         {
-            smallestHeight = (winSize.height*6)/10 + i*-100;
+            smallestHeight = (winSize.height*start)/10 + i*-125;
         }
     }
     

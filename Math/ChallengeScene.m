@@ -22,6 +22,8 @@
 
 #import "StringUtils.h"
 
+#import "CountdownScene.h"
+
 @implementation ChallengeScene
 
 -(id) initWithChallenge: (Challenge *) challenge
@@ -83,8 +85,11 @@
 -(void) playMenuItemSelected: (Challenge *) challenge
 {
     NSArray *questions = [GenMathInterface getQuestionsForChallenge:challenge];
+    QuestionScene *questionScene = [[QuestionScene alloc] initWithQuestions:questions andQuestionIndex:0 andChallenge:challenge andScore:[[NSNumber alloc] initWithInt:0]];
+    CountdownScene *challengeScene =
+        [[CountdownScene alloc] initWithQuestionScene:questionScene andIsPaused:NO];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
-                                               transitionWithDuration:1.0 scene:[[QuestionScene alloc] initWithQuestions:questions andQuestionIndex:0 andChallenge:challenge andScore:[[NSNumber alloc] initWithInt:0]]]];
+                                               transitionWithDuration:1.0 scene:challengeScene]];
 }
 
 -(void) backMenuItemSelected:(id) sender

@@ -53,15 +53,26 @@
     profilePresenterLabel.position = ccp(winSize.width/2, (winSize.height*3)/5);
     [layer addChild:profilePresenterLabel];
     
-    NSString *worldTitle = [StringUtils getCurrentWorldString:profile.world.name];
-    CCControlButton *worldPresenterLabel = [UIUtils createBlackBoardLabel:36 andText:worldTitle];
-    worldPresenterLabel.position = ccp(winSize.width/2, (winSize.height*13)/30);
-    [layer addChild:worldPresenterLabel];
+    if (!profile.hasCompletedGame)
+    {
+        NSString *worldTitle = [StringUtils getCurrentWorldString:profile.world.name];
+        CCControlButton *worldPresenterLabel = [UIUtils createBlackBoardLabel:36 andText:worldTitle];
+        worldPresenterLabel.position = ccp(winSize.width/2, (winSize.height*13)/30);
+        [layer addChild:worldPresenterLabel];
     
-    NSString *challengeTitle = [StringUtils getCurrentChallengeString:profile.challenge.name];
-    CCControlButton *challengePresenterLabel = [UIUtils createBlackBoardLabel:36 andText:challengeTitle];
-    challengePresenterLabel.position = ccp(winSize.width/2, (winSize.height*4)/15);
-    [layer addChild:challengePresenterLabel];
+        NSString *challengeTitle = [StringUtils getCurrentChallengeString:profile.challenge.name];
+        CCControlButton *challengePresenterLabel = [UIUtils createBlackBoardLabel:36 andText:challengeTitle];
+        challengePresenterLabel.position = ccp(winSize.width/2, (winSize.height*4)/15);
+        [layer addChild:challengePresenterLabel];
+    }
+    else
+    {
+        NSString *hasCompletedGameTitle = [StringUtils getHasCompletedGameString:profile.name];
+        CCControlButton *hasCompletedGameLabel =
+            [UIUtils createBlackBoardLabel:36 andText:hasCompletedGameTitle];
+        hasCompletedGameLabel.position = ccp(winSize.width/2, (winSize.height*13)/30);
+        [layer addChild:hasCompletedGameLabel];
+    }
     
     CCControlButton *backButton = [UIUtils createBackButton];
     

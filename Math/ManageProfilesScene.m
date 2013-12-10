@@ -41,15 +41,15 @@
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     NSArray *profiles = [coreDataUtils getProfiles];
     
-    CCControlButton *profilesTitleLabel = [UIUtils createBlackBoardLabel:28 andText:[StringUtils getNumberOfProfilesString:profiles.count]];
+    CCControlButton *profilesTitleLabel = [UIUtils createBlackBoardLabel:32 andText:[StringUtils getNumberOfProfilesString:profiles.count]];
     profilesTitleLabel.position = ccp(winSize.width/2, (winSize.height*7)/10);
     [layer addChild:profilesTitleLabel];
     
-    CCControlButton *nameLabel = [UIUtils createBlackBoardLabel:28 andText:[StringUtils getNameWithColonString]];
+    CCControlButton *nameLabel = [UIUtils createBlackBoardLabel:32 andText:[StringUtils getNameWithColonString]];
     nameLabel.position = ccp((winSize.width*3)/10, (winSize.height*6)/10);
     [layer addChild:nameLabel];
     
-    CCControlButton *currentLabel = [UIUtils createBlackBoardLabel:28 andText:[StringUtils getCurrentWithColonString]];
+    CCControlButton *currentLabel = [UIUtils createBlackBoardLabel:32 andText:[StringUtils getCurrentWithColonString]];
     currentLabel.position = ccp((winSize.width*7)/10, (winSize.height*6)/10);
     [layer addChild:currentLabel];
     
@@ -58,7 +58,7 @@
     {
         Profile *profile = profiles[i];
         
-        CCControlButton *profileNameLabel = [UIUtils createBlackBoardLabel:28 andText:profile.name];
+        CCControlButton *profileNameLabel = [UIUtils createBlackBoardLabel:32 andText:profile.name];
         profileNameLabel.position = ccp((winSize.width*3)/10, (winSize.height*(41 - 7*i))/80);
         [layer addChild:profileNameLabel];
         

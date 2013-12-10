@@ -30,6 +30,8 @@
 
 #import "StringUtils.h"
 
+#import "CountdownScene.h"
+
 @implementation ChallengeCompletedScene
 
 -(id) initWithChallenge: (Challenge *) challenge andScore: (NSNumber *) score
@@ -60,15 +62,17 @@
     [layer addChild:sceneTitleLabel];
     
     Profile *profile = [coreDataUtils getCurrentProfile];
+    BOOL hasCompletedWorldBefore = [coreDataUtils hasUserCompletedWorld:profile world:world];
     
     if ([coreDataUtils saveProfileChallengeScore:profile withChallenge:challenge andScore:score])
     {
         NSString *highScoreString = [StringUtils getCompletedChallengeOrWorldNewHighscoreString:challenge.name andScore:score];
         CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubTitle:highScoreString];
+        highScoreLabel.position = ccp(winSize.width/2, highScoreLabel.position.y - 50);
         [layer addChild:highScoreLabel];
     }
     
-    if (completedWorld)
+    if (completedWorld || hasCompletedWorldBefore)
     {
         NSNumber *worldScore = 0;
         
@@ -84,6 +88,7 @@
         {
             NSString *highScoreString = [StringUtils getCompletedChallengeOrWorldNewHighscoreString:world.name andScore:worldScore];
             CCLabelTTF *highScoreLabel = [UIUtils createGloriaHallelujahSubSubTitle:highScoreString];
+            highScoreLabel.position = ccp(winSize.width/2, highScoreLabel.position.y - 100);
             [layer addChild:highScoreLabel];
         }
     }
@@ -91,7 +96,13 @@
     Challenge *nextChallenge = nil;
     World *nextWorld = nil;
     
-    if (completedWorld)
+    World *lastWorld = challenge.world.universe.worlds[challenge.world.universe.worlds.count-1];
+    if (completedWorld && [challenge.world.name isEqualToString:lastWorld.name])
+    {
+        [coreDataUtils setHasCompletedGame:profile];
+    }
+    
+    if (completedWorld && !hasCompletedWorldBefore)
     {
         Universe *universe = challenge.world.universe;
         for (int i = 0; i < universe.worlds.count-1; ++i)
@@ -100,13 +111,13 @@
             if ([world.name isEqualToString:challenge.world.name])
             {
                 nextWorld = universe.worlds[i+1];
-                [coreDataUtils updateWorldForProfile:profile world:nextWorld];
                 [coreDataUtils updateChallengeForProfile:profile challenge:nextWorld.challenges[0]];
+                [coreDataUtils updateWorldForProfile:profile world:nextWorld];
                 break;
             }
         }
     }
-    else
+    else if (!hasCompletedWorldBefore)
     {
         for (int i = 0; i < challenge.world.challenges.count-1; ++i)
         {
@@ -174,7 +185,9 @@
 -(void) replayMenuItemSelected: (Challenge *) challenge
 {
     NSArray *questions = [GenMathInterface getQuestionsForChallenge:challenge];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[QuestionScene alloc] initWithQuestions:questions andQuestionIndex:0 andChallenge:challenge andScore:0]]];
+    QuestionScene *questionsScene = [[QuestionScene alloc] initWithQuestions:questions andQuestionIndex:0 andChallenge:challenge andScore:[[NSNumber alloc] initWithInt:0]];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[CountdownScene alloc] initWithQuestionScene:questionsScene andIsPaused:NO]]];
 }
 
 -(void) menuMenuItemSelected: (id) sender

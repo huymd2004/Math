@@ -129,6 +129,13 @@
     return button;
 }
 
++(CCControlButton *) createWrongAnswerImage
+{
+    CCControlButton *image = [self createDeleteButton:120];
+    image.enabled = NO;
+    return image;
+}
+
 +(CCLabelTTF *) createBlackBoardTitle: (NSString *) text
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
