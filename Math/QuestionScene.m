@@ -71,8 +71,15 @@
         if ([answer.isImage intValue] == 0)
         {
             CGSize size = CGSizeMake(220, 90);
+            int fontSize = 66;
+            if ([UIUtils getDeviceType] != iPad)
+            {
+                size = CGSizeMake(110, 45);
+                fontSize = 60;
+            }
+            
             answerButton = [UIUtils createBlackBoardButtonWithSize:size  andText:answer.text
-                                    andFontSize:66];
+                                    andFontSize:fontSize];
         }
         else
         {
@@ -114,8 +121,17 @@
 -(CGPoint) getPositionForAnswerWithIndex: (int) index
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    return ccp(((winSize.width*4*(index % 2)) +
-         (winSize.width*3))/10, (winSize.height*(6 - (index > 1 ? 2 : 0)))/10);
+    if ([UIUtils getDeviceType] == iPad)
+    {
+        
+        return ccp(((winSize.width*4*(index % 2)) +
+                    (winSize.width*3))/10, (winSize.height*(6 - (index > 1 ? 2 : 0)))/10);
+    }
+    else
+    {
+        return ccp(((winSize.width*10*(index % 2)) +
+                    (winSize.width*5))/20, (winSize.height*(6 - (index > 1 ? 2 : 0)))/10);
+    }
 }
 
 -(void) questionMenuItemSelected: (Answer *) answer andIndex: (int) index andQuestionIndex: (int) i
@@ -143,7 +159,7 @@
     {
         ++index;
         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade
-                                                   transitionWithDuration:1.0 scene:[[QuestionScene alloc] initWithQuestions:_questions andQuestionIndex:index andChallenge:_challenge andScore:_score]]];
+                                                   transitionWithDuration:0 scene:[[QuestionScene alloc] initWithQuestions:_questions andQuestionIndex:index andChallenge:_challenge andScore:_score]]];
     }
 }
 

@@ -525,8 +525,26 @@ enum
     }
     
     // Set the content size
-    CGRect maxRect              = CGRectUnion([_titleLabel boundingBox], [_backgroundSprite boundingBox]);
-    self.contentSize            = CGSizeMake(maxRect.size.width, maxRect.size.height);
+    
+    int magicNumberLR = 0;
+    int magicNumberTB = 0;
+    if ([self doesAdjustBackgroundImage])
+    {
+        magicNumberLR = 7;
+        magicNumberTB = 14;
+        if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+        {
+            magicNumberLR = 9;
+            magicNumberTB = 14;
+        }
+        
+        [self setContentSize:CGSizeMake(titleLabelSize.width + _marginLR * magicNumberLR,
+                                        titleLabelSize.height + _marginTB * magicNumberTB)];
+    }
+    else
+    {
+        [self setContentSize:[_backgroundSprite preferredSize]];
+    }
     
     _titleLabel.position        = ccp (self.contentSize.width / 2, self.contentSize.height / 2);
     _backgroundSprite.position  = ccp (self.contentSize.width / 2, self.contentSize.height / 2);

@@ -71,6 +71,13 @@
         highScoreLabel.position = ccp(winSize.width/2, highScoreLabel.position.y - 50);
         [layer addChild:highScoreLabel];
     }
+    else
+    {
+        NSString *string = [StringUtils getScoreLabel:score];
+        CCLabelTTF *scoreLabel = [UIUtils createGloriaHallelujahSubTitle:string];
+        scoreLabel.position = ccp(winSize.width/2, scoreLabel.position.y - 50);
+        [layer addChild:scoreLabel];
+    }
     
     if (completedWorld || hasCompletedWorldBefore)
     {
@@ -102,7 +109,7 @@
         [coreDataUtils setHasCompletedGame:profile];
     }
     
-    if (completedWorld && !hasCompletedWorldBefore)
+    if (completedWorld)
     {
         Universe *universe = challenge.world.universe;
         for (int i = 0; i < universe.worlds.count-1; ++i)
@@ -111,13 +118,16 @@
             if ([world.name isEqualToString:challenge.world.name])
             {
                 nextWorld = universe.worlds[i+1];
-                [coreDataUtils updateChallengeForProfile:profile challenge:nextWorld.challenges[0]];
-                [coreDataUtils updateWorldForProfile:profile world:nextWorld];
+                if (!hasCompletedWorldBefore)
+                {
+                    [coreDataUtils updateChallengeForProfile:profile challenge:nextWorld.challenges[0]];
+                    [coreDataUtils updateWorldForProfile:profile world:nextWorld];
+                }
                 break;
             }
         }
     }
-    else if (!hasCompletedWorldBefore)
+    else
     {
         for (int i = 0; i < challenge.world.challenges.count-1; ++i)
         {
@@ -125,14 +135,19 @@
             if ([challenge.name isEqualToString:worldChallenge.name])
             {
                 nextChallenge = challenge.world.challenges[i+1];
-                [coreDataUtils updateChallengeForProfile:profile challenge:nextChallenge];
+                if (!hasCompletedWorldBefore)
+                {
+                    [coreDataUtils updateChallengeForProfile:profile challenge:nextChallenge];
+                }
                 break;
             }
         }
     }
     
+    int widthNext = [UIUtils getDeviceType] == iPad ? (winSize.width*4)/5 : (winSize.width*5)/6;
+    
     CCControlButton *nextButton = [UIUtils createBlackBoardButton:30 andText:[StringUtils getNextString]];
-    nextButton.position = ccp((winSize.width*4)/5, winSize.height/10);
+    nextButton.position = ccp(widthNext, winSize.height/10);
     
     [nextButton setBlock:^(id sender, CCControlEvent event)
      {
@@ -151,8 +166,10 @@
     
     [layer addChild:replayButton];
     
+    int widthMenu = [UIUtils getDeviceType] == iPad ? (winSize.width)/5 : (winSize.width)/6;
+    
     CCControlButton *menuButton = [UIUtils createBlackBoardButton:30 andText:[StringUtils getMenuString]];
-    menuButton.position = ccp(winSize.width/5, winSize.height/10);
+    menuButton.position = ccp(widthMenu, winSize.height/10);
     
     [menuButton addTarget:self
                          action:@selector(menuMenuItemSelected:)

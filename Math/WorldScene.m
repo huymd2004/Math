@@ -97,6 +97,8 @@
     
     currentChallengeIndex = thisWorldIndex == profileWorldIndex ? currentChallengeIndex : INT_MAX;
     
+    int negativo = [UIUtils getDeviceType] == iPad ? 125 : 75;
+    
     float smallestHeight = 0;
     int start = hasHighscore ? 5 : 6;
     for (int i = 0; i < world.challenges.count; ++i)
@@ -108,14 +110,14 @@
             NSString *imageFilePath = @"lock.png";
             CCSprite *hasFinishedOrLockedSprite  = [CCSprite spriteWithFile:imageFilePath];
             
-            
-            hasFinishedOrLockedSprite.position = ccp((winSize.width*7)/10, (winSize.height*start)/10 + i*-125);
+            int widthPosition = [UIUtils getDeviceType] == iPad ? (winSize.width*3)/4 : (winSize.width*17)/20;
+            hasFinishedOrLockedSprite.position = ccp(widthPosition, (winSize.height*start)/10 + i*-negativo);
             
             [layer addChild:hasFinishedOrLockedSprite];
         }
         
         CCControlButton *challengeButton = [UIUtils createBlackBoardButton:36 andText:challenge.name];
-        challengeButton.position = ccp((winSize.width)/2, (winSize.height*start)/10 + i*-125);
+        challengeButton.position = ccp((winSize.width)/2, (winSize.height*start)/10 + i*-negativo);
         
         [challengeButton setBlock:^(id sender, CCControlEvent event)
         {
@@ -133,7 +135,7 @@
         
         if (i == world.challenges.count - 1)
         {
-            smallestHeight = (winSize.height*start)/10 + i*-125;
+            smallestHeight = (winSize.height*start)/10 + i*-negativo;
         }
     }
     
@@ -145,7 +147,8 @@
     
     [self addChild:backButton z:1];
     
-    layer.contentSize = CGSizeMake(winSize.width, winSize.height  - smallestHeight + 100);
+    int padding = [UIUtils getDeviceType] == iPad ? 100 : 60;
+    layer.contentSize = CGSizeMake(winSize.width, winSize.height  - smallestHeight + padding);
     CCScrollLayerVertical *scrollLayer = [[CCScrollLayerVertical alloc] initWithLayer:layer];
     [self addChild:scrollLayer z:0];
 }

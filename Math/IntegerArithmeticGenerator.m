@@ -300,7 +300,7 @@
         Question *question = [[Question alloc] init];
         if ((problemType == Multiplication || problemType == Division) && max > 50)
         {
-            max /= 2;
+            max /= 5;
         }
         
         NSArray *matrix = [RandomUtils randomizeUniqueHorizontalIntMatrixWithY:4 andX:2 andMin:0 andMax:max];
@@ -347,8 +347,14 @@
                 answer.text = [[NSString alloc] initWithFormat:@"%d * %d", [matrix[i][0] intValue], [matrix[i][1] intValue]];
                 break;
             case Division:
-                answer.text = [[NSString alloc] initWithFormat:@"%d / %d", [matrix[i][0] intValue] * [matrix[i][1] intValue],
-                               [matrix[i][1] intValue]];
+            {
+                int divisionValue = [matrix[i][1] intValue];
+                if (divisionValue == 0)
+                {
+                    divisionValue = arc4random() % 10 + 1;
+                }
+                answer.text = [[NSString alloc] initWithFormat:@"%d / %d", [matrix[i][0] intValue] * divisionValue, divisionValue];
+            }
                 break;
             default:
                 [NSException raise:@"Invalid ProblemType!"

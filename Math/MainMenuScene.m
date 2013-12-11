@@ -78,8 +78,8 @@
     
     Profile *profile = [coreDataUtils getCurrentProfile];
     NSString *currentProfileString = [StringUtils getCurrentProfileString:profile.name];
-    CCLabelTTF *profileLabel = [UIUtils createGloriaHallelujahCCLabel:16 andText:currentProfileString];
-    profileLabel.position = ccp((winSize.width*7)/10, (winSize.height)/10);
+    CCLabelTTF *profileLabel = [UIUtils createGloriaHallelujahCCLabel:24 andText:currentProfileString];
+    profileLabel.position = ccp((winSize.width*13)/20, (winSize.height)/10);
     [layer addChild:profileLabel z:0];
     
     [self addChild:layer];

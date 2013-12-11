@@ -10,6 +10,13 @@
 
 #import "CCControlExtension.h"
 
+enum Device
+{
+    iPhone,
+    iPhone4,
+    iPad
+};
+
 @interface UIUtils : NSObject
 +(void) addBlackboardBackground: (CCScene *) scene;
 +(void) addDrawingPadBackground: (CCScene *) scene;
@@ -30,4 +37,5 @@
 +(CCLabelTTF *) createBlackBoardTitle: (NSString *) text;
 +(CCControlButton *) createDeleteButton: (int) fontSize;
 +(CCControlButton *) createWrongAnswerImage;
++(enum Device) getDeviceType;
 @end

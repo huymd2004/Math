@@ -12,7 +12,7 @@
 
 #import "Question.h"
 
-#define PROFILE_LIMIT 5
+#define PROFILE_LIMIT 4
 
 @implementation CoreDataUtils
 
@@ -200,6 +200,8 @@ static CoreDataUtils *_coreDataUtils;
     {
         [_managedObjectContext deleteObject:profileChallengeScore];
     }
+    
+    profile.hasCompletedGame = NO;
     
     NSError *error;
     if (![_managedObjectContext save:&error])

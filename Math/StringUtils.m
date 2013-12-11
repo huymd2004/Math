@@ -126,7 +126,7 @@
 
 +(NSString *) getCompletedGameString: (NSString *) profileName
 {
-    return [NSString stringWithFormat:NSLocalizedString(@"Congratulations %@!\nYou completed the game!", @"Completed game title with argument."), profileName];
+    return [NSString stringWithFormat:NSLocalizedString(@"Congratulations \n%@!\nYou completed the game!", @"Completed game title with argument."), profileName];
 }
 
 +(NSString *) getCreateNewProfileTitle
@@ -216,7 +216,7 @@
 
 +(NSString *) getTooManyProfilesTitle
 {
-    return NSLocalizedString(@"Max 5 Profiles", @"Too many profiles dialog title.");
+    return NSLocalizedString(@"Max 4 Profiles", @"Too many profiles dialog title.");
 }
 
 +(NSString *) getTooManyProfilesMessage

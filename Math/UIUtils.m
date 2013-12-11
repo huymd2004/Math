@@ -21,7 +21,7 @@
 +(void) addDrawingPadBackground: (CCScene *) scene
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
-    CCSprite *background = [CCSprite spriteWithFile:@"noisy_grid.png" rect:CGRectMake(0, 0, 1536, 2048)];
+    CCSprite *background = [CCSprite spriteWithFile:@"noisy_grid.png" rect:CGRectMake(0, 0, 768, 1024)];
     background.position = ccp(winSize.width/2, winSize.height/2);
     [scene addChild:background z:-1];
     ccTexParams repeat = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
@@ -37,18 +37,33 @@
 
 +(CCLabelTTF *) createOrangeJuiceCCLabel: (int) fontSize andText: (NSString *) text
 {
-    return [self createCCLabelTTF: fontSize andText: text andFont: @"orangejuice"];
+    enum Device device = [self getDeviceType];
+    fontSize = device == iPad ? fontSize : (fontSize*3)/5;
+    return [CCLabelTTF labelWithString:text fontName:@"orangejuice" fontSize:fontSize];
 }
 
 +(CCLabelTTF *) createCCLabelTTF: (int) fontSize andText: (NSString *) text andFont: (NSString *) font
 {
+    enum Device device = [self getDeviceType];
+    fontSize = device == iPad ? fontSize : (fontSize*2)/5;
     return [CCLabelTTF labelWithString:text fontName:font fontSize:fontSize];
 }
 
 +(CCControlButton *) createBlackBoardButton: (int) fontSize andText: (NSString *) text
 {
-    CGRect patchRect = CGRectMake(20, 20, 135, 83);
-    CGRect imageRect = CGRectMake(0, 0, 175, 123);
+    CGRect patchRect;
+    CGRect imageRect;
+    
+    if ([self getDeviceType] == iPad)
+    {
+        patchRect = CGRectMake(20, 20, 135, 83);
+        imageRect = CGRectMake(0, 0, 175, 123);
+    }
+    else
+    {
+        patchRect = CGRectMake(12, 12, 64, 37);
+        imageRect = CGRectMake(0, 0, 88, 61);
+    }
     
     CCScale9Sprite *background =
         [CCScale9Sprite spriteWithFile:@"blackboard.png" rect:patchRect capInsets:imageRect];
@@ -73,8 +88,10 @@
 +(CCControlButton *) createBackButton
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
+    enum Device device = [self getDeviceType];
+    int fontSize = device == iPad ? 60 : (48*7)/10;
     CCControlButton *button =
-        [CCControlButton buttonWithTitle:@"<" fontName:@"Gloria Hallelujah" fontSize:48];
+        [CCControlButton buttonWithTitle:@"<" fontName:@"Gloria Hallelujah" fontSize:fontSize];
     button.color = ccc3(0, 0, 0);
     button.position = ccp(winSize.width/10, winSize.height/12);
     return button;
@@ -83,8 +100,10 @@
 +(CCControlButton *) createBlackBoardBackButton
 {
     CGSize winSize = [[CCDirector sharedDirector] winSize];
+    enum Device device = [self getDeviceType];
+    int fontSize = device == iPad ? 64 : (64*2)/5;
     CCControlButton *button =
-        [CCControlButton buttonWithTitle:@"<" fontName:@"orangejuice" fontSize:64];
+        [CCControlButton buttonWithTitle:@"<" fontName:@"orangejuice" fontSize:fontSize];
     button.position = ccp(winSize.width/10, winSize.height/12);
     return button;
 }
@@ -122,6 +141,8 @@
 
 +(CCControlButton *) createDeleteButton: (int) fontSize
 {
+    enum Device device = [self getDeviceType];
+    fontSize = device == iPad ? fontSize : (fontSize*3)/5;
     CCControlButton *button =
         [CCControlButton buttonWithTitle:@"X" fontName:@"Gloria Hallelujah" fontSize:fontSize];
     button.color = ccc3(255, 0, 0);
@@ -146,8 +167,10 @@
 
 +(CCControlButton *) createOrangeJuiceButton: (NSString *) text
 {
+    enum Device device = [self getDeviceType];
+    int fontSize = device == iPad ? 56 : (56*2)/5;
     CCControlButton *button =
-    [CCControlButton buttonWithTitle:text fontName:@"orangejuice" fontSize:56];
+        [CCControlButton buttonWithTitle:text fontName:@"orangejuice" fontSize:fontSize];
     button.color = ccc3(255, 255, 255);
     [button setTitleColor:button.color forState:CCControlEventTouchDown];
     return button;
@@ -159,6 +182,24 @@
     CCControlButton *button = [CCControlButton buttonWithBackgroundSprite:sprite];
     button.adjustBackgroundImage = NO;
     return button;
+}
+
++(enum Device) getDeviceType
+{
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    {
+        if([[UIScreen mainScreen] bounds].size.height >= 568 ||
+            [[UIScreen mainScreen] bounds].size.width >= 568)
+        {
+            return iPhone;
+        }
+        else
+        {
+            return iPhone4;
+        }
+    }
+    
+    return iPad;
 }
 
 @end

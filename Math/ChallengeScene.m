@@ -57,7 +57,7 @@
     if (score != nil)
     {
         NSString *highScoreString = [StringUtils getCurrentChallengeHighScore:score.score];
-        CCControlButton *highScoreLabel = [UIUtils createBlackBoardLabel:40 andText:highScoreString];
+        CCControlButton *highScoreLabel = [UIUtils createBlackBoardLabel:36 andText:highScoreString];
         highScoreLabel.position = ccp(winSize.width/2, (winSize.height*1)/5);
         [layer addChild:highScoreLabel];
     }

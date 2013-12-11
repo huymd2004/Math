@@ -65,7 +65,8 @@
             NSString *imageFilePath = @"lock.png";
             CCSprite *hasFinishedOrLockedSprite  = [CCSprite spriteWithFile:imageFilePath];
             
-            hasFinishedOrLockedSprite.position = ccp((winSize.width*3)/4, (winSize.height*(26-5*i))/40);
+            int widthPosition = [UIUtils getDeviceType] == iPad ? (winSize.width*3)/4 : (winSize.width*17)/20;
+            hasFinishedOrLockedSprite.position = ccp(widthPosition, (winSize.height*(26-5*i))/40);
             [layer addChild:hasFinishedOrLockedSprite];
         }
         

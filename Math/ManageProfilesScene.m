@@ -36,13 +36,25 @@
     CCLayer *layer = [[CCLayer alloc] init];
     
     CCLabelTTF *label = [UIUtils createGloriaHallelujahTitle:[StringUtils getManageProfilesString]];
+    if ([UIUtils getDeviceType] != iPad)
+    {
+        label.position = ccp(winSize.width/2, (winSize.height*9)/10);
+    }
+    
     [layer addChild:label];
     
     CoreDataUtils *coreDataUtils = [CoreDataUtils getInstance];
     NSArray *profiles = [coreDataUtils getProfiles];
     
     CCControlButton *profilesTitleLabel = [UIUtils createBlackBoardLabel:32 andText:[StringUtils getNumberOfProfilesString:profiles.count]];
-    profilesTitleLabel.position = ccp(winSize.width/2, (winSize.height*7)/10);
+    if ([UIUtils getDeviceType] != iPad)
+    {
+        profilesTitleLabel.position = ccp(winSize.width/2, (winSize.height*3)/4);
+    }
+    else
+    {
+        profilesTitleLabel.position = ccp(winSize.width/2, (winSize.height*7)/10);
+    }
     [layer addChild:profilesTitleLabel];
     
     CCControlButton *nameLabel = [UIUtils createBlackBoardLabel:32 andText:[StringUtils getNameWithColonString]];
@@ -53,13 +65,19 @@
     currentLabel.position = ccp((winSize.width*7)/10, (winSize.height*6)/10);
     [layer addChild:currentLabel];
     
+
+    int fontSize = [UIUtils getDeviceType] == iPad ? 32 : 28;
     NSMutableArray *radioMenuItems = [[NSMutableArray alloc] init];
     for (int i = 0; i < profiles.count; ++i)
     {
         Profile *profile = profiles[i];
+        enum Device deviceType = [UIUtils getDeviceType];
+        int start = deviceType == iPad ? 41 : 78;
+        int ticker = deviceType == iPad ? 7 : 16;
+        int divisor = deviceType == iPad ? 80 : 160;
         
-        CCControlButton *profileNameLabel = [UIUtils createBlackBoardLabel:32 andText:profile.name];
-        profileNameLabel.position = ccp((winSize.width*3)/10, (winSize.height*(41 - 7*i))/80);
+        CCControlButton *profileNameLabel = [UIUtils createBlackBoardLabel:fontSize andText:profile.name];
+        profileNameLabel.position = ccp((winSize.width*3)/10, (winSize.height*(start - ticker*i))/divisor);
         [layer addChild:profileNameLabel];
         
         CCMenuItemFont *radioMenuItem = [CCMenuItemFont itemWithString:@"[ ]"
@@ -89,7 +107,7 @@
         }
         
         CCMenu *radioMenu = [CCMenu menuWithItems:radioMenuItem, nil];
-        radioMenu.position = ccp((winSize.width*7)/10, (winSize.height*(41 - 7*i))/80);
+        radioMenu.position = ccp((winSize.width*7)/10, (winSize.height*(start - ticker*i))/divisor);
         [layer addChild:radioMenu];
         
         CCControlButton *deleteProfileButton = [UIUtils createDeleteButton:32];
@@ -99,7 +117,7 @@
             [self showDeleteProfileDialogForProfile:profile];
         } forControlEvents:CCControlEventTouchUpInside];
         
-        deleteProfileButton.position = ccp((winSize.width*17)/20, (winSize.height*(41 - 7*i))/80);
+        deleteProfileButton.position = ccp((winSize.width*17)/20, (winSize.height*(start - ticker*i))/divisor);
         [layer addChild:deleteProfileButton];
     }
     
@@ -130,6 +148,7 @@
     }
     else
     {
+        _profileToBeDeleted = profile;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[StringUtils getDeleteProfileTitle]
                                                           message:[StringUtils getDeleteProfileMessage:profile.name]
                                                          delegate:self
